@@ -1,0 +1,22 @@
+services:
+  projecteuler-go:
+    image: projecteuler-go:latest
+    build:
+      context: .
+      target: testing
+    environment:
+      _DEBUG: ${_DEBUG}
+    volumes:
+      - ./coverage:/app/coverage
+    profiles: ["testing"]
+
+  projecteuler-go-dev:
+    image: projecteuler-go:dev
+    build:
+      context: .
+      target: development
+    environment:
+      _DEBUG: ${_DEBUG}
+    volumes:
+      - ./:/app
+    profiles: ["development"]
