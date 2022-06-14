@@ -4,7 +4,7 @@ GOCOVER=$(GO) tool cover
 PKG_LIST=$(go list ./... | grep -v /vendor/ | tr '\n' ' '| xargs echo -n)
 
 .MAIN: test/coverage
-.PHONY: all clean coverage dependencies help list test 
+.PHONY: all clean coverage dependencies help list test
 
 help: list
 
