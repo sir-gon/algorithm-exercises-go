@@ -21,8 +21,9 @@ func Problem0001(_top int) int {
 	for i := 0; i < _top; i++ {
 		if i%3 == 0 || i%5 == 0 {
 
-			fmt.Printf("%d\n", i)
 			total += i
+
+			fmt.Printf("Problem0001: + %d => %d \n", i, total)
 		}
 	}
 

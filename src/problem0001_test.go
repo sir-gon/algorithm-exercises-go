@@ -23,6 +23,6 @@ func TestProblem0001(t *testing.T) {
 	ans := Problem0001(top)
 
 	if ans != solutionFound {
-		t.Errorf("IntMin(2, -2) = %d; want -2", ans)
+		t.Errorf("Problem0001(%d) = %d; want %d", top, ans, solutionFound)
 	}
 }
