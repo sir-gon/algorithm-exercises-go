@@ -21,9 +21,12 @@ test: coverage/c.out
 
 coverage: coverage/c.out
 	$(GOCOVER) -func=coverage/c.out
-	$(GOCOVER) -html=coverage/c.out
+	$(GOCOVER) -html=coverage/c.out -o ./coverage/coverage.html
 
 clean:
 	$(GO) clean -testcache
+	rm -vfr ./coverage
+	mkdir -p ./coverage
+	touch ./coverage/.gitkeep
 
 all: test coverage

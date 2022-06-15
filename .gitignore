@@ -48,3 +48,7 @@ go.work
 
 # Built Visual Studio Code Extensions
 *.vsix
+
+## TESTING
+
+coverage/
