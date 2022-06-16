@@ -12,7 +12,7 @@
 package projecteuler
 
 import (
-	"fmt"
+	log "gon.cl/projecteuler.net/src/lib"
 )
 
 func Problem0001(_top int) int {
@@ -23,9 +23,11 @@ func Problem0001(_top int) int {
 
 			total += i
 
-			fmt.Printf("Problem0001: + %d => %d \n", i, total)
+			log.Debug("Problem0001: STEP: %d => TOTAL: %d", i, total)
 		}
 	}
+
+	log.Info("Problem0001 result: %d", total)
 
 	return total
 }
