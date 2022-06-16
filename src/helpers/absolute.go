@@ -1,4 +1,4 @@
-package projecteuler
+package helpers
 
 func Abs(value int) int {
 	if value < 0 {

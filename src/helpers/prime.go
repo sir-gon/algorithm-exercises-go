@@ -1,4 +1,4 @@
-package projecteuler
+package helpers
 
 // Prime checker
 func IsPrime(n int) bool {
