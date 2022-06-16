@@ -13,9 +13,8 @@
 package projecteuler
 
 import (
-	"fmt"
-
 	"gon.cl/projecteuler.net/src/helpers"
+	log "gon.cl/projecteuler.net/src/lib"
 )
 
 func Problem0004(_bottom int, _top int) int {
@@ -25,6 +24,8 @@ func Problem0004(_bottom int, _top int) int {
 	var foundj int
 	var foundPalindrome int
 
+	log.Info("Initializing Problem 0004")
+
 	i = _top
 	for oki := true; oki; oki = i >= _bottom {
 		j = _top
@@ -32,7 +33,7 @@ func Problem0004(_bottom int, _top int) int {
 
 			if helpers.IsPalindrome(j * i) {
 
-				fmt.Printf("FOUND %d x %d = %d is Palindrome\n", i, j, i*j)
+				log.Debug("FOUND %d x %d = %d is Palindrome", i, j, i*j)
 
 				if foundPalindrome == 0 || i*j > foundPalindrome {
 					foundi = i
@@ -48,7 +49,7 @@ func Problem0004(_bottom int, _top int) int {
 		i -= 1
 	}
 
-	fmt.Printf("Problem0004 Largest Palindrome => %d 𝗑 %d = %d\n", foundi, foundj, foundPalindrome)
+	log.Info("Problem0004 Largest Palindrome => %d 𝗑 %d = %d", foundi, foundj, foundPalindrome)
 
 	return foundPalindrome
 }

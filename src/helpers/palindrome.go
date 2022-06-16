@@ -1,7 +1,6 @@
 package helpers
 
 import (
-	"fmt"
 	"reflect"
 )
 
@@ -30,8 +29,6 @@ func reverse(a []int) []int {
 func IsPalindrome(n int) bool {
 	digits := splitInt(n)
 	reversed := reverse(digits)
-
-	fmt.Printf("digits: %v | reversed; %v \n", digits, reversed)
 
 	return reflect.DeepEqual(digits, reversed)
 }

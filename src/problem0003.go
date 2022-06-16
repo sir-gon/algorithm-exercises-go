@@ -11,9 +11,8 @@
 package projecteuler
 
 import (
-	"fmt"
-
 	"gon.cl/projecteuler.net/src/helpers"
+	log "gon.cl/projecteuler.net/src/lib"
 )
 
 func Problem0003(_top int) int {
@@ -21,14 +20,14 @@ func Problem0003(_top int) int {
 
 	divs := helpers.Divisors(_top)
 
-	fmt.Printf("Divisors(%d) = %v \n", _top, divs)
+	log.Info("Divisors(%d) = %v \n", _top, divs)
 
 	var i = len(divs) - 1
 
 	for ok := true; ok; ok = i >= 0 && maxPrimeFactor == 0 {
 		prime := helpers.IsPrime(divs[i])
 
-		fmt.Printf("%d is Prime? => %t \n", divs[i], prime)
+		log.Debug("%d is Prime? => %t \n", divs[i], prime)
 
 		if prime {
 			maxPrimeFactor = divs[i]
@@ -37,7 +36,7 @@ func Problem0003(_top int) int {
 		i -= 1
 	}
 
-	fmt.Printf("maxPrimeFactor is %d \n", maxPrimeFactor)
+	log.Info("maxPrimeFactor is %d \n", maxPrimeFactor)
 
 	return maxPrimeFactor
 }
