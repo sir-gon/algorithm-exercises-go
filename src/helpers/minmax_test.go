@@ -1,4 +1,4 @@
-package projecteuler
+package helpers
 
 import (
 	"fmt"
