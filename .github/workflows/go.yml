@@ -2,7 +2,7 @@ name: Go
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "feature/*" ]
   pull_request:
     branches: [ "main" ]
 
@@ -25,4 +25,7 @@ jobs:
       run: go build -v ./...
 
     - name: Test
-      run: go test -v ./...
+      run: go test -v -coverprofile=coverage/c.out ./...
+
+    - name: Coverage
+      run: go tool cover -func=coverage/c.out
