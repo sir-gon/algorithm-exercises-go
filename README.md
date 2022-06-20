@@ -1,4 +1,4 @@
-[![Go CI](https://github.com/sir-gon/projecteuler-go/actions/workflows/go.yml/badge.svg)](https://github.com/sir-gon/projecteuler-go/actions/workflows/go.yml)
+[![Go CI](https://github.com/sir-gon/projecteuler-go/actions/workflows/go.yml/badge.svg)](https://github.com/sir-gon/projecteuler-go/actions/workflows/go.yml) [![codecov](https://codecov.io/gh/sir-gon/projecteuler-go/branch/main/graph/badge.svg?token=U3N3HSC3YC)](https://codecov.io/gh/sir-gon/projecteuler-go)
 
 # What is this?
 
