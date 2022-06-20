@@ -25,7 +25,10 @@ jobs:
       run: go build -v ./...
 
     - name: Test
-      run: go test -v -coverprofile=coverage/c.out ./...
+      run: go test -v -coverprofile=coverage.out ./...
 
     - name: Coverage
-      run: go tool cover -func=coverage/c.out
+      run: go tool cover -func=coverage.out
+      
+    - name: Upload coverage reports to Codecov with GitHub Action
+      uses: codecov/codecov-action@v3
