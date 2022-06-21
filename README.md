@@ -1,5 +1,9 @@
 [![Go CI](https://github.com/sir-gon/projecteuler-go/actions/workflows/go.yml/badge.svg)](https://github.com/sir-gon/projecteuler-go/actions/workflows/go.yml) [![codecov](https://codecov.io/gh/sir-gon/projecteuler-go/branch/main/graph/badge.svg?token=U3N3HSC3YC)](https://codecov.io/gh/sir-gon/projecteuler-go)
 
+![GitHub language count](https://img.shields.io/github/languages/count/sir-gon/projecteuler-go) ![GitHub top language](https://img.shields.io/github/languages/top/sir-gon/projecteuler-go)
+
+
+
 # What is this?
 
 [Project Euler](https://projecteuler.net/) provide some algorithms and mathematical problems to solve to be used as experience tests.
