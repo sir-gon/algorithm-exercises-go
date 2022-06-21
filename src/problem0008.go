@@ -33,12 +33,28 @@
 package projecteuler
 
 import (
+	"strconv"
+	"strings"
+
 	log "gon.cl/projecteuler.net/src/lib"
 )
 
-func Problem0008() int {
+const __BASE__ = 10
+const __BIT_SIZE__ = 32
+
+func Problem0008(numberInput string) int {
 
 	var answer int
+
+	var digitsSlice []int32
+	var bigNumSlice = strings.Split(numberInput, "")
+
+	for i := 0; i < len(bigNumSlice); i += 1 {
+		v, _ := strconv.ParseInt(string(bigNumSlice[i]), __BASE__, __BIT_SIZE__)
+		digitsSlice = append(digitsSlice, int32(v))
+	}
+
+	log.Info("digitsSlice: %d", digitsSlice)
 
 	log.Info("Problem0008 answer => %d", answer)
 
