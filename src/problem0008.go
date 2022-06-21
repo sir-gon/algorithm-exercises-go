@@ -36,6 +36,7 @@ import (
 	"strconv"
 	"strings"
 
+	"gon.cl/projecteuler.net/src/helpers"
 	log "gon.cl/projecteuler.net/src/lib"
 )
 
@@ -44,7 +45,7 @@ const __BIT_SIZE__ = 32
 
 func Problem0008(numberInput string) int {
 
-	var answer int
+	var max int = 0
 
 	var digitsSlice []int32
 	var bigNumSlice = strings.Split(numberInput, "")
@@ -54,9 +55,28 @@ func Problem0008(numberInput string) int {
 		digitsSlice = append(digitsSlice, int32(v))
 	}
 
-	log.Info("digitsSlice: %d", digitsSlice)
+	var i int
+	const interval = 13
+	const bottom = 0
+	var top = len(digitsSlice)
 
-	log.Info("Problem0008 answer => %d", answer)
+	for i = bottom; i <= top-interval; i += 1 {
+		var digitsSet []int
+		var j int
 
-	return answer
+		for j = 0; j < interval; j++ {
+			digitsSet = append(digitsSet, int(digitsSlice[i+j]))
+		}
+
+		var currentProduct = helpers.Product(digitsSet)
+		log.Debug("Product beetwen %d and %d <%d> is: %d", i, i+interval, digitsSet, currentProduct)
+
+		if currentProduct > max {
+			max = currentProduct
+		}
+	}
+
+	log.Info("Problem0008 => The the greatest product of %d consecutive digits is: %d", interval, max)
+
+	return max
 }
