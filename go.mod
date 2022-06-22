@@ -15,4 +15,18 @@ require (
 	gopkg.in/yaml.v3 v3.0.1 // indirect
 )
 
-replace golang.org/x/crypto v0.0.0-20191011191535-87dc89f01550 => golang.org/x/crypto v0.0.0-20220525230936-793ad666bf5e // indirect
+// require (
+//   golang.org/x/crypto v0.0.0-20200220183623-bac4c82f6975 // indirect
+// )
+
+replace golang.org/x/crypto => golang.org/x/crypto v0.0.0-20220525230936-793ad666bf5e // indirect
+
+exclude (
+	golang.org/x/crypto v0.0.0-20190308221718-c2843e01d9a2
+	golang.org/x/crypto v0.0.0-20191011191535-87dc89f01550
+	golang.org/x/net v0.0.0-20210405180319-a5a99cb37ef4
+	golang.org/x/text v0.3.0
+	gopkg.in/yaml.v3 v3.0.0
+	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c
+	gopkg.in/yaml.v3 v3.0.0-20210107192922-496545a6307b
+)
