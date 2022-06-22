@@ -41,9 +41,7 @@ func Problem0009() int {
 	}
 
 	found := false
-	var foundTriplet triplet = triplet{1, 1, 1}
-
-	log.Info("START WITH: a = %d b = %d c = %d", foundTriplet.a, foundTriplet.b, foundTriplet.c)
+	var foundTriplet triplet
 
 	for a < b && !found {
 		b = a + 1
