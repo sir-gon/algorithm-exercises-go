@@ -7,7 +7,7 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestProductDriven(t *testing.T) {
+func TestProductTableDriven(t *testing.T) {
 
 	var tests = []struct {
 		input []int
