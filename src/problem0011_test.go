@@ -78,3 +78,18 @@ func TestProblem0011(t *testing.T) {
 		assert.Equal(t, err, false)
 	})
 }
+
+func TestProblem0011FailCase(t *testing.T) {
+
+	inputMatrix := matrix
+	expectedSolution := 0
+	inputAdjacentNumberListSize := 0
+
+	testname := fmt.Sprintf("Problem0011(%v) => %v \n", inputMatrix, expectedSolution)
+	t.Run(testname, func(t *testing.T) {
+
+		ans, err := Problem0011(inputMatrix, inputAdjacentNumberListSize)
+		assert.Equal(t, expectedSolution, ans)
+		assert.Equal(t, err, true)
+	})
+}
