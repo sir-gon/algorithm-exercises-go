@@ -3,7 +3,6 @@ package log
 import (
 	"fmt"
 	"os"
-	"sync"
 
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
@@ -16,7 +15,6 @@ type Log struct {
 type Fields map[string]string
 
 var instance *Log
-var once sync.Once
 
 func getLogLevel(logLevel string) zapcore.Level {
 	zapLogLevel := zap.DebugLevel
