@@ -22,7 +22,9 @@ import (
 
 func TestProblem0010(t *testing.T) {
 
-	expectedSolution := 142913828922
+	const expectedSolution = 142913828922
+	const bottom = 1
+	const top = 2000000
 
 	testname := fmt.Sprintf("Problem0010() => %v \n", expectedSolution)
 	t.Run(testname, func(t *testing.T) {
