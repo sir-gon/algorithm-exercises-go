@@ -1,8 +1,6 @@
 [![Go CI](https://github.com/sir-gon/projecteuler-go/actions/workflows/go.yml/badge.svg)](https://github.com/sir-gon/projecteuler-go/actions/workflows/go.yml) [![codecov](https://codecov.io/gh/sir-gon/projecteuler-go/branch/main/graph/badge.svg?token=U3N3HSC3YC)](https://codecov.io/gh/sir-gon/projecteuler-go) [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsir-gon%2Fprojecteuler-go.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsir-gon%2Fprojecteuler-go?ref=badge_shield) [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/6194/badge)](https://bestpractices.coreinfrastructure.org/projects/6194)
 
-![GitHub](https://img.shields.io/github/license/sir-gon/projecteuler-go) ![GitHub language count](https://img.shields.io/github/languages/count/sir-gon/projecteuler-go) ![GitHub top language](https://img.shields.io/github/languages/top/sir-gon/projecteuler-go) [![Total alerts](https://img.shields.io/lgtm/alerts/g/sir-gon/projecteuler-go.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sir-gon/projecteuler-go/alerts/) [![Language grade: Go](https://img.shields.io/lgtm/grade/go/g/sir-gon/projecteuler-go.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sir-gon/projecteuler-go/context:go)
-
-
+![GitHub](https://img.shields.io/github/license/sir-gon/projecteuler-go) ![GitHub language count](https://img.shields.io/github/languages/count/sir-gon/projecteuler-go) ![GitHub top language](https://img.shields.io/github/languages/top/sir-gon/projecteuler-go) [![Total alerts](https://img.shields.io/lgtm/alerts/g/sir-gon/projecteuler-go.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/sir-gon/projecteuler-go/alerts/)
 
 # What is this?
 
