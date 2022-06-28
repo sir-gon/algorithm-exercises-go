@@ -1,6 +1,3 @@
-//go:build bruteforce
-// +build bruteforce
-
 /**
  * Summation of primes
  *
@@ -18,12 +15,9 @@ import (
 	log "gon.cl/projecteuler.net/src/lib"
 )
 
-func Problem0010() int {
+func Problem0010(bottom int, top int) int {
 
 	var answer int
-
-	const top = 2000000
-	const bottom = 1
 
 	var primes []int = []int{2}
 
