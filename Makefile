@@ -15,7 +15,7 @@ dependencies:
 	$(GO) mod download
 
 coverage/c.out: dependencies
-	$(GOTEST) -v -coverprofile=coverage/c.out ./...
+	$(GOTEST) -v -coverprofile="coverage/c.out" ./...
 
 test: coverage/c.out
 
