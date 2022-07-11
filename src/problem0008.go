@@ -55,16 +55,14 @@ func Problem0008(numberInput string) int {
 		digitsSlice = append(digitsSlice, int32(v))
 	}
 
-	var i int
 	const interval = 13
 	const bottom = 0
 	var top = len(digitsSlice)
 
-	for i = bottom; i <= top-interval; i += 1 {
+	for i := bottom; i <= top-interval; i += 1 {
 		var digitsSet []int
-		var j int
 
-		for j = 0; j < interval; j++ {
+		for j := 0; j < interval; j++ {
 			digitsSet = append(digitsSet, int(digitsSlice[i+j]))
 		}
 

@@ -32,8 +32,7 @@ func Problem0014(bottom int, top int) int {
 	var answer int
 	var maxSequence []int
 
-	var i int
-	for i = bottom; i < top; i += 1 {
+	for i := bottom; i < top; i += 1 {
 
 		var sequence []int = helpers.CollatzSequence(i)
 		log.Info("sequence of %d: %v", i, sequence)

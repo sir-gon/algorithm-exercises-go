@@ -51,16 +51,14 @@ func Problem0011(matrix [][]int, inputAdjacentNumberListSize int) (int, bool) {
 	var max int = 0
 	var acum int = 0
 
-	var i, j, k int
-
-	for i = bottom; i < top; i += 1 {
-		for j = bottom; j < top; j += 1 {
+	for i := bottom; i < top; i += 1 {
+		for j := bottom; j < top; j += 1 {
 			acum = 1
 
 			if i < top-(inputAdjacentNumberListSize-1) && j < top {
 				log.Debug("---- VERTICAL ------------------------------------------")
 				// vertical
-				for k = bottom; k < inputAdjacentNumberListSize; k++ {
+				for k := bottom; k < inputAdjacentNumberListSize; k++ {
 					log.Debug("row: i %d, column: %d, inputAdjacentNumberListSize %d => %d", i+k, j, k, matrix[i+k][j])
 
 					acum *= matrix[i+k][j]
@@ -73,7 +71,7 @@ func Problem0011(matrix [][]int, inputAdjacentNumberListSize int) (int, bool) {
 			if i < top && j < top-(inputAdjacentNumberListSize-1) {
 				log.Debug("---- HORIZONTAL ----------------------------------------")
 				// horizontal
-				for k = bottom; k < inputAdjacentNumberListSize; k++ {
+				for k := bottom; k < inputAdjacentNumberListSize; k++ {
 					log.Debug("row: i ${i}, column: ${j + k} => ${matrix[i][j + k]}")
 					acum *= matrix[i][j+k]
 				}
@@ -85,7 +83,7 @@ func Problem0011(matrix [][]int, inputAdjacentNumberListSize int) (int, bool) {
 			if i+(inputAdjacentNumberListSize-1) < top && j+(inputAdjacentNumberListSize-1) < top {
 				// diagonal top left -> bottom right
 				log.Debug("---- DIAG \\ ---------------------------------------------")
-				for k = bottom; k < inputAdjacentNumberListSize; k++ {
+				for k := bottom; k < inputAdjacentNumberListSize; k++ {
 					log.Debug("diag: (${i + k}, ${j + k}) => ${matrix[i + k][j + k]}")
 					acum *= matrix[i+k][j+k]
 				}
@@ -97,7 +95,7 @@ func Problem0011(matrix [][]int, inputAdjacentNumberListSize int) (int, bool) {
 			if i+(inputAdjacentNumberListSize-1) < top && j+(inputAdjacentNumberListSize-1) < top {
 				// diagonal top rigth -> bottom left
 				log.Debug("---- DIAG / ---------------------------------------------")
-				for k = bottom; k < inputAdjacentNumberListSize; k++ {
+				for k := bottom; k < inputAdjacentNumberListSize; k++ {
 					log.Debug("diag: (${i + k}, ${j + (inputAdjacentNumberListSize - 1) - k}) => ${matrix[i + k][j + (inputAdjacentNumberListSize - 1) - k]}")
 					acum *= matrix[i+k][j+(inputAdjacentNumberListSize-1)-k]
 				}

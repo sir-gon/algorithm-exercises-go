@@ -42,9 +42,7 @@ func Problem0006() int {
 	baseForSquareOfSum := 0
 	squareOfSum := 0
 
-	var i int
-
-	for i = bottom; i <= top; i++ {
+	for i := bottom; i <= top; i++ {
 		sumOfSquares += powInt(i, 2)
 		baseForSquareOfSum += i
 	}
