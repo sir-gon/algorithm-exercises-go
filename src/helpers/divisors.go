@@ -14,9 +14,7 @@ func generateDivisorsOf(target int) []int {
 	}
 
 	// fast divisors finding loop
-	var i int
-
-	for i = 2; i < top; i++ {
+	for i := 2; i < top; i++ {
 		top = target / i
 		if target%i == 0 {
 			divs = append(divs, i)
