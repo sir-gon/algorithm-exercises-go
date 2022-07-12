@@ -109,5 +109,5 @@ func NumberToWord(_value big.Int) (string, bool) {
 		return fmt.Sprintf("%s %s", dictionary[mills.Text(__NUMERIC_BASE__)], _MILLS_), false
 	}
 
-	return "", false
+	return "", true
 }
