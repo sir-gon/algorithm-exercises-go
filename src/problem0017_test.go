@@ -28,13 +28,14 @@ import (
 
 func TestProblem0017(t *testing.T) {
 
-	expectedSolution := 0
-	input := 0
+	const expectedSolution = 21124
+	const inputInit = 1
+	const inputLast = 1000
 
-	testname := fmt.Sprintf("Problem0017(%d) => %v \n", input, expectedSolution)
+	testname := fmt.Sprintf("Problem0017(%d, %d) => %v \n", inputInit, inputLast, expectedSolution)
 	t.Run(testname, func(t *testing.T) {
 
-		ans := Problem0017()
+		ans := Problem0017(inputInit, inputLast)
 		assert.Equal(t, expectedSolution, ans)
 	})
 }
