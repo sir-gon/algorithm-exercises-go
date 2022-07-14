@@ -36,7 +36,7 @@ package projecteuler
 
 import (
 	"gon.cl/projecteuler.net/src/helpers"
-	log "gon.cl/projecteuler.net/src/lib"
+	utils "gon.cl/projecteuler.net/src/utils"
 )
 
 func Problem0011(matrix [][]int, inputAdjacentNumberListSize int) (int, bool) {
@@ -56,10 +56,10 @@ func Problem0011(matrix [][]int, inputAdjacentNumberListSize int) (int, bool) {
 			acum = 1
 
 			if i < top-(inputAdjacentNumberListSize-1) && j < top {
-				log.Debug("---- VERTICAL ------------------------------------------")
+				utils.Debug("---- VERTICAL ------------------------------------------")
 				// vertical
 				for k := bottom; k < inputAdjacentNumberListSize; k++ {
-					log.Debug("row: i %d, column: %d, inputAdjacentNumberListSize %d => %d", i+k, j, k, matrix[i+k][j])
+					utils.Debug("row: i %d, column: %d, inputAdjacentNumberListSize %d => %d", i+k, j, k, matrix[i+k][j])
 
 					acum *= matrix[i+k][j]
 				}
@@ -69,10 +69,10 @@ func Problem0011(matrix [][]int, inputAdjacentNumberListSize int) (int, bool) {
 
 			acum = 1
 			if i < top && j < top-(inputAdjacentNumberListSize-1) {
-				log.Debug("---- HORIZONTAL ----------------------------------------")
+				utils.Debug("---- HORIZONTAL ----------------------------------------")
 				// horizontal
 				for k := bottom; k < inputAdjacentNumberListSize; k++ {
-					log.Debug("row: i ${i}, column: ${j + k} => ${matrix[i][j + k]}")
+					utils.Debug("row: i ${i}, column: ${j + k} => ${matrix[i][j + k]}")
 					acum *= matrix[i][j+k]
 				}
 
@@ -82,9 +82,9 @@ func Problem0011(matrix [][]int, inputAdjacentNumberListSize int) (int, bool) {
 			acum = 1
 			if i+(inputAdjacentNumberListSize-1) < top && j+(inputAdjacentNumberListSize-1) < top {
 				// diagonal top left -> bottom right
-				log.Debug("---- DIAG \\ ---------------------------------------------")
+				utils.Debug("---- DIAG \\ ---------------------------------------------")
 				for k := bottom; k < inputAdjacentNumberListSize; k++ {
-					log.Debug("diag: (${i + k}, ${j + k}) => ${matrix[i + k][j + k]}")
+					utils.Debug("diag: (${i + k}, ${j + k}) => ${matrix[i + k][j + k]}")
 					acum *= matrix[i+k][j+k]
 				}
 
@@ -94,9 +94,9 @@ func Problem0011(matrix [][]int, inputAdjacentNumberListSize int) (int, bool) {
 			acum = 1
 			if i+(inputAdjacentNumberListSize-1) < top && j+(inputAdjacentNumberListSize-1) < top {
 				// diagonal top rigth -> bottom left
-				log.Debug("---- DIAG / ---------------------------------------------")
+				utils.Debug("---- DIAG / ---------------------------------------------")
 				for k := bottom; k < inputAdjacentNumberListSize; k++ {
-					log.Debug("diag: (${i + k}, ${j + (inputAdjacentNumberListSize - 1) - k}) => ${matrix[i + k][j + (inputAdjacentNumberListSize - 1) - k]}")
+					utils.Debug("diag: (${i + k}, ${j + (inputAdjacentNumberListSize - 1) - k}) => ${matrix[i + k][j + (inputAdjacentNumberListSize - 1) - k]}")
 					acum *= matrix[i+k][j+(inputAdjacentNumberListSize-1)-k]
 				}
 
@@ -106,7 +106,7 @@ func Problem0011(matrix [][]int, inputAdjacentNumberListSize int) (int, bool) {
 		}
 	}
 
-	log.Info("Problem0011 max => %d", max)
+	utils.Info("Problem0011 max => %d", max)
 
 	return max, false
 }

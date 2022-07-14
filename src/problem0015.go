@@ -14,7 +14,7 @@ package projecteuler
 
 import (
 	helpers "gon.cl/projecteuler.net/src/helpers"
-	log "gon.cl/projecteuler.net/src/lib"
+	utils "gon.cl/projecteuler.net/src/utils"
 )
 
 func Problem0015(gridSide int) int {
@@ -31,10 +31,10 @@ func Problem0015(gridSide int) int {
 			vertexMatrix[i][j] = upperParent + leftParent
 		}
 	}
-	log.Debug("Paths found: ${vertexMatrix[gridSide][gridSide]}")
-	log.Debug("vertexMatrix: %v", vertexMatrix)
+	utils.Debug("Paths found: ${vertexMatrix[gridSide][gridSide]}")
+	utils.Debug("vertexMatrix: %v", vertexMatrix)
 
-	log.Info("Problem0015 answer => %d", answer)
+	utils.Info("Problem0015 answer => %d", answer)
 
 	return vertexMatrix[gridSide][gridSide]
 }

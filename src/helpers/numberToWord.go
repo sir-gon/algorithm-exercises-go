@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math/big"
 
-	log "gon.cl/projecteuler.net/src/lib"
+	"gon.cl/projecteuler.net/src/utils"
 )
 
 const _CENTS_ = "hundred"
@@ -70,7 +70,7 @@ func NumberToWord(_value big.Int) (string, bool) {
 		dec, unit = dec.DivMod(&_value, div, unit)
 		dec = dec.Mul(dec, big.NewInt((10)))
 
-		log.Debug("dec => %s | div => %s | unit => %s",
+		utils.Debug("dec => %s | div => %s | unit => %s",
 			dec.Text(__NUMERIC_BASE__),
 			div.Text(__NUMERIC_BASE__),
 			unit.Text(__NUMERIC_BASE__),
@@ -96,7 +96,7 @@ func NumberToWord(_value big.Int) (string, bool) {
 		}
 
 		last, err := NumberToWord(*rest)
-		log.Debug("err => %t", err) // in bounds, never happens
+		utils.Debug("err => %t", err) // in bounds, never happens
 
 		return fmt.Sprintf("%s %s and %s",
 			dictionary[cent.Text(__NUMERIC_BASE__)],

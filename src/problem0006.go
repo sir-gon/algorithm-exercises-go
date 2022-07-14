@@ -24,7 +24,7 @@ package projecteuler
 import (
 	"math"
 
-	log "gon.cl/projecteuler.net/src/lib"
+	utils "gon.cl/projecteuler.net/src/utils"
 )
 
 func powInt(x, y int) int {
@@ -49,13 +49,13 @@ func Problem0006() int {
 
 	squareOfSum = powInt(baseForSquareOfSum, 2)
 
-	log.Info("Sum of first %d squares = %d", top, sumOfSquares)
-	log.Info("Base for Square Of Sum of first %d = %d", top, baseForSquareOfSum)
-	log.Info("Square Of Sum of first %d = %d", top, squareOfSum)
+	utils.Info("Sum of first %d squares = %d", top, sumOfSquares)
+	utils.Info("Base for Square Of Sum of first %d = %d", top, baseForSquareOfSum)
+	utils.Info("Square Of Sum of first %d = %d", top, squareOfSum)
 
 	answer = squareOfSum - sumOfSquares
 
-	log.Info("Problem0006 answer => %d - %d =  %d", squareOfSum, sumOfSquares, answer)
+	utils.Info("Problem0006 answer => %d - %d =  %d", squareOfSum, sumOfSquares, answer)
 
 	return squareOfSum - sumOfSquares
 }
