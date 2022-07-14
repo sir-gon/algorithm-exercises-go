@@ -12,7 +12,7 @@ package projecteuler
 
 import (
 	"gon.cl/projecteuler.net/src/helpers"
-	log "gon.cl/projecteuler.net/src/lib"
+	utils "gon.cl/projecteuler.net/src/utils"
 )
 
 func Problem0010(bottom int, top int) int {
@@ -26,17 +26,17 @@ func Problem0010(bottom int, top int) int {
 	for i <= top {
 		if helpers.IsPrime(i) {
 			primes = append(primes, i)
-			log.Debug("Prime found %d put in position: %d", i, len(primes))
+			utils.Debug("Prime found %d put in position: %d", i, len(primes))
 		}
 		i += 2
 	}
 
 	answer = helpers.Sum(primes)
 
-	log.Info("primes count: %d", len(primes))
-	log.Info("Sum of primes below ${top} is: ${sum(primes)}")
+	utils.Info("primes count: %d", len(primes))
+	utils.Info("Sum of primes below ${top} is: ${sum(primes)}")
 
-	log.Info("Problem0010 answer => Sum of primes below %d = %d", top, answer)
+	utils.Info("Problem0010 answer => Sum of primes below %d = %d", top, answer)
 
 	return answer
 }

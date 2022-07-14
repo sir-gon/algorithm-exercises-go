@@ -25,9 +25,7 @@
 
 package projecteuler
 
-import (
-	log "gon.cl/projecteuler.net/src/lib"
-)
+import utils "gon.cl/projecteuler.net/src/utils"
 
 func Problem0005(bottom int, top int, startFrom int) int {
 
@@ -47,7 +45,7 @@ func Problem0005(bottom int, top int, startFrom int) int {
 
 			fail = test%i != 0
 
-			log.Debug("%d divisible by %d (remainder: %d => %t)", test, i, test%i, fail)
+			utils.Debug("%d divisible by %d (remainder: %d => %t)", test, i, test%i, fail)
 
 			i += 1
 		}
@@ -61,7 +59,7 @@ func Problem0005(bottom int, top int, startFrom int) int {
 		test += 1
 	}
 
-	log.Info("Problem0005 answer => %d divisible by any element beetwen %d and %d", answer, bottom, top)
+	utils.Info("Problem0005 answer => %d divisible by any element beetwen %d and %d", answer, bottom, top)
 
 	return answer
 }

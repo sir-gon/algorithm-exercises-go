@@ -27,7 +27,7 @@ package projecteuler
 
 import (
 	"gon.cl/projecteuler.net/src/helpers"
-	log "gon.cl/projecteuler.net/src/lib"
+	utils "gon.cl/projecteuler.net/src/utils"
 )
 
 func Problem0012() int {
@@ -42,14 +42,14 @@ func Problem0012() int {
 		var listOfDivisors = helpers.Divisors(triangular)
 		var amountOfDivisors = len(listOfDivisors)
 
-		log.Debug("Triangular number: %d has %d divisors", triangular, amountOfDivisors)
+		utils.Debug("Triangular number: %d has %d divisors", triangular, amountOfDivisors)
 
 		answer = helpers.IntMax(answer, amountOfDivisors)
 
 		i += 1
 	}
 
-	log.Info("Problem0012 answer => %d", answer)
+	utils.Info("Problem0012 answer => %d", answer)
 
 	return answer
 }

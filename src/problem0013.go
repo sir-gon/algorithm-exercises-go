@@ -16,7 +16,7 @@ package projecteuler
 import (
 	"math/big"
 
-	log "gon.cl/projecteuler.net/src/lib"
+	utils "gon.cl/projecteuler.net/src/utils"
 )
 
 func Problem0013(inputListOfBigNumbers []string) string {
@@ -32,20 +32,20 @@ func Problem0013(inputListOfBigNumbers []string) string {
 		var bignum, ok = new(big.Int).SetString(inputListOfBigNumbers[i], 0)
 		listOfBigNumbers = append(listOfBigNumbers, bignum)
 
-		log.Debug("new bigNumber: %s | %t", bignum.Text(_BASE_), ok)
+		utils.Debug("new bigNumber: %s | %t", bignum.Text(_BASE_), ok)
 
 		answer = answer.Add(answer, bignum)
 	}
 
-	log.Debug("listOfBigNumbers: %v", listOfBigNumbers)
+	utils.Debug("listOfBigNumbers: %v", listOfBigNumbers)
 
 	for answer.Cmp(bigTop) >= 1 {
 		answer = answer.Div(answer, big.NewInt(_BASE_))
 
-		log.Debug("Answer reduction: %s", answer.String())
+		utils.Debug("Answer reduction: %s", answer.String())
 	}
 
-	log.Info("Problem0013 answer => %v", answer)
+	utils.Info("Problem0013 answer => %v", answer)
 
 	return answer.Text(_BASE_)
 }

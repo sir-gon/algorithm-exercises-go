@@ -14,9 +14,7 @@
 
 package projecteuler
 
-import (
-	log "gon.cl/projecteuler.net/src/lib"
-)
+import utils "gon.cl/projecteuler.net/src/utils"
 
 func Problem0002(_top int) int {
 
@@ -30,7 +28,7 @@ func Problem0002(_top int) int {
 	for ok := true; ok; ok = fibo < _top {
 		fibo = last2 + last1
 
-		log.Debug("Fibonacci (%d) = %d", i, fibo)
+		utils.Debug("Fibonacci (%d) = %d", i, fibo)
 
 		// acumulate sum of event terms
 		if fibo%2 == 0 {
@@ -43,7 +41,7 @@ func Problem0002(_top int) int {
 		i += 1
 	}
 
-	log.Info("Problem0002 result: %d", evenSum)
+	utils.Info("Problem0002 result: %d", evenSum)
 
 	return evenSum
 }

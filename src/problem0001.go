@@ -11,9 +11,7 @@
 
 package projecteuler
 
-import (
-	log "gon.cl/projecteuler.net/src/lib"
-)
+import utils "gon.cl/projecteuler.net/src/utils"
 
 func Problem0001(_top int) int {
 	total := 0
@@ -23,11 +21,11 @@ func Problem0001(_top int) int {
 
 			total += i
 
-			log.Debug("Problem0001: STEP: %d => TOTAL: %d", i, total)
+			utils.Debug("Problem0001: STEP: %d => TOTAL: %d", i, total)
 		}
 	}
 
-	log.Info("Problem0001 result: %d", total)
+	utils.Info("Problem0001 result: %d", total)
 
 	return total
 }

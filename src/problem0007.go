@@ -14,7 +14,7 @@ package projecteuler
 
 import (
 	helpers "gon.cl/projecteuler.net/src/helpers"
-	log "gon.cl/projecteuler.net/src/lib"
+	utils "gon.cl/projecteuler.net/src/utils"
 )
 
 func Problem0007(bottom int, top int) int {
@@ -29,13 +29,13 @@ func Problem0007(bottom int, top int) int {
 		if helpers.IsPrime(i) {
 			primes = append(primes, i)
 
-			log.Debug("Prime found %d put in position: %d", i, len(primes))
+			utils.Debug("Prime found %d put in position: %d", i, len(primes))
 		}
 	}
 
 	answer := primes[len(primes)-1]
 
-	log.Info("Problem0007 asnwer => %d", answer)
+	utils.Info("Problem0007 asnwer => %d", answer)
 
 	return answer
 }

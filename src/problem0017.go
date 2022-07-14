@@ -24,7 +24,7 @@ import (
 	"regexp"
 
 	"gon.cl/projecteuler.net/src/helpers"
-	log "gon.cl/projecteuler.net/src/lib"
+	utils "gon.cl/projecteuler.net/src/utils"
 )
 
 func Problem0017(init int, last int) int {
@@ -44,10 +44,10 @@ func Problem0017(init int, last int) int {
 
 		acum += len(replaced)
 
-		log.Debug("acum: %d <= (%d) word: %s", acum, i, word)
+		utils.Debug("acum: %d <= (%d) word: %s", acum, i, word)
 	}
 
-	log.Info("Problem0017 answer => %d", acum)
+	utils.Info("Problem0017 answer => %d", acum)
 
 	return acum
 }

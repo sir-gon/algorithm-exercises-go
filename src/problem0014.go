@@ -25,7 +25,7 @@ package projecteuler
 
 import (
 	"gon.cl/projecteuler.net/src/helpers"
-	log "gon.cl/projecteuler.net/src/lib"
+	utils "gon.cl/projecteuler.net/src/utils"
 )
 
 func Problem0014(bottom int, top int) int {
@@ -35,18 +35,18 @@ func Problem0014(bottom int, top int) int {
 	for i := bottom; i < top; i += 1 {
 
 		var sequence []int = helpers.CollatzSequence(i)
-		log.Info("sequence of %d: %v", i, sequence)
+		utils.Info("sequence of %d: %v", i, sequence)
 
 		if len(sequence) > len(maxSequence) {
 			maxSequence = sequence
 		}
 	}
 
-	log.Info("Large sequence found: ${maxSequence} has ${maxSequence.length} elements")
+	utils.Info("Large sequence found: ${maxSequence} has ${maxSequence.length} elements")
 
 	// return firt element
 	answer = maxSequence[0]
 
-	log.Info("Problem0014 answer => %d", answer)
+	utils.Info("Problem0014 answer => %d", answer)
 	return answer
 }
