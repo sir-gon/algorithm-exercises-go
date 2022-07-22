@@ -1,16 +1,63 @@
 package helpers
 
 import (
+	"errors"
 	"fmt"
 	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
-func TestIntMinBasic(t *testing.T) {
-	ans := IntMin(2, -2)
-	if ans != -2 {
+func TestIntMinOfManyBasic(t *testing.T) {
+	inputList := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	expectedAnswer := 1
+	expectedError := error(nil)
 
-		t.Errorf("IntMin(2, -2) = %d; want -2", ans)
-	}
+	testname := fmt.Sprintf("IntMinOfMany(%v); want %d", inputList, expectedAnswer)
+	t.Run(testname, func(t *testing.T) {
+		ans, err := IntMinOfMany(inputList)
+		assert.Equal(t, expectedAnswer, ans)
+		assert.Equal(t, expectedError, err)
+	})
+}
+
+func TestIntMinOfManyBorderCase(t *testing.T) {
+	inputList := []int{}
+	expectedAnswer := 0
+	expectedError := errors.New("list is empty")
+
+	testname := fmt.Sprintf("IntMinOfMany(%v); want %d", inputList, expectedAnswer)
+	t.Run(testname, func(t *testing.T) {
+		ans, err := IntMinOfMany(inputList)
+		assert.Equal(t, expectedAnswer, ans)
+		assert.Equal(t, expectedError, err)
+	})
+}
+
+func TestIntMaxOfManyBasic(t *testing.T) {
+	inputList := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
+	expectedAnswer := 10
+	expectedError := error(nil)
+
+	testname := fmt.Sprintf("IntMinOfMany(%v); want %d", inputList, expectedAnswer)
+	t.Run(testname, func(t *testing.T) {
+		ans, err := IntMaxOfMany(inputList)
+		assert.Equal(t, expectedAnswer, ans)
+		assert.Equal(t, expectedError, err)
+	})
+}
+
+func TestIntMaxOfManyBorderCase(t *testing.T) {
+	inputList := []int{}
+	expectedAnswer := 0
+	expectedError := errors.New("list is empty")
+
+	testname := fmt.Sprintf("IntMaxOfMany(%v); want %d", inputList, expectedAnswer)
+	t.Run(testname, func(t *testing.T) {
+		ans, err := IntMaxOfMany(inputList)
+		assert.Equal(t, expectedAnswer, ans)
+		assert.Equal(t, expectedError, err)
+	})
 }
 
 func TestIntMinTableDriven(t *testing.T) {
