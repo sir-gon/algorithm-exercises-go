@@ -48,7 +48,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	data "gon.cl/projecteuler.net/src/data"
+	"gon.cl/projecteuler.net/src/data"
 	"gon.cl/projecteuler.net/src/lib"
 )
 
