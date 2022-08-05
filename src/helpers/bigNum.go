@@ -1,6 +1,8 @@
 package helpers
 
-import "math/big"
+import (
+	"math/big"
+)
 
 const __NUMERIC_BASE__ = 10
 
@@ -16,4 +18,17 @@ func BigSumMany(strNumberArr []string) string {
 	}
 
 	return result.Text(__NUMERIC_BASE__)
+}
+
+func BigFactorial(_last int) *big.Int {
+
+	const init = 1
+
+	factorial := big.NewInt(int64(init))
+
+	for i := init; i <= _last; i += 1 {
+		factorial.Mul(factorial, big.NewInt(int64(i)))
+	}
+
+	return factorial
 }
