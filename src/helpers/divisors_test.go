@@ -16,7 +16,7 @@ func TestDivisorsBasic(t *testing.T) {
 	}
 }
 
-func TestDivisorsBasicTableDriven(t *testing.T) {
+func TestDivisorsTableDriven(t *testing.T) {
 
 	var tests = []struct {
 		input int
@@ -35,5 +35,49 @@ func TestDivisorsBasicTableDriven(t *testing.T) {
 			ans := Divisors(tt.input)
 			assert.Equal(t, tt.want, ans)
 		})
+	}
+}
+
+func TestAreAmicableTableDriven(t *testing.T) {
+
+	inputCache := map[int]int{}
+
+	var tests = []struct {
+		inputA int
+		inputB int
+		want   bool
+	}{
+		{inputA: 0, inputB: 1, want: false},
+		{inputA: 1, inputB: 1, want: false},
+		{inputA: 8, inputB: 8, want: false},
+		{inputA: 220, inputB: 284, want: true},
+		{inputA: 10, inputB: 15, want: false},
+	}
+
+	for _, tt := range tests {
+
+		testname := fmt.Sprintf("Divisors(%d, %d) => %v", tt.inputA, tt.inputB, tt.want)
+		t.Run(testname, func(t *testing.T) {
+			ans := AreAmicables(tt.inputA, tt.inputB, inputCache)
+			assert.Equal(t, tt.want, ans)
+		})
+	}
+}
+
+func TestAreAmicableWithCache(t *testing.T) {
+
+	inputA := 220
+	inputB := 284
+	inputCache := map[int]int{
+		inputA: inputB,
+		inputB: inputA,
+	}
+
+	expectedSolution := true
+
+	ans := AreAmicables(inputA, inputB, inputCache)
+
+	if ans != true {
+		t.Errorf("AreAmicables(%d, %d, %v) = %t; want %t", inputA, inputB, inputCache, ans, expectedSolution)
 	}
 }
