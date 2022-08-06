@@ -38,11 +38,18 @@ func Divisors(target int) []int {
 	return divs
 }
 
-func AreAmicables(a, b int, _cache map[int]int) bool {
+func AreAmicables(a int, b int, _cache map[int]int) bool {
+
+	if a == b || a <= 1 || b <= 1 {
+		return false
+	}
 
 	if _cache[a] != 0 && _cache[b] != 0 {
 		return _cache[a] == b && _cache[b] == a
 	}
 
-	return Sum(Divisors(a))-a == Sum(Divisors(b))-b
+	caseA := Sum(Divisors(a))-a == b
+	caseB := Sum(Divisors(b))-b == a
+
+	return caseA && caseB
 }

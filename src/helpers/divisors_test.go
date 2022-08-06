@@ -47,8 +47,9 @@ func TestAreAmicableTableDriven(t *testing.T) {
 		inputB int
 		want   bool
 	}{
-		{inputA: 1, inputB: 1, want: true},
-		{inputA: 8, inputB: 8, want: true},
+		{inputA: 0, inputB: 1, want: false},
+		{inputA: 1, inputB: 1, want: false},
+		{inputA: 8, inputB: 8, want: false},
 		{inputA: 220, inputB: 284, want: true},
 		{inputA: 10, inputB: 15, want: false},
 	}
