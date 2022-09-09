@@ -23,14 +23,16 @@ func Problem0004(_bottom int, _top int) int {
 	var foundi int
 	var foundj int
 	var foundPalindrome int
+	var cycles = 0
 
 	utils.Info("Initializing Problem 0004")
 
 	i = _top
-	for oki := true; oki; oki = i >= _bottom {
-		j = _top
-		for okj := true; okj; okj = j >= _bottom {
+	for i >= _bottom {
+		j = i
+		for j >= _bottom && (foundj == 0 || j >= foundj) {
 
+			cycles += 1
 			if helpers.IsPalindrome(j * i) {
 
 				utils.Debug("FOUND %d x %d = %d is Palindrome", i, j, i*j)
@@ -49,7 +51,7 @@ func Problem0004(_bottom int, _top int) int {
 		i -= 1
 	}
 
-	utils.Info("Problem0004 Largest Palindrome => %d 𝗑 %d = %d", foundi, foundj, foundPalindrome)
+	utils.Info("Problem0004 Largest Palindrome => %d 𝗑 %d = %d in %d cycles", foundi, foundj, foundPalindrome, cycles)
 
 	return foundPalindrome
 }
