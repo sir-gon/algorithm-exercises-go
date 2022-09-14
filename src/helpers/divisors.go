@@ -7,22 +7,22 @@ import (
 func generateDivisorsOf(target int) []int {
 	top := target
 	var divs []int
-	divs = append(divs, 1)
 
-	if target != 1 {
-		divs = append(divs, target)
+	if target == 1 {
+		divs = append(divs, 1)
+		return divs
 	}
 
 	// fast divisors finding loop
-	for i := 2; i < top; i++ {
-		top = target / i
+	i := 1
+	for i <= top {
 		if target%i == 0 {
 			divs = append(divs, i)
-
-			if top != i {
-				divs = append(divs, top)
-			}
+			divs = append(divs, top)
 		}
+
+		i++
+		top = target / i
 	}
 
 	return divs

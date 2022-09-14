@@ -25,7 +25,7 @@ func TestDivisorsTableDriven(t *testing.T) {
 		{input: 1, want: []int{1}},
 		{input: 2, want: []int{1, 2}},
 		{input: 10, want: []int{1, 2, 5, 10}},
-		{input: 16, want: []int{1, 2, 4, 8, 16}},
+		{input: 16, want: []int{1, 2, 4, 4, 8, 16}},
 	}
 
 	for _, tt := range tests {
