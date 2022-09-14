@@ -27,7 +27,7 @@ package projecteuler
 
 import utils "gon.cl/projecteuler.net/src/utils"
 
-func Problem0005(bottom int, top int, startFrom int) int {
+func Problem0005BruteForce(bottom int, top int, startFrom int) int {
 
 	var answer int
 	found := false

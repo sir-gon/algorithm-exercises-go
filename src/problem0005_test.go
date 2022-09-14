@@ -18,17 +18,17 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestProblem0005(t *testing.T) {
+func TestProblem0005BruteForce(t *testing.T) {
 
 	expectedSolution := 232792560
 	bottom := 1
 	top := 20
 	startFrom := expectedSolution - 1000
 
-	testname := fmt.Sprintf("Problem0005(%d, %d) => %v \n", bottom, top, expectedSolution)
+	testname := fmt.Sprintf("Problem0005BruteForce(%d, %d) => %v \n", bottom, top, expectedSolution)
 	t.Run(testname, func(t *testing.T) {
 
-		ans := Problem0005(bottom, top, startFrom)
+		ans := Problem0005BruteForce(bottom, top, startFrom)
 		assert.Equal(t, expectedSolution, ans)
 	})
 }
