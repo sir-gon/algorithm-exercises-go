@@ -76,8 +76,31 @@ func TestPrimeFactorsTableDriven(t *testing.T) {
 
 		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.answer)
 		t.Run(testname, func(t *testing.T) {
-			ans := PrimeFactors(tt.input)
-			assert.Equal(t, tt.answer, ans)
+			ans, cycles := PrimeFactors(tt.input)
+			assert.Equal(t, tt.answer.factors, ans)
+			assert.Equal(t, tt.answer.cycles, cycles)
+		})
+	}
+}
+
+func TestPrimeFactorsOnlyPrimesTableDriven(t *testing.T) {
+	var tests = []struct {
+		input  int
+		answer Factors
+	}{
+		{input: 1, answer: Factors{factors: []int{1}, cycles: 1}},
+		{input: 2, answer: Factors{factors: []int{2}, cycles: 1}},
+		{input: 17, answer: Factors{factors: []int{17}, cycles: 16}},
+		{input: 19, answer: Factors{factors: []int{19}, cycles: 18}},
+	}
+
+	for _, tt := range tests {
+
+		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.answer)
+		t.Run(testname, func(t *testing.T) {
+			ans, cycles := PrimeFactors(tt.input)
+			assert.Equal(t, tt.answer.factors, ans)
+			assert.Equal(t, tt.answer.cycles, cycles)
 		})
 	}
 }

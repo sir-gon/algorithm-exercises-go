@@ -82,29 +82,26 @@ func NextPrimeFactor(_target int) Factor {
 	}
 }
 
-func PrimeFactors(target int) Factors {
-	var factors = Factors{
-		factors: []int{},
-		cycles:  0,
-	}
+func PrimeFactors(target int) (factors []int, cycles int) {
+	factors = []int{}
+	cycles = 0
 
 	if target == 1 {
-		return Factors{
-			factors: []int{1},
-			cycles:  1,
-		}
+		factors = []int{1}
+		cycles = 1
+		return
 	}
 
 	var factor = target
 	for factor != 1 {
 		var partial = NextPrimeFactor(factor)
-		factors.cycles += partial.cycles
+		cycles += partial.cycles
 
-		factors.factors = append(factors.factors, partial.factor)
+		factors = append(factors, partial.factor)
 		factor = partial.carry
 	}
 
-	return factors
+	return
 }
 
 func AreAmicables(a int, b int, _cache map[int]int) bool {
