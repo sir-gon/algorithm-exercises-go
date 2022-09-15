@@ -1,8 +1,15 @@
 package helpers
 
 import (
+	"math"
 	"sort"
 )
+
+type Factor struct {
+	factor int
+	carry  int
+	cycles int
+}
 
 func generateDivisorsOf(target int) []int {
 	top := target
@@ -36,6 +43,38 @@ func Divisors(target int) []int {
 	sort.Ints(divs)
 
 	return divs
+}
+
+func NextPrimeFactor(_target int) Factor {
+	top := int(math.Abs(float64(_target)))
+	cycles := 0
+
+	if top == 1 {
+		return Factor{
+			factor: 1,
+			carry:  1,
+			cycles: cycles,
+		}
+	}
+
+	var i = 2
+	for i < top {
+		cycles += 1
+		if top%i == 0 {
+			return Factor{
+				factor: i,
+				carry:  top / i,
+				cycles: cycles,
+			}
+		}
+		i += 1
+	}
+
+	return Factor{
+		factor: i,
+		carry:  top / i,
+		cycles: cycles + 1,
+	}
 }
 
 func AreAmicables(a int, b int, _cache map[int]int) bool {

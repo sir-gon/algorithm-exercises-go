@@ -38,6 +38,28 @@ func TestDivisorsTableDriven(t *testing.T) {
 	}
 }
 
+func TestNextPrimeFactorTableDriven(t *testing.T) {
+	var tests = []struct {
+		input  int
+		answer Factor
+	}{
+		{input: 1, answer: Factor{factor: 1, carry: 1, cycles: 0}},
+		{input: 2, answer: Factor{factor: 2, carry: 1, cycles: 1}},
+		{input: 4, answer: Factor{factor: 2, carry: 2, cycles: 1}},
+		{input: 9, answer: Factor{factor: 3, carry: 3, cycles: 2}},
+		{input: 7, answer: Factor{factor: 7, carry: 1, cycles: 6}},
+	}
+
+	for _, tt := range tests {
+
+		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.answer)
+		t.Run(testname, func(t *testing.T) {
+			ans := NextPrimeFactor(tt.input)
+			assert.Equal(t, tt.answer, ans)
+		})
+	}
+}
+
 func TestAreAmicableTableDriven(t *testing.T) {
 
 	inputCache := map[int]int{}
