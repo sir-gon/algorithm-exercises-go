@@ -60,6 +60,28 @@ func TestNextPrimeFactorTableDriven(t *testing.T) {
 	}
 }
 
+func TestPrimeFactorsTableDriven(t *testing.T) {
+	var tests = []struct {
+		input  int
+		answer Factors
+	}{
+		{input: 1, answer: Factors{factors: []int{1}, cycles: 1}},
+		{input: 2, answer: Factors{factors: []int{2}, cycles: 1}},
+		{input: 6, answer: Factors{factors: []int{2, 3}, cycles: 3}},
+		{input: 12, answer: Factors{factors: []int{2, 2, 3}, cycles: 4}},
+		{input: 120, answer: Factors{factors: []int{2, 2, 2, 3, 5}, cycles: 9}},
+	}
+
+	for _, tt := range tests {
+
+		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.answer)
+		t.Run(testname, func(t *testing.T) {
+			ans := PrimeFactors(tt.input)
+			assert.Equal(t, tt.answer, ans)
+		})
+	}
+}
+
 func TestAreAmicableTableDriven(t *testing.T) {
 
 	inputCache := map[int]int{}

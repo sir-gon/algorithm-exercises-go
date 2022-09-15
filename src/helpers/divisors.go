@@ -11,6 +11,11 @@ type Factor struct {
 	cycles int
 }
 
+type Factors struct {
+	factors []int
+	cycles  int
+}
+
 func generateDivisorsOf(target int) []int {
 	top := target
 	var divs []int
@@ -75,6 +80,31 @@ func NextPrimeFactor(_target int) Factor {
 		carry:  top / i,
 		cycles: cycles + 1,
 	}
+}
+
+func PrimeFactors(target int) Factors {
+	var factors = Factors{
+		factors: []int{},
+		cycles:  0,
+	}
+
+	if target == 1 {
+		return Factors{
+			factors: []int{1},
+			cycles:  1,
+		}
+	}
+
+	var factor = target
+	for factor != 1 {
+		var partial = NextPrimeFactor(factor)
+		factors.cycles += partial.cycles
+
+		factors.factors = append(factors.factors, partial.factor)
+		factor = partial.carry
+	}
+
+	return factors
 }
 
 func AreAmicables(a int, b int, _cache map[int]int) bool {
