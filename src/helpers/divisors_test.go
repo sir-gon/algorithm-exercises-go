@@ -25,7 +25,7 @@ func TestDivisorsTableDriven(t *testing.T) {
 		{input: 1, want: []int{1}},
 		{input: 2, want: []int{1, 2}},
 		{input: 10, want: []int{1, 2, 5, 10}},
-		{input: 16, want: []int{1, 2, 4, 8, 16}},
+		{input: 16, want: []int{1, 2, 4, 4, 8, 16}},
 	}
 
 	for _, tt := range tests {
@@ -34,6 +34,73 @@ func TestDivisorsTableDriven(t *testing.T) {
 		t.Run(testname, func(t *testing.T) {
 			ans := Divisors(tt.input)
 			assert.Equal(t, tt.want, ans)
+		})
+	}
+}
+
+func TestNextPrimeFactorTableDriven(t *testing.T) {
+	var tests = []struct {
+		input  int
+		answer Factor
+	}{
+		{input: 1, answer: Factor{factor: 1, carry: 1, cycles: 0}},
+		{input: 2, answer: Factor{factor: 2, carry: 1, cycles: 1}},
+		{input: 4, answer: Factor{factor: 2, carry: 2, cycles: 1}},
+		{input: 9, answer: Factor{factor: 3, carry: 3, cycles: 2}},
+		{input: 7, answer: Factor{factor: 7, carry: 1, cycles: 6}},
+	}
+
+	for _, tt := range tests {
+
+		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.answer)
+		t.Run(testname, func(t *testing.T) {
+			ans := NextPrimeFactor(tt.input)
+			assert.Equal(t, tt.answer, ans)
+		})
+	}
+}
+
+func TestPrimeFactorsTableDriven(t *testing.T) {
+	var tests = []struct {
+		input  int
+		answer Factors
+	}{
+		{input: 1, answer: Factors{factors: []int{1}, cycles: 1}},
+		{input: 2, answer: Factors{factors: []int{2}, cycles: 1}},
+		{input: 6, answer: Factors{factors: []int{2, 3}, cycles: 3}},
+		{input: 12, answer: Factors{factors: []int{2, 2, 3}, cycles: 4}},
+		{input: 120, answer: Factors{factors: []int{2, 2, 2, 3, 5}, cycles: 9}},
+	}
+
+	for _, tt := range tests {
+
+		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.answer)
+		t.Run(testname, func(t *testing.T) {
+			ans, cycles := PrimeFactors(tt.input)
+			assert.Equal(t, tt.answer.factors, ans)
+			assert.Equal(t, tt.answer.cycles, cycles)
+		})
+	}
+}
+
+func TestPrimeFactorsOnlyPrimesTableDriven(t *testing.T) {
+	var tests = []struct {
+		input  int
+		answer Factors
+	}{
+		{input: 1, answer: Factors{factors: []int{1}, cycles: 1}},
+		{input: 2, answer: Factors{factors: []int{2}, cycles: 1}},
+		{input: 17, answer: Factors{factors: []int{17}, cycles: 16}},
+		{input: 19, answer: Factors{factors: []int{19}, cycles: 18}},
+	}
+
+	for _, tt := range tests {
+
+		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.answer)
+		t.Run(testname, func(t *testing.T) {
+			ans, cycles := PrimeFactors(tt.input)
+			assert.Equal(t, tt.answer.factors, ans)
+			assert.Equal(t, tt.answer.cycles, cycles)
 		})
 	}
 }
