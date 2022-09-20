@@ -1,3 +1,6 @@
+//go:build bruteforce
+// +build bruteforce
+
 /**
  * 10001st prime
  *
@@ -19,10 +22,10 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestProblem0007(t *testing.T) {
+func TestProblem0007BruteForce(t *testing.T) {
 
-	expectedSolution := 13
-	top := 6
+	expectedSolution := 104743
+	top := 10001
 
 	testname := fmt.Sprintf("Problem0007(%d) => %v \n", top, expectedSolution)
 	t.Run(testname, func(t *testing.T) {

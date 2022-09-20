@@ -17,25 +17,30 @@ import (
 	utils "gon.cl/projecteuler.net/src/utils"
 )
 
-func Problem0007(bottom int, top int) int {
+func Problem0007(top int) int {
 
 	var primes []int
 
-	i := bottom
+	i := 0
+	j := 2
 
 	for doWhile := true; doWhile; doWhile = len(primes) < top {
 		i += 1
 
-		if helpers.IsPrime(i) {
-			primes = append(primes, i)
+		if helpers.IsPrime(j) {
+			primes = append(primes, j)
 
-			utils.Debug("Prime found %d put in position: %d", i, len(primes))
+			utils.Debug("Prime found %d put in position: %d", j, len(primes))
 		}
+
+		j = 2*i + 1
 	}
 
 	answer := primes[len(primes)-1]
 
-	utils.Info("Problem0007 asnwer => %d", answer)
+	cycles := i
+
+	utils.Info("Problem0007 answer => %d in %d cycles", answer, cycles)
 
 	return answer
 }
