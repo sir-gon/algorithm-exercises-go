@@ -19,6 +19,9 @@ coverage/c.out: dependencies
 
 test: coverage/c.out
 
+test/bruteforce: dependencies
+	$(GOTEST) -v -tags bruteforce -coverprofile="coverage/c.out" ./...
+
 coverage: coverage/c.out
 	$(GOCOVER) -func=coverage/c.out
 	$(GOCOVER) -html=coverage/c.out -o ./coverage/coverage.html
