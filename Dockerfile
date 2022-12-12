@@ -19,8 +19,16 @@ RUN make dependencies
 
 FROM builder as testing
 
+ENV LOG_LEVEL=INFO
+ENV BRUTEFORCE=FALSE
+
+RUN adduser -D worker
+RUN mkdir -p /app
+RUN chown worker:worker /app
+
 WORKDIR /app
 
 RUN ls -alh
 
-CMD ["make", "all"]
+USER worker
+CMD ["make", "test"]

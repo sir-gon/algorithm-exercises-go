@@ -2,11 +2,13 @@ package utils
 
 import (
 	"fmt"
-	"os"
+	"strings"
 
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
 )
+
+const __FALLBACK_LOG_LEVEL__ = "INFO"
 
 type Log struct {
 	log *zap.Logger
@@ -16,8 +18,15 @@ type Fields map[string]string
 
 var instance *Log
 
-func getLogLevel(logLevel string) zapcore.Level {
+func getLogLevel(_logLevel string) zapcore.Level {
 	zapLogLevel := zap.DebugLevel
+
+	logLevel := _logLevel
+	logLevel = strings.ToUpper(logLevel)
+	logLevel = strings.TrimSpace(logLevel)
+
+	fmt.Printf("Search for LOG_LEVEL availability: [%s] \n", logLevel)
+
 	switch logLevel {
 	case "INFO":
 		zapLogLevel = zap.InfoLevel
@@ -28,14 +37,18 @@ func getLogLevel(logLevel string) zapcore.Level {
 	case "ERROR":
 		zapLogLevel = zap.ErrorLevel
 	default:
-		zapLogLevel = zap.DebugLevel
+		zapLogLevel = zap.InfoLevel
 	}
 	return zapLogLevel
 }
 
 func init() {
+	level := getLogLevel(GetEnv("LOG_LEVEL", __FALLBACK_LOG_LEVEL__))
+
 	log := initLoggerZap()
-	log.Info(fmt.Sprintf("Log loaded successfully with level: %s", os.Getenv("LOG_LEVEL")))
+
+	fmt.Printf("Log loaded successfully with level: [%s] \n", level.CapitalString())
+
 	instance = &Log{log: log}
 }
 
@@ -43,7 +56,7 @@ func initLoggerZap() *zap.Logger {
 	cfg := zap.Config{
 		Encoding:         "json",
 		DisableCaller:    true,
-		Level:            zap.NewAtomicLevelAt(getLogLevel(os.Getenv("LOG_LEVEL"))),
+		Level:            zap.NewAtomicLevelAt(getLogLevel(GetEnv("LOG_LEVEL", __FALLBACK_LOG_LEVEL__))),
 		OutputPaths:      []string{"stdout"},
 		ErrorOutputPaths: []string{"stdout"},
 		EncoderConfig: zapcore.EncoderConfig{
