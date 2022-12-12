@@ -26,10 +26,14 @@ ifeq ($(BRUTEFORCE),TRUE)
   add_bruteforce=-tags bruteforce
 endif
 
+# Package Manager
 GO=go
 GOTEST=$(GO) test $(add_bruteforce)
 GOCOVER=$(GO) tool cover
 PKG_LIST=$(go list ./... | grep -v /vendor/ | tr '\n' ' '| xargs echo -n)
+
+# DOCKER
+BUILDKIT_PROGRESS=plain
 
 .MAIN: test/coverage
 .PHONY: all clean coverage dependencies help list test
@@ -74,11 +78,11 @@ clean:
 	mkdir -p ./coverage
 	touch ./coverage/.gitkeep
 
-docker/build:
-	BUILDKIT_PROGRESS=plain docker-compose --profile testing build
+docker/compose-build: env
+	docker-compose --profile testing build
 
-docker/rebuild:
-	BUILDKIT_PROGRESS=plain docker-compose --profile testing build --no-cache
+docker/compose-rebuild: env
+	docker-compose --profile testing build --no-cache
 
 docker/compose-run: docker/build
 	docker-compose --profile testing run --rm projecteuler-go make test
