@@ -38,7 +38,7 @@ You must install dependencies:
 go mod download
 ```
 
-Or using make 
+Or using make
 
 ```
 make dependencies
@@ -57,10 +57,41 @@ go tool -func=coverage/c.out
 go tool -html=coverage/c.out
 ```
 
-Or using make:
+### Testing with full logs
+
+Run all tests with debug outputs:
 
 ```
-make test coverage
+LOG_LEVEL=debug go test -v -coverprofile=coverage/c.out ./...
+```
+
+Use one of following values: debug, warn, error, info.
+
+## Testing using make
+
+```
+make test
+```
+
+### Enable all large BRUTEFORCE tests
+
+Direct in host using a make:
+
+```
+make test -e BRUTEFORCE=true
+```
+
+### Enable all DEBUG outputs
+
+
+```
+make test -e LOG_LEVEL=debug
+```
+
+### Enable all large BRUTEFORCE tests and all DEBUG outputs
+
+```
+make test -e LOG_LEVEL=debug -e BRUTEFORCE=true
 ```
 
 # Running with Docker 🐳
@@ -77,6 +108,18 @@ docker-compose build projecteuler-go
 docker-compose run --rm projecteuler-go make test coverage
 ```
 
+## Enable BRUTEFORCE tests with full DEBUG output
+
+With docker-compose:
+
+```
+docker-compose --profile testing run --rm projecteuler-go make test -e LOG_LEVEL=DEBUG -e BRUTEFORCE=true
+```
+
+Using make:
+```
+make docker/compose-run -e LOG_LEVEL=DEBUG -e BRUTEFORCE=true
+```
 
 ## Build and run a development image
 
@@ -96,7 +139,7 @@ Developed with runtime:
 
 ```
 go version
-go version go1.18.3 darwin/amd64
+go version go1.19.3 darwin/amd64
 ```
 
 ## License
