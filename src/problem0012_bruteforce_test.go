@@ -1,3 +1,6 @@
+//go:build bruteforce
+// +build bruteforce
+
 /**
  * Highly divisible triangular number
  *
@@ -9,7 +12,7 @@
  *
  * 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, ...
  *
- * var us list the factors of the first seven triangle numbers:
+ * Let us list the factors of the first seven triangle numbers:
  *
  *  1: 1
  *  3: 1,3
@@ -26,26 +29,21 @@
 package projecteuler
 
 import (
-	"gon.cl/projecteuler.net/src/helpers"
-	utils "gon.cl/projecteuler.net/src/utils"
+	"fmt"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
 )
 
-func Problem0012(_top int) int {
-	var amountOfDivisors = 0
-	var triangular = 0
-	var i = 1
+func TestProblem0012BruteForce(t *testing.T) {
 
-	for amountOfDivisors < _top {
-		triangular += i
-		var listOfDivisors = helpers.Divisors(triangular)
-		amountOfDivisors = len(listOfDivisors)
+	expectedSolution := 76576500
+	inputTop := 500
 
-		utils.Debug("Triangular number: %d has %d divisors", triangular, amountOfDivisors)
+	testname := fmt.Sprintf("Problem0012(%d) => %v \n", inputTop, expectedSolution)
+	t.Run(testname, func(t *testing.T) {
 
-		i += 1
-	}
-
-	utils.Info("Problem0012 answer => %d", triangular)
-
-	return triangular
+		ans := Problem0012(inputTop)
+		assert.Equal(t, expectedSolution, ans)
+	})
 }

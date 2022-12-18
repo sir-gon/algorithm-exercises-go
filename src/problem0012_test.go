@@ -34,13 +34,13 @@ import (
 
 func TestProblem0012(t *testing.T) {
 
-	expectedSolution := 576
-	input := 0
+	expectedSolution := 28
+	inputTop := 5
 
-	testname := fmt.Sprintf("Problem0012(%d) => %v \n", input, expectedSolution)
+	testname := fmt.Sprintf("Problem0012(%d) => %v \n", inputTop, expectedSolution)
 	t.Run(testname, func(t *testing.T) {
 
-		ans := Problem0012()
+		ans := Problem0012(inputTop)
 		assert.Equal(t, expectedSolution, ans)
 	})
 }
