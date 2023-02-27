@@ -78,13 +78,13 @@ clean:
 	mkdir -p ./coverage
 	touch ./coverage/.gitkeep
 
-docker/compose-build: env
+compose/build: env
 	docker-compose --profile testing build
 
-docker/compose-rebuild: env
+compose/rebuild: env
 	docker-compose --profile testing build --no-cache
 
-docker/compose-run: docker/compose-build
+compose/run: compose/build
 	docker-compose --profile testing run --rm projecteuler-go make test
 
 all: test coverage
