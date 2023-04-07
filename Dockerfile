@@ -1,4 +1,4 @@
-FROM golang:1.20-alpine3.16 as base
+FROM golang:1.20.3-alpine3.16 as base
 
 ENV CGO_ENABLED 0
 RUN apk add --update --no-cache make
@@ -17,7 +17,27 @@ COPY ./Makefile ${WORKDIR}/
 
 RUN make dependencies
 
+### In testing stage, can't use USER, due permissions issue
+## in github actions environment:
+##
+## https://docs.github.com/en/actions/creating-actions/dockerfile-support-for-github-actions
+##
 FROM builder as testing
+
+ENV LOG_LEVEL=INFO
+ENV BRUTEFORCE=FALSE
+
+WORKDIR /app
+
+RUN ls -alh
+
+CMD ["make", "test"]
+
+### In production stage
+## in the production phase, "good practices" such as
+## WORKSPACE and USER are maintained
+##
+FROM builder as production
 
 ENV LOG_LEVEL=INFO
 ENV BRUTEFORCE=FALSE
