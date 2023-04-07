@@ -2,7 +2,7 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "develop", "feature/*" ]
   pull_request:
     branches: [ "main" ]
 
@@ -17,6 +17,6 @@ jobs:
     #- name: Build the Docker image
     #  run: docker build . --file Dockerfile --tag projecteuler-go:${{ github.sha }}
     - name: Build the Docker image
-      run: make compose/rebuild 
+      run: make compose/rebuild
     - name: Run test in Docker image
-      run: make compose/run 
+      run: make compose/run
