@@ -11,11 +11,11 @@ import (
 	utils "gon.cl/projecteuler.net/src/utils"
 )
 
-func Problem0000Template() int {
+func Problem0000() int {
 
 	var answer int
 
-	utils.Info("Problem0000Template answer => %d", answer)
+	utils.Info("Problem0000 answer => %d", answer)
 
 	return answer
 }

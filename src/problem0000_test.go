@@ -14,15 +14,15 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-func TestProblem0000Template(t *testing.T) {
+func TestProblem0000(t *testing.T) {
 
 	expectedSolution := 0
 	input := 0
 
-	testname := fmt.Sprintf("Problem0000Template(%d) => %v \n", input, expectedSolution)
+	testname := fmt.Sprintf("Problem0000(%d) => %v \n", input, expectedSolution)
 	t.Run(testname, func(t *testing.T) {
 
-		ans := Problem0000Template()
+		ans := Problem0000()
 		assert.Equal(t, expectedSolution, ans)
 	})
 }
