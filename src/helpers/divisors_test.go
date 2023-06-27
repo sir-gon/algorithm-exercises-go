@@ -16,16 +16,55 @@ func TestDivisorsBasic(t *testing.T) {
 	}
 }
 
-func TestDivisorsTableDriven(t *testing.T) {
+func TestDivisorsOfOneTableDriven(t *testing.T) {
 
 	var tests = []struct {
 		input int
 		want  []int
 	}{
 		{input: 1, want: []int{1}},
+	}
+
+	for _, tt := range tests {
+
+		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.want)
+		t.Run(testname, func(t *testing.T) {
+			ans := Divisors(tt.input)
+			assert.Equal(t, tt.want, ans)
+		})
+	}
+}
+
+func TestDivisorsTableDriven(t *testing.T) {
+
+	var tests = []struct {
+		input int
+		want  []int
+	}{
 		{input: 2, want: []int{1, 2}},
-		{input: 10, want: []int{1, 2, 5, 10}},
-		{input: 16, want: []int{1, 2, 4, 4, 8, 16}},
+		{input: 8, want: []int{1, 2, 4, 8}},
+		{input: 9, want: []int{1, 3, 9}},
+		{input: 16, want: []int{1, 2, 4, 8, 16}},
+	}
+
+	for _, tt := range tests {
+
+		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.want)
+		t.Run(testname, func(t *testing.T) {
+			ans := Divisors(tt.input)
+			assert.Equal(t, tt.want, ans)
+		})
+	}
+}
+
+func TestDivisorsEdgeCasesTableDriven(t *testing.T) {
+
+	var tests = []struct {
+		input int
+		want  []int
+	}{
+		{input: 110, want: []int{1, 2, 5, 10, 11, 22, 55, 110}},
+		{input: 18632, want: []int{1, 2, 4, 8, 17, 34, 68, 136, 137, 274, 548, 1096, 2329, 4658, 9316, 18632}},
 	}
 
 	for _, tt := range tests {
