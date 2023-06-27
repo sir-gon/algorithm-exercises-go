@@ -59,6 +59,14 @@ func Divisors(target int) []int {
 	return divs
 }
 
+func ProperDivisors(target int) []int {
+	var theDivisors = Divisors(target)
+
+	theDivisors = theDivisors[:len(theDivisors)-1]
+
+	return theDivisors
+}
+
 func NextPrimeFactor(_target int) Factor {
 	top := int(math.Abs(float64(_target)))
 	cycles := 0
@@ -127,4 +135,35 @@ func AreAmicables(a int, b int, _cache map[int]int) bool {
 	caseB := Sum(Divisors(b))-b == a
 
 	return caseA && caseB
+}
+
+const ___DIVISORS_ABUNDANT___ = "abundant"
+const ___DIVISORS_PERFECT___ = "perfect"
+const ___DIVISORS_DEFICIENT___ = "deficient"
+
+type DIVISORS_ABUNDANCE string
+
+const (
+	DIVISORS_ABUNDANT  DIVISORS_ABUNDANCE = ___DIVISORS_ABUNDANT___
+	DIVISORS_PERFECT   DIVISORS_ABUNDANCE = ___DIVISORS_PERFECT___
+	DIVISORS_DEFICIENT DIVISORS_ABUNDANCE = ___DIVISORS_DEFICIENT___
+)
+
+func Abundance(target int) DIVISORS_ABUNDANCE {
+	var divisors = ProperDivisors(target)
+
+	divSum := 0
+	for _, value := range divisors {
+		divSum += value
+	}
+
+	if divSum > target {
+		return DIVISORS_ABUNDANT
+	}
+
+	if divSum < target {
+		return DIVISORS_DEFICIENT
+	}
+
+	return DIVISORS_PERFECT
 }

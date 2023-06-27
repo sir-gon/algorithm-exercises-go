@@ -35,6 +35,29 @@ func TestDivisorsOfOneTableDriven(t *testing.T) {
 	}
 }
 
+func TestProperDivisorsTableDriven(t *testing.T) {
+
+	var tests = []struct {
+		input int
+		want  []int
+	}{
+		{input: 1, want: []int{}},
+		{input: 2, want: []int{1}},
+		{input: 8, want: []int{1, 2, 4}},
+		{input: 9, want: []int{1, 3}},
+		{input: 16, want: []int{1, 2, 4, 8}},
+	}
+
+	for _, tt := range tests {
+
+		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.want)
+		t.Run(testname, func(t *testing.T) {
+			ans := ProperDivisors(tt.input)
+			assert.Equal(t, tt.want, ans)
+		})
+	}
+}
+
 func TestDivisorsTableDriven(t *testing.T) {
 
 	var tests = []struct {
@@ -185,5 +208,26 @@ func TestAreAmicableWithCache(t *testing.T) {
 
 	if ans != true {
 		t.Errorf("AreAmicables(%d, %d, %v) = %t; want %t", inputA, inputB, inputCache, ans, expectedSolution)
+	}
+}
+
+func TestAbundanceTableDriven(t *testing.T) {
+
+	var tests = []struct {
+		input int
+		want  DIVISORS_ABUNDANCE
+	}{
+		{input: 10, want: DIVISORS_DEFICIENT},
+		{input: 12, want: DIVISORS_ABUNDANT},
+		{input: 28, want: DIVISORS_PERFECT},
+	}
+
+	for _, tt := range tests {
+
+		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.want)
+		t.Run(testname, func(t *testing.T) {
+			ans := Abundance(tt.input)
+			assert.Equal(t, tt.want, ans)
+		})
 	}
 }
