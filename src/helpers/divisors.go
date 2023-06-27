@@ -3,6 +3,8 @@ package helpers
 import (
 	"math"
 	"sort"
+
+	"gon.cl/projecteuler.net/src/utils"
 )
 
 type Factor struct {
@@ -16,36 +18,43 @@ type Factors struct {
 	cycles  int
 }
 
-func generateDivisorsOf(target int) []int {
-	top := target
+func Divisors(target int) []int {
+	top := int(math.Abs(float64(target)))
 	var divs []int
 
+	divs = append(divs, int(1))
+
 	if target == 1 {
-		divs = append(divs, 1)
 		return divs
 	}
 
+	utils.Debug("Find divisors of %d", target)
+
 	// fast divisors finding loop
-	i := 1
+	i := int(2)
 	for i <= top {
-		if target%i == 0 {
-			divs = append(divs, i)
-			divs = append(divs, top)
+		top = int(target / i)
+		var remainder = target % i
+
+		if top > 2 && remainder == 0 {
+			if i <= top {
+				divs = append(divs, i)
+			}
+
+			if i < top {
+				divs = append(divs, top)
+			}
 		}
 
-		i++
-		top = target / i
+		i += 1
 	}
 
-	return divs
-}
+	divs = append(divs, target)
+	utils.Debug("collected divisors %x", divs)
 
-func Divisors(target int) []int {
-
-	var divs []int = generateDivisorsOf(Abs(target))
-
-	// sort terms
-	sort.Ints(divs)
+	// sort divisors
+	sort.Slice(divs, func(i, j int) bool { return divs[i] < divs[j] })
+	utils.Debug("sorted divisors %x", divs)
 
 	return divs
 }
