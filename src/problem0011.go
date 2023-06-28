@@ -55,7 +55,7 @@ func Problem0011(matrix [][]int, inputAdjacentNumberListSize int) (int, bool) {
 		for j := bottom; j < top; j += 1 {
 			acum = 1
 
-			if i < top-(inputAdjacentNumberListSize-1) && j < top {
+			if i < top-(inputAdjacentNumberListSize-1) {
 				utils.Debug("---- VERTICAL ------------------------------------------")
 				// vertical
 				for k := bottom; k < inputAdjacentNumberListSize; k++ {
@@ -68,7 +68,7 @@ func Problem0011(matrix [][]int, inputAdjacentNumberListSize int) (int, bool) {
 			}
 
 			acum = 1
-			if i < top && j < top-(inputAdjacentNumberListSize-1) {
+			if j < top-(inputAdjacentNumberListSize-1) {
 				utils.Debug("---- HORIZONTAL ----------------------------------------")
 				// horizontal
 				for k := bottom; k < inputAdjacentNumberListSize; k++ {
