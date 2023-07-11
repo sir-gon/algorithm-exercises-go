@@ -17,7 +17,6 @@ package projecteuler
 
 import (
 	"fmt"
-	"strings"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -25,8 +24,8 @@ import (
 
 func TestProblem0024SmallCase(t *testing.T) {
 
-	expectedSolution := []string{"A", "D", "C", "B"}
-	inputElements := strings.Split("ABCD", "")
+	expectedSolution := "ADCB"
+	inputElements := "ABCD"
 	const inputPermutationToFind = 6
 
 	testname := fmt.Sprintf("Problem0024(%+v, %d) => %v \n", inputElements, inputPermutationToFind, expectedSolution)
@@ -39,8 +38,8 @@ func TestProblem0024SmallCase(t *testing.T) {
 
 func TestProblem0024(t *testing.T) {
 
-	expectedSolution := []string{"2", "7", "8", "3", "9", "1", "5", "4", "6", "0"}
-	inputElements := strings.Split("0123456789", "")
+	expectedSolution := "2783915460"
+	inputElements := "0123456789"
 	const inputPermutationToFind = 1000000
 
 	testname := fmt.Sprintf("Problem0024(%+v, %d) => %v \n", inputElements, inputPermutationToFind, expectedSolution)

@@ -16,63 +16,47 @@
 package projecteuler
 
 import (
+	"strings"
+
 	utils "gon.cl/projecteuler.net/src/utils"
 )
 
-func lexicographicPermutationFind(elements []string, permutationToFind int) []string {
-	// "inner global variables" to catch the results shared across recursive branch calls.
-	var lastBranchCollector []string = []string{}
-	var currentCycle = 0
-
-	// Initial values
-	var initBranchCollector []string = []string{}
-
-	// Recursive way to compute permutations
-	var computePermutations func(stopAtCycle int, inputElements []string, branchCollector []string)
-
-	computePermutations = func(stopAtCycle int, inputElements []string, branchCollector []string) {
-		if currentCycle >= stopAtCycle {
-			return
-		}
-
-		for i := 0; i < len(inputElements); i++ {
-			var rootElement = inputElements[i]
-			var restOfElements []string = []string{}
-
-			utils.Debug("root element: %d -> %s", i, rootElement)
-
-			for j := 0; j < len(inputElements); j++ {
-				if i != j {
-					restOfElements = append(restOfElements, inputElements[j])
-				}
-			}
-
-			newBranchCollector := make([]string, len(branchCollector))
-			copy(newBranchCollector, branchCollector)
-      newBranchCollector = append(newBranchCollector, rootElement)
-
-			// finally...
-			if len(restOfElements) > 0 {
-				utils.Debug("REST: %+v", restOfElements)
-
-				computePermutations(stopAtCycle, restOfElements, newBranchCollector)
-			} else {
-				lastBranchCollector = newBranchCollector
-				currentCycle += 1
-
-				utils.Debug("FINISH BRANCH: %d -> %+v", currentCycle, lastBranchCollector)
-			}
-		}
+func factorial(n int) int {
+	i := n
+	out := 1
+	for i > 1 {
+		out *= i
+		i -= 1
 	}
-
-	computePermutations(permutationToFind, elements, initBranchCollector)
-
-	return lastBranchCollector
+	return out
 }
 
-func Problem0024(inputElements []string, inputPermutationToFind int) []string {
+func permute(symbols string, target int) string {
+	choices := strings.Split(symbols, "")
+	answer := ""
+	min := 0
 
-	var permutationFound = lexicographicPermutationFind(inputElements, inputPermutationToFind)
+	for len(choices) > 0 {
+		index := 0
+		combos := factorial(len(choices) - 1)
+		min += combos
+		for target > min {
+			index += 1
+			min += combos
+		}
+		answer += choices[index]
+		copy(choices[index:], choices[index+1:])
+		choices[len(choices)-1] = ""
+		choices = choices[:len(choices)-1]
+		min -= combos
+	}
+
+	return answer
+}
+
+func Problem0024(inputElements string, inputPermutationToFind int) string {
+
+	var permutationFound = permute(inputElements, inputPermutationToFind)
 
 	utils.Info("Problem0024 answer => %+v", permutationFound)
 
