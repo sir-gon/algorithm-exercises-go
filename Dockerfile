@@ -1,4 +1,4 @@
-FROM golang:1.20.4-alpine3.16 as base
+FROM golang:1.20.5-bookworm as base
 
 ENV CGO_ENABLED 0
 RUN apk add --update --no-cache make
