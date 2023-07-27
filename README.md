@@ -146,8 +146,4 @@ go version go1.19.3 darwin/amd64
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsir-gon%2Fprojecteuler-go.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsir-gon%2Fprojecteuler-go?ref=badge_large)
 
 ## Coverage
-
-
-
-[![FOSSA Status](https://codecov.io/gh/sir-gon/projecteuler-go/branch/main/graphs/tree.svg?token=U3N3HSC3YC)](https://codecov.io/gh/sir-gon/projecteuler-go)
-
+[![codecov](https://codecov.io/gh/sir-gon/algorithm-exercises-go/branch/main/graphs/tree.svg?token=U3N3HSC3YC)](https://codecov.io/gh/sir-gon/algorithm-exercises-go)
