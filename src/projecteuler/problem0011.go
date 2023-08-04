@@ -49,7 +49,7 @@ func Problem0011(matrix [][]int, inputAdjacentNumberListSize int) (int, bool) {
 	}
 
 	var max int = 0
-	var acum int = 0
+	var acum int
 
 	for i := bottom; i < top; i += 1 {
 		for j := bottom; j < top; j += 1 {

@@ -19,7 +19,7 @@ type Fields map[string]string
 var instance *Log
 
 func getLogLevel(_logLevel string) zapcore.Level {
-	zapLogLevel := zap.DebugLevel
+	var zapLogLevel zapcore.Level
 
 	logLevel := _logLevel
 	logLevel = strings.ToUpper(logLevel)
