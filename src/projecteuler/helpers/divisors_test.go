@@ -7,6 +7,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+const DIVISORS_LOG = "Divisors(%d) => %v"
+
 func TestDivisorsBasic(t *testing.T) {
 	ans := Divisors(1)
 
@@ -27,7 +29,7 @@ func TestDivisorsOfOneTableDriven(t *testing.T) {
 
 	for _, tt := range tests {
 
-		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.want)
+		testname := fmt.Sprintf(DIVISORS_LOG, tt.input, tt.want)
 		t.Run(testname, func(t *testing.T) {
 			ans := Divisors(tt.input)
 			assert.Equal(t, tt.want, ans)
@@ -50,7 +52,7 @@ func TestProperDivisorsTableDriven(t *testing.T) {
 
 	for _, tt := range tests {
 
-		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.want)
+		testname := fmt.Sprintf(DIVISORS_LOG, tt.input, tt.want)
 		t.Run(testname, func(t *testing.T) {
 			ans := ProperDivisors(tt.input)
 			assert.Equal(t, tt.want, ans)
@@ -72,7 +74,7 @@ func TestDivisorsTableDriven(t *testing.T) {
 
 	for _, tt := range tests {
 
-		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.want)
+		testname := fmt.Sprintf(DIVISORS_LOG, tt.input, tt.want)
 		t.Run(testname, func(t *testing.T) {
 			ans := Divisors(tt.input)
 			assert.Equal(t, tt.want, ans)
@@ -92,7 +94,7 @@ func TestDivisorsEdgeCasesTableDriven(t *testing.T) {
 
 	for _, tt := range tests {
 
-		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.want)
+		testname := fmt.Sprintf(DIVISORS_LOG, tt.input, tt.want)
 		t.Run(testname, func(t *testing.T) {
 			ans := Divisors(tt.input)
 			assert.Equal(t, tt.want, ans)
@@ -114,7 +116,7 @@ func TestNextPrimeFactorTableDriven(t *testing.T) {
 
 	for _, tt := range tests {
 
-		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.answer)
+		testname := fmt.Sprintf(DIVISORS_LOG, tt.input, tt.answer)
 		t.Run(testname, func(t *testing.T) {
 			ans := NextPrimeFactor(tt.input)
 			assert.Equal(t, tt.answer, ans)
@@ -136,7 +138,7 @@ func TestPrimeFactorsTableDriven(t *testing.T) {
 
 	for _, tt := range tests {
 
-		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.answer)
+		testname := fmt.Sprintf(DIVISORS_LOG, tt.input, tt.answer)
 		t.Run(testname, func(t *testing.T) {
 			ans, cycles := PrimeFactors(tt.input)
 			assert.Equal(t, tt.answer.factors, ans)
@@ -158,7 +160,7 @@ func TestPrimeFactorsOnlyPrimesTableDriven(t *testing.T) {
 
 	for _, tt := range tests {
 
-		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.answer)
+		testname := fmt.Sprintf(DIVISORS_LOG, tt.input, tt.answer)
 		t.Run(testname, func(t *testing.T) {
 			ans, cycles := PrimeFactors(tt.input)
 			assert.Equal(t, tt.answer.factors, ans)
@@ -224,7 +226,7 @@ func TestAbundanceTableDriven(t *testing.T) {
 
 	for _, tt := range tests {
 
-		testname := fmt.Sprintf("Divisors(%d) => %v", tt.input, tt.want)
+		testname := fmt.Sprintf(DIVISORS_LOG, tt.input, tt.want)
 		t.Run(testname, func(t *testing.T) {
 			ans := Abundance(tt.input)
 			assert.Equal(t, tt.want, ans)

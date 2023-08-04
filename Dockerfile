@@ -1,4 +1,4 @@
-FROM golang:1.20.4-alpine3.16 as base
+FROM golang:1.20.4-alpine3.16 AS base
 
 ENV CGO_ENABLED 0
 RUN apk add --update --no-cache make
@@ -6,9 +6,9 @@ RUN apk add --update --no-cache make
 ENV WORKDIR=/app
 WORKDIR ${WORKDIR}
 
-FROM base as development
+FROM base AS development
 
-FROM development as builder
+FROM development AS builder
 
 COPY ./src ${WORKDIR}/src
 COPY ./go.mod ${WORKDIR}/
@@ -22,7 +22,7 @@ RUN make dependencies
 ##
 ## https://docs.github.com/en/actions/creating-actions/dockerfile-support-for-github-actions
 ##
-FROM builder as testing
+FROM builder AS testing
 
 ENV LOG_LEVEL=INFO
 ENV BRUTEFORCE=FALSE
@@ -37,7 +37,7 @@ CMD ["make", "test"]
 ## in the production phase, "good practices" such as
 ## WORKSPACE and USER are maintained
 ##
-FROM builder as production
+FROM builder AS production
 
 ENV LOG_LEVEL=INFO
 ENV BRUTEFORCE=FALSE

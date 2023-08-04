@@ -67,8 +67,8 @@ func ProperDivisors(target int) []int {
 	return theDivisors
 }
 
-func NextPrimeFactor(_target int) Factor {
-	top := int(math.Abs(float64(_target)))
+func NextPrimeFactor(target int) Factor {
+	top := int(math.Abs(float64(target)))
 	cycles := 0
 
 	if top == 1 {
@@ -121,14 +121,14 @@ func PrimeFactors(target int) (factors []int, cycles int) {
 	return
 }
 
-func AreAmicables(a int, b int, _cache map[int]int) bool {
+func AreAmicables(a int, b int, cache map[int]int) bool {
 
 	if a == b || a <= 1 || b <= 1 {
 		return false
 	}
 
-	if _cache[a] != 0 && _cache[b] != 0 {
-		return _cache[a] == b && _cache[b] == a
+	if cache[a] != 0 && cache[b] != 0 {
+		return cache[a] == b && cache[b] == a
 	}
 
 	caseA := Sum(Divisors(a))-a == b

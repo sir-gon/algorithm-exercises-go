@@ -15,12 +15,12 @@ import (
 	utils "gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
-func Problem0003(_top int) int {
+func Problem0003(top int) int {
 	var maxPrimeFactor int
 
-	divs := helpers.Divisors(_top)
+	divs := helpers.Divisors(top)
 
-	utils.Info("Divisors(%d) = %v \n", _top, divs)
+	utils.Info("Divisors(%d) = %v \n", top, divs)
 
 	var i = len(divs) - 1
 

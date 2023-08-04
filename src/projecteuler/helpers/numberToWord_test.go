@@ -8,6 +8,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+const testNumberToWordLogMessage = "IntMinOfMany(%v); want %v"
+
 func TestNumberToWordTableDriven(t *testing.T) {
 	var tests = []struct {
 		input big.Int
@@ -26,7 +28,7 @@ func TestNumberToWordTableDriven(t *testing.T) {
 
 	for _, tt := range tests {
 
-		testname := fmt.Sprintf("NumberToWord(%v) => %v", tt.input, tt.want)
+		testname := fmt.Sprintf(testNumberToWordLogMessage, tt.input, tt.want)
 		t.Run(testname, func(t *testing.T) {
 			ans, errOutOfBounds := NumberToWord(tt.input)
 			if !errOutOfBounds {
@@ -52,7 +54,7 @@ func TestNumberToWordBoundsTableDriven(t *testing.T) {
 
 	for _, tt := range tests {
 
-		testname := fmt.Sprintf("NumberToWord(%v) => %v", tt.input, tt.want)
+		testname := fmt.Sprintf(testNumberToWordLogMessage, tt.input, tt.want)
 		t.Run(testname, func(t *testing.T) {
 			ans, errOutOfBounds := NumberToWord(tt.input)
 			if !errOutOfBounds {
@@ -64,6 +66,7 @@ func TestNumberToWordBoundsTableDriven(t *testing.T) {
 }
 
 func TestNumberToWordErrorTableDriven(t *testing.T) {
+
 	var tests = []struct {
 		input big.Int
 		want  string
@@ -73,7 +76,7 @@ func TestNumberToWordErrorTableDriven(t *testing.T) {
 
 	for _, tt := range tests {
 
-		testname := fmt.Sprintf("NumberToWord(%v) => %v", tt.input, tt.want)
+		testname := fmt.Sprintf(testNumberToWordLogMessage, tt.input, tt.want)
 		t.Run(testname, func(t *testing.T) {
 			ans, errOutOfBounds := NumberToWord(tt.input)
 			if errOutOfBounds {
