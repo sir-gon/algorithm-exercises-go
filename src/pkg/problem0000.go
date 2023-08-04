@@ -1,10 +1,3 @@
-/**
- *
- * https://projecteuler.net/problem=XX
- *
- *
- */
-
 package exercises
 
 import (
