@@ -1,6 +1,6 @@
 services:
-  projecteuler-go:
-    image: projecteuler-go:latest
+  algorithm-exercises-go:
+    image: algorithm-exercises-go:latest
     build:
       context: .
       target: testing
@@ -11,8 +11,8 @@ services:
       - ./coverage:/app/coverage
     profiles: ["testing"]
 
-  projecteuler-go-dev:
-    image: projecteuler-go:dev
+  algorithm-exercises-go-dev:
+    image: algorithm-exercises-go:dev
     build:
       context: .
       target: development

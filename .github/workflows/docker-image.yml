@@ -16,10 +16,10 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     #- name: Build the Docker image
-    #  run: docker build . --file Dockerfile --tag projecteuler-go:${{ github.sha }}
+    #  run: docker build . --file Dockerfile --tag algorithm-exercises-go:${{ github.sha }}
     - name: Build the Docker image
       run: make compose/rebuild
     - name: Run test in Docker image
       run: make compose/run
     - name: Tag Docker image
-      run: docker tag projecteuler-go:latest projecteuler-go:${{ github.sha }}
+      run: docker tag algorithm-exercises-go:latest algorithm-exercises-go:${{ github.sha }}
