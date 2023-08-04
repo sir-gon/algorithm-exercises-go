@@ -64,7 +64,7 @@ dependencies:
 	@echo "################################################################################"
 
 coverage/c.out: env dependencies
-	$(GOTEST) -v -coverprofile="coverage/c.out" ./...
+	$(GOTEST) -v -covermode=atomic -coverprofile="coverage/c.out" ./...
 
 test: coverage/c.out
 
