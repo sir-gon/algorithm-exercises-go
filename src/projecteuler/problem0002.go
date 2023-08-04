@@ -16,7 +16,7 @@ package projecteuler
 
 import utils "gon.cl/algorithm-exercises/src/projecteuler/utils"
 
-func Problem0002(_top int) int {
+func Problem0002(top int) int {
 
 	last1 := 1
 	last2 := 0
@@ -25,7 +25,7 @@ func Problem0002(_top int) int {
 	i := 0
 	fibo := 0
 
-	for ok := true; ok; ok = fibo < _top {
+	for ok := true; ok; ok = fibo < top {
 		fibo = last2 + last1
 
 		utils.Debug("Fibonacci (%d) = %d", i, fibo)

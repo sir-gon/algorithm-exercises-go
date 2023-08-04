@@ -33,11 +33,11 @@ var _scoreLetter = map[rune]int{
 	'Z': 26,
 }
 
-func WordScore(_word string) int {
+func WordScore(word string) int {
 
 	count := 0
 
-	for i, c := range _word {
+	for i, c := range word {
 		utils.Debug("%d => %c", i, c)
 
 		score, exist := _scoreLetter[c]

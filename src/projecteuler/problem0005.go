@@ -18,10 +18,10 @@ import (
 	"gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
-func _primeFactorListCollection(_factors []int) map[int]int {
+func primeFactorListCollection(factors []int) map[int]int {
 	var collection = map[int]int{}
 
-	for _, factor := range _factors {
+	for _, factor := range factors {
 		quantity, ok := collection[factor]
 
 		if ok {
@@ -37,18 +37,18 @@ func _primeFactorListCollection(_factors []int) map[int]int {
 	return collection
 }
 
-func Problem0005(_bottom int, _top int) int {
+func Problem0005(bottom int, top int) int {
 
 	var minimumPrimeFactors = map[int]int{}
 	var cycles = 0
 	var answer = 1
 
-	for i := _bottom; i <= _top; i++ {
+	for i := bottom; i <= top; i++ {
 		primeFactorList, subCycles := helpers.PrimeFactors(i)
 		cycles += subCycles
 		utils.Info("Prime Factors of %d list    => %v", i, primeFactorList)
 
-		primeFactorMap := _primeFactorListCollection(primeFactorList)
+		primeFactorMap := primeFactorListCollection(primeFactorList)
 		cycles += len(primeFactorList)
 		utils.Info("Prime Factors of %d grouped => %v", i, primeFactorMap)
 
@@ -73,7 +73,7 @@ func Problem0005(_bottom int, _top int) int {
 		answer *= int(math.Pow(float64(factor), float64(quantity)))
 	}
 
-	utils.Info("Problem 0005: Minimum Prime Factors from %d to %d => %v in %d cycles", _bottom, _top, minimumPrimeFactors, cycles)
+	utils.Info("Problem 0005: Minimum Prime Factors from %d to %d => %v in %d cycles", bottom, top, minimumPrimeFactors, cycles)
 	utils.Info("Problem 0005: Solution: %d in %d cycles", answer, cycles)
 
 	return answer

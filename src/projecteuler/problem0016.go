@@ -35,9 +35,9 @@ import (
 const __NUMERIC_BASE__ = 10
 const __SPLIT_SEPARATOR__ = ""
 
-func Problem0016(_base int, _exponent int) string {
+func Problem0016(base int, exponent int) string {
 
-	power := new(big.Int).Exp(big.NewInt(int64(_base)), big.NewInt(int64(_exponent)), nil)
+	power := new(big.Int).Exp(big.NewInt(int64(base)), big.NewInt(int64(exponent)), nil)
 
 	chars := strings.Split(power.Text(__NUMERIC_BASE__), __SPLIT_SEPARATOR__)
 

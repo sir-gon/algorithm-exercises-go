@@ -13,10 +13,10 @@ package projecteuler
 
 import utils "gon.cl/algorithm-exercises/src/projecteuler/utils"
 
-func Problem0001(_top int) int {
+func Problem0001(top int) int {
 	total := 0
 
-	for i := 0; i < _top; i++ {
+	for i := 0; i < top; i++ {
 		if i%3 == 0 || i%5 == 0 {
 
 			total += i

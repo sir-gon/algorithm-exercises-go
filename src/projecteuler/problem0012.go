@@ -30,12 +30,12 @@ import (
 	utils "gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
-func Problem0012(_top int) int {
+func Problem0012(top int) int {
 	var amountOfDivisors = 0
 	var triangular = 0
 	var i = 1
 
-	for amountOfDivisors < _top {
+	for amountOfDivisors < top {
 		triangular += i
 		var listOfDivisors = helpers.Divisors(triangular)
 		amountOfDivisors = len(listOfDivisors)

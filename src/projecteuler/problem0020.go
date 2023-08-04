@@ -28,9 +28,9 @@ import (
 	"gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
-func Problem0020(_last int) *big.Int {
+func Problem0020(last int) *big.Int {
 
-	factorial := helpers.BigFactorial(_last)
+	factorial := helpers.BigFactorial(last)
 
 	utils.Info("Problem0020 answer => %v", factorial)
 
