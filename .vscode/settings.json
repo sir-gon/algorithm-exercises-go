@@ -1,0 +1,14 @@
+{
+  "[go]": {
+    "editor.insertSpaces": true,
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "golang.go"
+  },
+  "go.coverMode": "atomic",
+  "go.coverOnSave": true,
+  "go.formatTool": "gofmt",
+  "go.testTimeout": "600s",
+  "gopls": {
+    "build.buildFlags": ["-tags=bruteforce"], // https://stackoverflow.com/a/76577303/6366150
+  }
+}
