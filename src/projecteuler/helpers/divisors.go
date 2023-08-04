@@ -4,7 +4,7 @@ import (
 	"math"
 	"sort"
 
-	"gon.cl/projecteuler.net/src/projecteuler/utils"
+	"gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
 type Factor struct {

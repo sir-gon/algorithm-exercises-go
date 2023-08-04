@@ -23,8 +23,8 @@ import (
 	"math/big"
 	"regexp"
 
-	"gon.cl/projecteuler.net/src/projecteuler/helpers"
-	utils "gon.cl/projecteuler.net/src/projecteuler/utils"
+	"gon.cl/algorithm-exercises/src/projecteuler/helpers"
+	utils "gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
 func Problem0017(init int, last int) int {

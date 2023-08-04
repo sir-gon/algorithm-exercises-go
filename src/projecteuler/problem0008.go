@@ -36,8 +36,8 @@ import (
 	"strconv"
 	"strings"
 
-	"gon.cl/projecteuler.net/src/projecteuler/helpers"
-	utils "gon.cl/projecteuler.net/src/projecteuler/utils"
+	"gon.cl/algorithm-exercises/src/projecteuler/helpers"
+	utils "gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
 const __BASE__ = 10

@@ -13,8 +13,8 @@
 package projecteuler
 
 import (
-	helpers "gon.cl/projecteuler.net/src/projecteuler/helpers"
-	utils "gon.cl/projecteuler.net/src/projecteuler/utils"
+	helpers "gon.cl/algorithm-exercises/src/projecteuler/helpers"
+	utils "gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
 func Problem0015(gridSide int) int {

@@ -8,7 +8,7 @@
 package projecteuler
 
 import (
-	utils "gon.cl/projecteuler.net/src/projecteuler/utils"
+	utils "gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
 func Problem0000() int {

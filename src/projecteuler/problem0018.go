@@ -44,9 +44,9 @@
 package projecteuler
 
 import (
-	"gon.cl/projecteuler.net/src/projecteuler/helpers"
-	"gon.cl/projecteuler.net/src/projecteuler/lib"
-	utils "gon.cl/projecteuler.net/src/projecteuler/utils"
+	"gon.cl/algorithm-exercises/src/projecteuler/helpers"
+	"gon.cl/algorithm-exercises/src/projecteuler/lib"
+	utils "gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
 func Problem0018(tree lib.Tree) int {

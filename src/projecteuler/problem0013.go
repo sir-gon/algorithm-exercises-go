@@ -16,7 +16,7 @@ package projecteuler
 import (
 	"math/big"
 
-	utils "gon.cl/projecteuler.net/src/projecteuler/utils"
+	utils "gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
 func Problem0013(inputListOfBigNumbers []string) string {

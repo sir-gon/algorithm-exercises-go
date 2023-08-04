@@ -24,7 +24,7 @@ package projecteuler
 import (
 	"math"
 
-	utils "gon.cl/projecteuler.net/src/projecteuler/utils"
+	utils "gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
 func powInt(x, y int) int {
