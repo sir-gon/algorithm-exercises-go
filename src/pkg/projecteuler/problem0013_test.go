@@ -1,14 +1,5 @@
-/**
- * Large sum
- *
- * https://projecteuler.net/problem=13
- *
- * Work out the first ten digits of the sum of the following
- * one-hundred 50-digit numbers.
- */
-
 // ////////////////////////////////////////////////////////////////////////////
-// See src/problem0013_data.go
+// See data/problem0013_data.go
 // ////////////////////////////////////////////////////////////////////////////
 
 package projecteuler
