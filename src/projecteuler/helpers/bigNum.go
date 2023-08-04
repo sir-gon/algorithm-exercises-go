@@ -20,13 +20,13 @@ func BigSumMany(strNumberArr []string) string {
 	return result.Text(__NUMERIC_BASE__)
 }
 
-func BigFactorial(_last int) *big.Int {
+func BigFactorial(last int) *big.Int {
 
 	const init = 1
 
 	factorial := big.NewInt(int64(init))
 
-	for i := init; i <= _last; i += 1 {
+	for i := init; i <= last; i += 1 {
 		factorial.Mul(factorial, big.NewInt(int64(i)))
 	}
 

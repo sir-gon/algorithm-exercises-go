@@ -8,12 +8,14 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+const testIntMinOfManyLogMessage = "IntMinOfMany(%v); want %d"
+
 func TestIntMinOfManyBasic(t *testing.T) {
 	inputList := []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}
 	expectedAnswer := 1
 	expectedError := error(nil)
 
-	testname := fmt.Sprintf("IntMinOfMany(%v); want %d", inputList, expectedAnswer)
+	testname := fmt.Sprintf(testIntMinOfManyLogMessage, inputList, expectedAnswer)
 	t.Run(testname, func(t *testing.T) {
 		ans, err := IntMinOfMany(inputList)
 		assert.Equal(t, expectedAnswer, ans)
@@ -26,7 +28,7 @@ func TestIntMinOfManyBorderCase(t *testing.T) {
 	expectedAnswer := 0
 	expectedError := errors.New("list is empty")
 
-	testname := fmt.Sprintf("IntMinOfMany(%v); want %d", inputList, expectedAnswer)
+	testname := fmt.Sprintf(testIntMinOfManyLogMessage, inputList, expectedAnswer)
 	t.Run(testname, func(t *testing.T) {
 		ans, err := IntMinOfMany(inputList)
 		assert.Equal(t, expectedAnswer, ans)
@@ -39,7 +41,7 @@ func TestIntMaxOfManyBasic(t *testing.T) {
 	expectedAnswer := 10
 	expectedError := error(nil)
 
-	testname := fmt.Sprintf("IntMinOfMany(%v); want %d", inputList, expectedAnswer)
+	testname := fmt.Sprintf(testIntMinOfManyLogMessage, inputList, expectedAnswer)
 	t.Run(testname, func(t *testing.T) {
 		ans, err := IntMaxOfMany(inputList)
 		assert.Equal(t, expectedAnswer, ans)
@@ -52,7 +54,7 @@ func TestIntMaxOfManyBorderCase(t *testing.T) {
 	expectedAnswer := 0
 	expectedError := errors.New("list is empty")
 
-	testname := fmt.Sprintf("IntMaxOfMany(%v); want %d", inputList, expectedAnswer)
+	testname := fmt.Sprintf(testIntMinOfManyLogMessage, inputList, expectedAnswer)
 	t.Run(testname, func(t *testing.T) {
 		ans, err := IntMaxOfMany(inputList)
 		assert.Equal(t, expectedAnswer, ans)

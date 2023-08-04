@@ -9,6 +9,8 @@ import (
 	"gon.cl/algorithm-exercises/src/projecteuler/data"
 )
 
+const testBNodeBuilderLogMessage = "BNode.() => %v \n"
+
 func TestTreeBuilding(t *testing.T) {
 	// {3},
 	// {7, 4}, => {7, 4}
@@ -37,7 +39,7 @@ func TestTreeBuilding(t *testing.T) {
 			}},
 	}
 
-	testname := fmt.Sprintf("BNode.() => %v \n", expectedValue)
+	testname := fmt.Sprintf(testBNodeBuilderLogMessage, expectedValue)
 	t.Run(testname, func(t *testing.T) {
 
 		ans, err := BuildBNodeTree(data.Problem0018_small_data)
@@ -52,7 +54,7 @@ func TestTreeBorderCase(t *testing.T) {
 	expectedValue := BNode{}
 	expectedErr := true
 
-	testname := fmt.Sprintf("BNode.() => %v \n", expectedValue)
+	testname := fmt.Sprintf(testBNodeBuilderLogMessage, expectedValue)
 	t.Run(testname, func(t *testing.T) {
 
 		ans, err := BuildBNodeTree([][]int{})
@@ -93,7 +95,7 @@ func TestTreeBuildingWithWeigths(t *testing.T) {
 	expectedLeafs := []int{20, 17, 19, 23, 16, 20, 22, 16}
 	expectedError := false
 
-	testname := fmt.Sprintf("BNode.() => %v \n", expectedValue)
+	testname := fmt.Sprintf(testBNodeBuilderLogMessage, expectedValue)
 	t.Run(testname, func(t *testing.T) {
 
 		ans, err := BuildBNodeTreeWeigth(data.Problem0018_small_data)
@@ -112,7 +114,7 @@ func TestTreeBuildingWithWeigthsBorderCase(t *testing.T) {
 	expectedLeafs := []int{}
 	expectedError := true
 
-	testname := fmt.Sprintf("BNode.() => %v \n", expectedValue)
+	testname := fmt.Sprintf(testBNodeBuilderLogMessage, expectedValue)
 	t.Run(testname, func(t *testing.T) {
 
 		ans, err := BuildBNodeTreeWeigth(inputDataTree)
