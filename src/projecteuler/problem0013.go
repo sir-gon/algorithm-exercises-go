@@ -21,7 +21,7 @@ import (
 
 func Problem0013(inputListOfBigNumbers []string) string {
 
-	const _BASE_ = 10
+	const BASE = 10
 	const top = 10000000000
 	answer := new(big.Int)
 	bigTop := new(big.Int).SetInt64((top))
@@ -32,7 +32,7 @@ func Problem0013(inputListOfBigNumbers []string) string {
 		var bignum, ok = new(big.Int).SetString(inputListOfBigNumbers[i], 0)
 		listOfBigNumbers = append(listOfBigNumbers, bignum)
 
-		utils.Debug("new bigNumber: %s | %t", bignum.Text(_BASE_), ok)
+		utils.Debug("new bigNumber: %s | %t", bignum.Text(BASE), ok)
 
 		answer = answer.Add(answer, bignum)
 	}
@@ -40,12 +40,12 @@ func Problem0013(inputListOfBigNumbers []string) string {
 	utils.Debug("listOfBigNumbers: %v", listOfBigNumbers)
 
 	for answer.Cmp(bigTop) >= 1 {
-		answer = answer.Div(answer, big.NewInt(_BASE_))
+		answer = answer.Div(answer, big.NewInt(BASE))
 
 		utils.Debug("Answer reduction: %s", answer.String())
 	}
 
 	utils.Info("Problem0013 answer => %v", answer)
 
-	return answer.Text(_BASE_)
+	return answer.Text(BASE)
 }

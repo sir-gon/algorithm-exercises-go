@@ -40,12 +40,12 @@ func Contains[T comparable](s []T, e T) bool {
 	return false
 }
 
-func Problem0023(_underLimit int, _superLimit int) int {
+func Problem0023(underLimit int, superLimit int) int {
 
 	var abundantNumberList []int = []int{}
 
 	// Produce a list of abundant numbers below limit
-	for i := _underLimit; i <= _superLimit; i++ {
+	for i := underLimit; i <= superLimit; i++ {
 		var abundancyOf = helpers.Abundance(i)
 
 		if abundancyOf == helpers.DIVISORS_ABUNDANT {
@@ -60,7 +60,7 @@ func Problem0023(_underLimit int, _superLimit int) int {
 
 	// Produce a list of sums of pair of abundant numbers below limit
 	for i := 0; i < len(abundantNumberList); i++ {
-		for j := 0; abundantNumberList[i]+abundantNumberList[j] <= _superLimit &&
+		for j := 0; abundantNumberList[i]+abundantNumberList[j] <= superLimit &&
 			j < len(abundantNumberList); j++ {
 
 			var sum = abundantNumberList[i] + abundantNumberList[j]
@@ -82,7 +82,7 @@ func Problem0023(_underLimit int, _superLimit int) int {
 	// All numbers below limit that not present in list of sums of pair of abundant numbers
 	var found = []int{}
 
-	for i := 1; i < _superLimit; i++ {
+	for i := 1; i < superLimit; i++ {
 		if !Contains(sumsAbundantNums, i) {
 			found = append(found, i)
 		}

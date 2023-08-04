@@ -17,7 +17,7 @@ import (
 	utils "gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
-func Problem0004(_bottom int, _top int) int {
+func Problem0004(bottom int, top int) int {
 	var i int
 	var j int
 	var foundi int
@@ -27,10 +27,10 @@ func Problem0004(_bottom int, _top int) int {
 
 	utils.Info("Initializing Problem 0004")
 
-	i = _top
-	for i >= _bottom {
+	i = top
+	for i >= bottom {
 		j = i
-		for j >= _bottom && (foundj == 0 || j >= foundj) {
+		for j >= bottom && (foundj == 0 || j >= foundj) {
 
 			cycles += 1
 			if helpers.IsPalindrome(j * i) {

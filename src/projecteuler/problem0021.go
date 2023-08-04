@@ -39,12 +39,12 @@ import (
 	"gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
-func Problem0021(_start int, _limit int) int {
+func Problem0021(start int, limit int) int {
 
 	cache := map[int]int{}
 	amicables := map[int]int{}
 
-	for i := _start; i <= _limit; i++ {
+	for i := start; i <= limit; i++ {
 
 		divs := helpers.Divisors(i)
 		sum := helpers.Sum(divs) - i
