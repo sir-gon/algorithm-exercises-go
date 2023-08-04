@@ -12,7 +12,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"gon.cl/projecteuler.net/src/projecteuler/constants"
+	"gon.cl/algorithm-exercises/src/projecteuler/constants"
 )
 
 func TestProblem0019Small(t *testing.T) {

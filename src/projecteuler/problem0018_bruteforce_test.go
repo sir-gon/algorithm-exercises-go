@@ -51,8 +51,8 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"gon.cl/projecteuler.net/src/projecteuler/data"
-	"gon.cl/projecteuler.net/src/projecteuler/lib"
+	"gon.cl/algorithm-exercises/src/projecteuler/data"
+	"gon.cl/algorithm-exercises/src/projecteuler/lib"
 )
 
 func TestProblem0018BruteForce(t *testing.T) {

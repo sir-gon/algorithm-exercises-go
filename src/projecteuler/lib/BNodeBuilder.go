@@ -1,6 +1,6 @@
 package lib
 
-import "gon.cl/projecteuler.net/src/projecteuler/utils"
+import "gon.cl/algorithm-exercises/src/projecteuler/utils"
 
 func buildBNodeTreeRecursive(
 	dataTree [][]int,

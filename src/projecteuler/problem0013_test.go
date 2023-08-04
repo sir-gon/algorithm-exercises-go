@@ -18,7 +18,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"gon.cl/projecteuler.net/src/projecteuler/data"
+	"gon.cl/algorithm-exercises/src/projecteuler/data"
 )
 
 func TestProblem0013(t *testing.T) {

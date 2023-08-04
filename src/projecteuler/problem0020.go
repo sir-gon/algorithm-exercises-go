@@ -24,8 +24,8 @@ package projecteuler
 import (
 	"math/big"
 
-	"gon.cl/projecteuler.net/src/projecteuler/helpers"
-	"gon.cl/projecteuler.net/src/projecteuler/utils"
+	"gon.cl/algorithm-exercises/src/projecteuler/helpers"
+	"gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
 func Problem0020(_last int) *big.Int {

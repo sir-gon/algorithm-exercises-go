@@ -35,8 +35,8 @@
 package projecteuler
 
 import (
-	"gon.cl/projecteuler.net/src/projecteuler/helpers"
-	"gon.cl/projecteuler.net/src/projecteuler/utils"
+	"gon.cl/algorithm-exercises/src/projecteuler/helpers"
+	"gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
 func Problem0021(_start int, _limit int) int {

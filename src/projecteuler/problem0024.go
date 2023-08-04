@@ -18,7 +18,7 @@ package projecteuler
 import (
 	"strings"
 
-	utils "gon.cl/projecteuler.net/src/projecteuler/utils"
+	utils "gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
 func factorial(n int) int {

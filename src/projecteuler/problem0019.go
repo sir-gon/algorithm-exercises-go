@@ -8,8 +8,8 @@
 package projecteuler
 
 import (
-	constants "gon.cl/projecteuler.net/src/projecteuler/constants"
-	utils "gon.cl/projecteuler.net/src/projecteuler/utils"
+	constants "gon.cl/algorithm-exercises/src/projecteuler/constants"
+	utils "gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
 func Problem0019(

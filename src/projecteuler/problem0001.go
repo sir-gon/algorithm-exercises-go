@@ -11,7 +11,7 @@
 
 package projecteuler
 
-import utils "gon.cl/projecteuler.net/src/projecteuler/utils"
+import utils "gon.cl/algorithm-exercises/src/projecteuler/utils"
 
 func Problem0001(_top int) int {
 	total := 0

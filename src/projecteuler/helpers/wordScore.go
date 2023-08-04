@@ -1,7 +1,7 @@
 package helpers
 
 import (
-	"gon.cl/projecteuler.net/src/projecteuler/utils"
+	"gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
 var _scoreLetter = map[rune]int{

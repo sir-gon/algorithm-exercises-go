@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"gon.cl/projecteuler.net/src/projecteuler/utils"
+	"gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
 const _CENTS_ = "hundred"

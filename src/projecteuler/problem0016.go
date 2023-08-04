@@ -28,8 +28,8 @@ import (
 	"math/big"
 	"strings"
 
-	"gon.cl/projecteuler.net/src/projecteuler/helpers"
-	utils "gon.cl/projecteuler.net/src/projecteuler/utils"
+	"gon.cl/algorithm-exercises/src/projecteuler/helpers"
+	utils "gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
 const __NUMERIC_BASE__ = 10
