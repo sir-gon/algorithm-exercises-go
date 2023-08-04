@@ -35,74 +35,51 @@
 package projecteuler
 
 import (
-	"gon.cl/algorithm-exercises/src/projecteuler/helpers"
+	helpers "gon.cl/algorithm-exercises/src/projecteuler/helpers"
 	utils "gon.cl/algorithm-exercises/src/projecteuler/utils"
 )
 
-func Problem0011(matrix [][]int, inputAdjacentNumberListSize int) (int, bool) {
-
-	const bottom = 0
-	var top = len(matrix)
-
-	if inputAdjacentNumberListSize < 1 {
+func Problem0011(matrix [][]int, interval int) (int, bool) {
+	if interval < 1 {
 		return 0, true
 	}
 
 	var max int = 0
-	var acum int
 
-	for i := bottom; i < top; i += 1 {
-		for j := bottom; j < top; j += 1 {
-			acum = 1
+	var quadrantSize = interval
+	var matrixLimit = len(matrix) - (interval - 1)
 
-			if i < top-(inputAdjacentNumberListSize-1) {
-				utils.Debug("---- VERTICAL ------------------------------------------")
-				// vertical
-				for k := bottom; k < inputAdjacentNumberListSize; k++ {
-					utils.Debug("row: i %d, column: %d, inputAdjacentNumberListSize %d => %d", i+k, j, k, matrix[i+k][j])
+	for i := 0; i < matrixLimit; i += 1 {
+		for j := 0; j < matrixLimit; j += 1 {
+			utils.Debug("start point => i: %d, j: %d", i, j)
 
-					acum *= matrix[i+k][j]
+			// reset diagonals
+			var diag1Acum = 1
+			var diag2Acum = 1
+			for k := 0; k < quadrantSize; k += 1 {
+				utils.Debug("diag1 coordinate: (i, j) = (%d, %d)", i+k, j+k)
+				utils.Debug("diag2 coordinate: (i, j) = (%d, %d)", i+k, j+(quadrantSize-1)-k)
+
+				diag1Acum *= matrix[i+k][j+k]
+				diag2Acum *= matrix[i+k][j+(quadrantSize-1)-k]
+
+				max = helpers.IntMax(diag1Acum, max)
+				max = helpers.IntMax(diag2Acum, max)
+
+				// reset lines
+				var verticalAcum = 1
+				var horizontalAcum = 1
+				for l := 0; l < quadrantSize; l += 1 {
+					utils.Debug("vertical coordinate: (i, j) = (%d, %d)", i+k, j+l)
+					utils.Debug("horizontal coordinate: (i, j) = (%d, %d)", i+l, j+k)
+
+					verticalAcum *= matrix[i+k][j+l]
+					horizontalAcum *= matrix[i+l][j+k]
+
+					max = helpers.IntMax(verticalAcum, max)
+					max = helpers.IntMax(horizontalAcum, max)
 				}
-
-				max = helpers.IntMax(acum, max)
 			}
-
-			acum = 1
-			if j < top-(inputAdjacentNumberListSize-1) {
-				utils.Debug("---- HORIZONTAL ----------------------------------------")
-				// horizontal
-				for k := bottom; k < inputAdjacentNumberListSize; k++ {
-					utils.Debug("row: i ${i}, column: ${j + k} => ${matrix[i][j + k]}")
-					acum *= matrix[i][j+k]
-				}
-
-				max = helpers.IntMax(acum, max)
-			}
-
-			acum = 1
-			if i+(inputAdjacentNumberListSize-1) < top && j+(inputAdjacentNumberListSize-1) < top {
-				// diagonal top left -> bottom right
-				utils.Debug("---- DIAG \\ ---------------------------------------------")
-				for k := bottom; k < inputAdjacentNumberListSize; k++ {
-					utils.Debug("diag: (${i + k}, ${j + k}) => ${matrix[i + k][j + k]}")
-					acum *= matrix[i+k][j+k]
-				}
-
-				max = helpers.IntMax(acum, max)
-			}
-
-			acum = 1
-			if i+(inputAdjacentNumberListSize-1) < top && j+(inputAdjacentNumberListSize-1) < top {
-				// diagonal top rigth -> bottom left
-				utils.Debug("---- DIAG / ---------------------------------------------")
-				for k := bottom; k < inputAdjacentNumberListSize; k++ {
-					utils.Debug("diag: (${i + k}, ${j + (inputAdjacentNumberListSize - 1) - k}) => ${matrix[i + k][j + (inputAdjacentNumberListSize - 1) - k]}")
-					acum *= matrix[i+k][j+(inputAdjacentNumberListSize-1)-k]
-				}
-
-				max = helpers.IntMax(acum, max)
-			}
-
 		}
 	}
 
