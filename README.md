@@ -4,6 +4,7 @@
 [![codecov](https://codecov.io/gh/sir-gon/algorithm-exercises-go/branch/main/graph/badge.svg?token=U3N3HSC3YC)](https://codecov.io/gh/sir-gon/algorithm-exercises-go)
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fsir-gon%2Fprojecteuler-go.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fsir-gon%2Fprojecteuler-go?ref=badge_shield)
 [![CII Best Practices](https://bestpractices.coreinfrastructure.org/projects/6194/badge)](https://bestpractices.coreinfrastructure.org/projects/6194)
+[![Markdown Lint](https://github.com/sir-gon/algorithm-exercises-go/actions/workflows/markdown-lint.yml/badge.svg)](https://github.com/sir-gon/algorithm-exercises-go/actions/workflows/markdown-lint.yml)
 
 ![GitHub](https://img.shields.io/github/license/sir-gon/projecteuler-go)
 ![GitHub language count](https://img.shields.io/github/languages/count/sir-gon/projecteuler-go)

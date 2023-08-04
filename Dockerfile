@@ -1,3 +1,4 @@
+###############################################################################
 FROM golang:1.20.4-alpine3.16 AS base
 
 ENV CGO_ENABLED 0
@@ -6,8 +7,25 @@ RUN apk add --update --no-cache make
 ENV WORKDIR=/app
 WORKDIR ${WORKDIR}
 
+###############################################################################
+FROM node:20.2.0-alpine3.16 AS lint
+
+ENV WORKDIR=/app
+WORKDIR ${WORKDIR}
+
+COPY ./docs ${WORKDIR}/docs
+RUN apk add --update --no-cache make
+RUN npm install -g markdownlint-cli
+
+###############################################################################
 FROM base AS development
 
+ENV BINDIR /usr/local/bin
+
+# In alpine linux (as it does not come with curl by default)
+RUN wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.53.3
+
+###############################################################################
 FROM development AS builder
 
 COPY ./src ${WORKDIR}/src
@@ -17,6 +35,7 @@ COPY ./Makefile ${WORKDIR}/
 
 RUN make dependencies
 
+###############################################################################
 ### In testing stage, can't use USER, due permissions issue
 ## in github actions environment:
 ##
@@ -33,6 +52,7 @@ RUN ls -alh
 
 CMD ["make", "test"]
 
+###############################################################################
 ### In production stage
 ## in the production phase, "good practices" such as
 ## WORKSPACE and USER are maintained
