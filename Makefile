@@ -85,6 +85,6 @@ compose/rebuild: env
 	docker-compose --profile testing build --no-cache
 
 compose/run: compose/build
-	docker-compose --profile testing run --rm projecteuler-go make test
+	docker-compose --profile testing run --rm algorithm-exercises-go make test
 
 all: test coverage
