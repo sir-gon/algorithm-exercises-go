@@ -1,3 +1,7 @@
+/**
+ * @link Problem definition [[docs/hackerrank/warmup/solveMeFirst.md]]
+ */
+
 package hackerrank
 
 import (

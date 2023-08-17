@@ -1,3 +1,7 @@
+/**
+ * @link Problem definition [[docs/problem0000.md]]
+ */
+
 package exercises
 
 import (

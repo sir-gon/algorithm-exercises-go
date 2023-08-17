@@ -1,8 +1,8 @@
-// ////////////////////////////////////////////////////////////////////////////
-// See:
-//    - src/data/p022_listOfNames.txt
-//    - src/data/p022_listOfNames.json
-// ////////////////////////////////////////////////////////////////////////////
+/**
+ * @link Problem definition [[docs/projecteuler/problem0012.md]]
+ * @see [[src/pkg/projecteuler/data/p022_names.txt]]
+ * @see [[src/pkg/projecteuler/data/problem0022_data.go]]
+ */
 
 package projecteuler
 
