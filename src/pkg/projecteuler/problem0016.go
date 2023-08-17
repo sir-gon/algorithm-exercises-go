@@ -1,3 +1,7 @@
+/**
+ * @link Problem definition [[docs/projecteuler/problem0016.md]]
+ */
+
 // ////////////////////////////////////////////////////////////////////////////
 // Result found:
 //  Digits:

@@ -1,3 +1,7 @@
+/**
+ * @link Problem definition [[docs/projecteuler/problem0014.md]]
+ */
+
 package projecteuler
 
 import (
