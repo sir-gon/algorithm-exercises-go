@@ -2,7 +2,7 @@ name: Go
 
 on:
   push:
-    branches: [ "main", "feature/*" ]
+    branches: [ "main", "develop", "feature/*" ]
   pull_request:
     branches: [ "main" ]
 
@@ -43,7 +43,10 @@ jobs:
     - name: Lint golangci-lint
       uses: golangci/golangci-lint-action@v3
       with:
+        args: --timeout=10m
         version: v1.53
+        skip-pkg-cache: true
+        skip-build-cache: true
 
     - name: Test
       run: go test -v -coverprofile="coverage.out" ./...
