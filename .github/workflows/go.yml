@@ -41,7 +41,7 @@ jobs:
       run: go vet -v ./...
 
     - name: Lint golangci-lint
-      uses: golangci/golangci-lint-action@v4
+      uses: golangci/golangci-lint-action@v5
       with:
         args: --timeout=10m
         version: v1.53
