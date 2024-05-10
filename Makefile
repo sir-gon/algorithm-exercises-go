@@ -77,7 +77,19 @@ test: coverage.out
 
 coverage: coverage.out
 	$(GOCOVER) -func=coverage.out
+
+coverage/html: coverage.out
 	$(GOCOVER) -html=coverage.out -o ./coverage/coverage.html
+
+outdated:
+	$(GO) list -m -u all
+
+update: dependencies outdated
+	$(GO) get -u all
+	$(GO) get -t -u ./...
+	$(GO) mod tidy
+
+upgrade: update
 
 clean:
 	$(GO) clean -testcache
