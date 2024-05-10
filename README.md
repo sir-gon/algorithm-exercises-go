@@ -10,6 +10,12 @@
 ![GitHub language count](https://img.shields.io/github/languages/count/sir-gon/projecteuler-go)
 ![GitHub top language](https://img.shields.io/github/languages/top/sir-gon/projecteuler-go)
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=sir-gon_algorithm-exercises-go&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=sir-gon_algorithm-exercises-go)
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=sir-gon_algorithm-exercises-go&metric=coverage)](https://sonarcloud.io/summary/new_code?id=sir-gon_algorithm-exercises-go)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=sir-gon_algorithm-exercises-go&metric=bugs)](https://sonarcloud.io/summary/new_code?id=sir-gon_algorithm-exercises-go)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=sir-gon_algorithm-exercises-go&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=sir-gon_algorithm-exercises-go)
+[![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=sir-gon_algorithm-exercises-go&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=sir-gon_algorithm-exercises-go)
+
 ## What is this?
 
 [Project Euler](https://projecteuler.net/) provide some algorithms and
@@ -148,7 +154,7 @@ Developed with runtime:
 
 ```text
 go version
-go version go1.20.7 darwin/amd64
+go version go1.22.3 darwin/amd64
 ```
 
 ### License
