@@ -44,9 +44,8 @@ jobs:
       uses: golangci/golangci-lint-action@v6
       with:
         args: --timeout=10m
-        version: v1.53
-        skip-pkg-cache: true
-        skip-build-cache: true
+        version: v1.58.1
+        skip-cache: true
 
     - name: Test
       run: go test -v -coverprofile="coverage.out" ./...
