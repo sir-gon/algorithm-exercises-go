@@ -71,7 +71,7 @@ mdlint:
 	markdownlint '**/*.md' --ignore node_modules && echo '✔  Your code looks good.'
 
 coverage/c.out: env dependencies
-	$(GOTEST) -v -covermode=atomic -coverprofile="coverage/c.out" ./...
+	$(GOTEST) -v -covermode=atomic -coverprofile="coverage/c.out" ./src/pkg/...
 
 test: coverage/c.out
 
