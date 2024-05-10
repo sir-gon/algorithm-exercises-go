@@ -70,14 +70,26 @@ lint:
 mdlint:
 	markdownlint '**/*.md' --ignore node_modules && echo '✔  Your code looks good.'
 
-coverage/c.out: env dependencies
-	$(GOTEST) -v -covermode=atomic -coverprofile="coverage/c.out" ./...
+coverage.out: env dependencies
+	$(GOTEST) -v -covermode=atomic -coverprofile="coverage.out" ./src/pkg/...
 
-test: coverage/c.out
+test: coverage.out
 
-coverage: coverage/c.out
-	$(GOCOVER) -func=coverage/c.out
-	$(GOCOVER) -html=coverage/c.out -o ./coverage/coverage.html
+coverage: coverage.out
+	$(GOCOVER) -func=coverage.out
+
+coverage/html: coverage.out
+	$(GOCOVER) -html=coverage.out -o ./coverage/coverage.html
+
+outdated:
+	$(GO) list -m -u all
+
+update: dependencies outdated
+	$(GO) get -u all
+	$(GO) get -t -u ./...
+	$(GO) mod tidy
+
+upgrade: update
 
 clean:
 	$(GO) clean -testcache

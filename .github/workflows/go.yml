@@ -1,4 +1,4 @@
-name: Go
+name: Go CI Tests
 
 on:
   push:
@@ -21,7 +21,7 @@ jobs:
           "ubuntu-latest",
           "macOS-latest"
         ]
-        go: ["1.19.x", "1.20.x"]
+        go: ["1.20.x", "1.21.x", "1.22.x"]
     runs-on: ${{ matrix.os }}
     steps:
     - uses: actions/checkout@v4
@@ -44,18 +44,8 @@ jobs:
       uses: golangci/golangci-lint-action@v6
       with:
         args: --timeout=10m
-        version: v1.53
-        skip-pkg-cache: true
-        skip-build-cache: true
+        version: v1.58.1
+        skip-cache: true
 
     - name: Test
       run: go test -v -coverprofile="coverage.out" ./...
-
-    - name: Coverage
-      run: go tool cover -func="coverage.out"
-
-    - name: Upload coverage reports to Codecov with GitHub Action
-      uses: codecov/codecov-action@v4
-      with:
-        token: ${{ secrets.CODECOV_TOKEN }} # required
-        verbose: true # optional (default = false)
