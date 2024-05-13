@@ -44,7 +44,7 @@ jobs:
         token: ${{ secrets.CODECOV_TOKEN }} # required
         verbose: true # optional (default = false)
 
-    - name: SonarCloud Scan
+    - name: Analyze with SonarCloud
       uses: SonarSource/sonarcloud-github-action@master
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
