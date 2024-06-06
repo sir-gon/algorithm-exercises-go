@@ -1,5 +1,5 @@
 ###############################################################################
-FROM golang:1.22.4-alpine3.19 AS base
+FROM golang:1.22.4-alpine3.20 AS base
 
 ENV CGO_ENABLED 0
 RUN apk add --update --no-cache make
@@ -8,7 +8,7 @@ ENV WORKDIR=/app
 WORKDIR ${WORKDIR}
 
 ###############################################################################
-FROM node:22.2.0-alpine3.19 AS lint
+FROM node:20.14.0-alpine3.20 AS lint
 
 ENV WORKDIR=/app
 WORKDIR ${WORKDIR}
