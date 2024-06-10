@@ -63,17 +63,26 @@ dependencies:
 	$(GO) mod download
 	@echo "################################################################################"
 
-lint:
-	gofmt -l . && echo '✔  Your code looks good.'
+
+lint/markdown:
+	markdownlint '**/*.md' --ignore node_modules && echo '✔  Your code looks good.'
+
+lint/yaml:
+	yamllint --stric . && echo '✔  Your code looks good.'
+
+lint: lint/markdown lint/yaml test/styling test/static
+
+test/static: dependencies
+	$(GO) vet -v ./...
 	golangci-lint --verbose run ./...
 
-mdlint:
-	markdownlint '**/*.md' --ignore node_modules && echo '✔  Your code looks good.'
+test/styling: dependencies
+	gofmt -l . && echo '✔  Your code looks good.'
 
 coverage.out: env dependencies
 	$(GOTEST) -v -covermode=atomic -coverprofile="coverage.out" ./src/pkg/...
 
-test: coverage.out
+test: env dependencies coverage.out
 
 coverage: coverage.out
 	$(GOCOVER) -func=coverage.out
@@ -100,16 +109,26 @@ clean:
 build: env lint test
 
 compose/build: env
+	docker-compose --profile lint build
 	docker-compose --profile testing build
 
 compose/rebuild: env
+	docker-compose --profile lint build --no-cache
 	docker-compose --profile testing build --no-cache
 
-compose/lint: compose/build compose/mdlint
-	docker-compose --profile lint run --rm algorithm-exercises-go make lint
+compose/lint/markdown: compose/build
+	docker-compose --profile lint run --rm algorithm-exercises-go-lint make lint/markdown
 
-compose/mdlint: env
-	docker-compose --profile lint run --rm algorithm-exercises-go-mdlint make mdlint
+compose/lint/yaml: compose/build
+	docker-compose --profile lint run --rm algorithm-exercises-go-lint make lint/yaml
+
+compose/test/styling: compose/build
+	docker-compose --profile lint run --rm algorithm-exercises-go-lint make test/styling
+
+compose/test/static: compose/build
+	docker-compose --profile lint run --rm algorithm-exercises-go-lint make test/static
+
+compose/lint: compose/lint/markdown compose/lint/yaml compose/test/styling compose/test/static
 
 compose/run: compose/build
 	docker-compose --profile testing run --rm algorithm-exercises-go make test
