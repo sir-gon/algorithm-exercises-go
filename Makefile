@@ -73,6 +73,7 @@ lint/yaml:
 lint: lint/markdown lint/yaml test/styling test/static
 
 test/static: dependencies
+	$(GO) vet -v ./...
 	golangci-lint --verbose run ./...
 
 test/styling: dependencies

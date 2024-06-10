@@ -18,6 +18,11 @@ RUN apk add --update --no-cache yamllint
 
 RUN npm install -g --ignore-scripts markdownlint-cli
 
+# golangci-lint
+RUN wget -O- -nv \
+  https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | \
+  sh -s -- -b $(go env GOPATH)/bin v1.59.1
+
 # [!TIP] Use a bind-mount to lint and test "current" code against this stage
 COPY ./ ${WORKDIR}/
 
