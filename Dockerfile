@@ -23,8 +23,34 @@ RUN wget -O- -nv \
   https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | \
   sh -s -- -b $(go env GOPATH)/bin v1.59.1
 
-# [!TIP] Use a bind-mount to lint and test "current" code against this stage
-COPY ./ ${WORKDIR}/
+
+# [!TIP] Use a bind-mount to "/app" to override following "copys"
+# for lint and test against "current" sources in this stage
+
+# YAML sources
+COPY ./.github ${WORKDIR}/
+COPY ./compose.yaml ${WORKDIR}/
+
+# Markdown sources
+COPY ./docs ${WORKDIR}/
+COPY ./README.md ${WORKDIR}/
+COPY ./LICENSE.md ${WORKDIR}/
+COPY ./CODE_OF_CONDUCT.md ${WORKDIR}/
+
+# Code source
+COPY ./src ${WORKDIR}/src
+COPY ./go.mod ${WORKDIR}/
+COPY ./go.sum ${WORKDIR}/
+COPY ./Makefile ${WORKDIR}/
+
+# markdownlint conf
+COPY ./.markdownlint.yaml ${WORKDIR}/
+
+# yamllint conf
+COPY ./.yamllint ${WORKDIR}/
+COPY ./.yamlignore ${WORKDIR}/
+
+CMD ["make", "lint"]
 
 ###############################################################################
 FROM base AS development
