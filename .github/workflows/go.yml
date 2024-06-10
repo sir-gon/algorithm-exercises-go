@@ -1,10 +1,12 @@
+---
+
 name: Go CI Tests
 
-on:
+on: # yamllint disable-line rule:truthy
   push:
-    branches: [ "main", "develop", "feature/*" ]
+    branches: ["main", "develop", "feature/*"]
   pull_request:
-    branches: [ "main" ]
+    branches: ["main"]
 
 env:
   LOG_LEVEL: WARN
@@ -24,28 +26,28 @@ jobs:
         go: ["1.20.x", "1.21.x", "1.22.x"]
     runs-on: ${{ matrix.os }}
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Set up Go
-      uses: actions/setup-go@v5
-      with:
-        go-version: ${{ matrix.go }}
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: ${{ matrix.go }}
 
-    - name: Build
-      run: go build -v ./...
+      - name: Build
+        run: go build -v ./...
 
-    - name: Lint (gofmt)
-      run: gofmt -l . && echo '✔  Your code looks good.'
+      - name: Lint (gofmt)
+        run: gofmt -l . && echo '✔  Your code looks good.'
 
-    - name: Lint (go vet)
-      run: go vet -v ./...
+      - name: Lint (go vet)
+        run: go vet -v ./...
 
-    - name: Lint golangci-lint
-      uses: golangci/golangci-lint-action@v6
-      with:
-        args: --timeout=10m
-        version: v1.58.1
-        skip-cache: true
+      - name: Lint golangci-lint
+        uses: golangci/golangci-lint-action@v6
+        with:
+          args: --timeout=10m
+          version: v1.58.1
+          skip-cache: true
 
-    - name: Test
-      run: go test -v -coverprofile="coverage.out" ./...
+      - name: Test
+        run: go test -v -coverprofile="coverage.out" ./...

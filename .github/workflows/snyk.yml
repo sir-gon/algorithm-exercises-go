@@ -1,5 +1,9 @@
+---
+
 name: Snyk Code (Golang)
-on: push
+
+on: push # yamllint disable-line rule:truthy
+
 jobs:
   security:
     runs-on: ubuntu-latest
@@ -12,7 +16,9 @@ jobs:
           SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
         with:
           args: --sarif-file-output=snyk.sarif
+      # yamllint disable rule:comments-indentation
       # - name: Upload result to GitHub Code Scanning
       #   uses: github/codeql-action/upload-sarif@v2
       #   with:
       #     sarif_file: snyk.sarif
+      # yamllint enable rule:comments-indentation

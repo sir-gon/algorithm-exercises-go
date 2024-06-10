@@ -1,3 +1,5 @@
+---
+
 services:
   algorithm-exercises-go:
     image: algorithm-exercises-go:latest
@@ -17,8 +19,8 @@ services:
       context: .
       target: lint
     # environment:
-      # LOG_LEVEL: ${LOG_LEVEL:-info} ## (1) ## info | debug
-      # BRUTEFORCE: ${BRUTEFORCE:-false} ## (1) ## true | false
+    #   LOG_LEVEL: ${LOG_LEVEL:-info} ## (1) ## info | debug
+    #   BRUTEFORCE: ${BRUTEFORCE:-false} ## (1) ## true | false
     volumes:
       - ./:/app
     profiles: ["lint"]
