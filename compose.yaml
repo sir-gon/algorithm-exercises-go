@@ -11,8 +11,8 @@ services:
       - ./coverage:/app/coverage
     profiles: ["testing"]
 
-  algorithm-exercises-go-mdlint:
-    image: algorithm-exercises-go:mdlint
+  algorithm-exercises-go-lint:
+    image: algorithm-exercises-go:lint
     build:
       context: .
       target: lint

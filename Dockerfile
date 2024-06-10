@@ -8,14 +8,18 @@ ENV WORKDIR=/app
 WORKDIR ${WORKDIR}
 
 ###############################################################################
-FROM node:22.2.0-alpine3.20 AS lint
+FROM base AS lint
 
 ENV WORKDIR=/app
 WORKDIR ${WORKDIR}
 
-COPY ./docs ${WORKDIR}/docs
-RUN apk add --update --no-cache make
-RUN npm install -g markdownlint-cli
+RUN apk add --update --no-cache make nodejs npm
+RUN apk add --update --no-cache yamllint
+
+RUN npm install -g --ignore-scripts markdownlint-cli
+
+# [!TIP] Use a bind-mount to lint and test "current" code against this stage
+COPY ./ ${WORKDIR}/
 
 ###############################################################################
 FROM base AS development
