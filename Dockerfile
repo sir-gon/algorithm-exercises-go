@@ -13,16 +13,15 @@ FROM base AS lint
 ENV WORKDIR=/app
 WORKDIR ${WORKDIR}
 
-RUN apk add --update --no-cache make nodejs npm
+RUN apk add --update --no-cache make nodejs npm wget
 RUN apk add --update --no-cache yamllint
 
 RUN npm install -g --ignore-scripts markdownlint-cli
 
 # golangci-lint
-RUN wget -O- -nv \
+RUN wget --secure-protocol=TLSv1_2 --max-redirect=0 -O- -nv \
   https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | \
   sh -s -- -b $(go env GOPATH)/bin v1.59.1
-
 
 # [!TIP] Use a bind-mount to "/app" to override following "copys"
 # for lint and test against "current" sources in this stage
@@ -56,9 +55,7 @@ CMD ["make", "lint"]
 FROM base AS development
 
 ENV BINDIR /usr/local/bin
-
-# In alpine linux (as it does not come with curl by default)
-RUN wget -O- -nv https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s v1.53.3
+RUN apk add --update --no-cache make
 
 ###############################################################################
 FROM development AS builder
