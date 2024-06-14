@@ -50,4 +50,6 @@ jobs:
           skip-cache: true
 
       - name: Test
-        run: go test -v -coverprofile="coverage.out" ./...
+        run: |
+          go test -v -coverprofile="coverage.out" ./exercises/...
+          # go tool cover -func=coverage.out

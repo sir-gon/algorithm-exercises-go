@@ -1,8 +1,8 @@
 ---
 
 services:
-  algorithm-exercises-go:
-    image: algorithm-exercises-go:latest
+  algorithm-exercises-go-test:
+    image: algorithm-exercises-go:test
     build:
       context: .
       target: testing
@@ -35,4 +35,16 @@ services:
       BRUTEFORCE: ${BRUTEFORCE:-false} ## (1) ## TRUE | FALSE
     volumes:
       - ./:/app
-    profiles: ["development", "lint"]
+    profiles: ["development"]
+
+  algorithm-exercises-go:
+    image: algorithm-exercises-go:latest
+    build:
+      context: .
+      target: production
+    environment:
+      LOG_LEVEL: ${LOG_LEVEL:-INFO} ## (1) ## INFO | WARN | ERROR | DEBUG
+      BRUTEFORCE: ${BRUTEFORCE:-false} ## (1) ## TRUE | FALSE
+    # volumes:
+    #   - ./:/app
+    profiles: ["production"]

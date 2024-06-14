@@ -37,7 +37,10 @@ COPY ./LICENSE.md ${WORKDIR}/
 COPY ./CODE_OF_CONDUCT.md ${WORKDIR}/
 
 # Code source
-COPY ./src ${WORKDIR}/src
+COPY ./exercises ${WORKDIR}/exercises
+COPY ./utils ${WORKDIR}/utils
+COPY ./main.go ${WORKDIR}/
+
 COPY ./go.mod ${WORKDIR}/
 COPY ./go.sum ${WORKDIR}/
 COPY ./Makefile ${WORKDIR}/
@@ -57,15 +60,40 @@ FROM base AS development
 ENV BINDIR /usr/local/bin
 RUN apk add --update --no-cache make
 
-###############################################################################
-FROM development AS builder
-
-COPY ./src ${WORKDIR}/src
+COPY ./exercises ${WORKDIR}/exercises
+COPY ./utils ${WORKDIR}/utils
+COPY ./main.go ${WORKDIR}/
 COPY ./go.mod ${WORKDIR}/
 COPY ./go.sum ${WORKDIR}/
 COPY ./Makefile ${WORKDIR}/
 
+# CMD []
+
 RUN make dependencies
+###############################################################################
+FROM development AS builder
+
+# Ca-certificates is required to call HTTPS endpoints.
+RUN apk update && apk add --no-cache ca-certificates tzdata && update-ca-certificates
+
+# Create appuser
+ENV USER=appuser
+ENV UID=10001
+
+# See https://stackoverflow.com/a/55757473/12429735
+RUN adduser \
+    --disabled-password \
+    --gecos "" \
+    --home "/nonexistent" \
+    --shell "/sbin/nologin" \
+    --no-create-home \
+    --uid "${UID}" \
+    "${USER}"
+
+RUN make build
+RUN ls -alh
+
+# CMD []
 
 ###############################################################################
 ### In testing stage, can't use USER, due permissions issue
@@ -87,20 +115,30 @@ CMD ["make", "test"]
 ###############################################################################
 ### In production stage
 ## in the production phase, "good practices" such as
-## WORKSPACE and USER are maintained
+## WORKDIR and USER are maintained
 ##
-FROM builder AS production
+## Sources:
+##   https://shakib37.medium.com/distroless-as-the-final-container-base-image-b8af961fc826
+##   https://chemidy.medium.com/create-the-smallest-and-secured-golang-docker-image-based-on-scratch-4752223b7324
 
-ENV LOG_LEVEL=INFO
-ENV BRUTEFORCE=FALSE
+FROM scratch AS production
+# FROM alpine:3.20.0 AS production
 
-RUN adduser -D worker
-RUN mkdir -p /app
-RUN chown worker:worker /app
+ENV WORKDIR=/app
+WORKDIR ${WORKDIR}
 
-WORKDIR /app
+# Import from builder.
+COPY --from=builder /usr/share/zoneinfo /usr/share/zoneinfo
+COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
+COPY --from=builder /etc/passwd /etc/passwd
+COPY --from=builder /etc/group /etc/group
 
-RUN ls -alh
+# Copy our static executable
+COPY --from=builder /app/bin/algorithms ${WORKDIR}/
 
-USER worker
-CMD ["make", "test"]
+# Use an unprivileged user.
+USER appuser:appuser
+
+# RUN ls -alh
+
+CMD ["/app/algorithms"]
