@@ -80,7 +80,7 @@ test/styling: dependencies
 	gofmt -l . && echo '✔  Your code looks good.'
 
 coverage.out: env dependencies
-	$(GOTEST) -v -covermode=atomic -coverprofile="coverage.out" ./src/pkg/...
+	$(GOTEST) -v -covermode=atomic -coverprofile="coverage.out" ./exercises/...
 
 test: env dependencies coverage.out
 

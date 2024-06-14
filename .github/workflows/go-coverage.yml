@@ -37,8 +37,10 @@ jobs:
 
       - name: Test
         run: >
-          go test -v -covermode=atomic -coverprofile="coverage.out"
-          ./src/pkg/...
+          go test -v
+          -covermode=atomic
+          -coverprofile="coverage.out"
+          ./exercises/...
 
       - name: Coverage
         run: go tool cover -func="coverage.out"

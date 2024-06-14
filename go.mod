@@ -1,4 +1,4 @@
-module gon.cl/algorithm-exercises
+module gon.cl/algorithms
 
 go 1.20
 
