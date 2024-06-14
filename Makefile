@@ -34,6 +34,7 @@ PKG_LIST=$(go list ./... | grep -v /vendor/ | tr '\n' ' '| xargs echo -n)
 
 # DOCKER
 BUILDKIT_PROGRESS=plain
+CGO_ENABLED=0
 
 .MAIN: test/coverage
 .PHONY: all clean coverage dependencies help list test
@@ -60,9 +61,9 @@ dependencies:
 	@echo "################################################################################"
 	@echo "## Dependencies: ###############################################################"
 	@echo "################################################################################"
-	$(GO) mod download
+	$(GO) mod download -x
+	$(GO) mod verify
 	@echo "################################################################################"
-
 
 lint/markdown:
 	markdownlint '**/*.md' --ignore node_modules && echo '✔  Your code looks good.'
@@ -83,9 +84,9 @@ coverage.out: env dependencies
 	$(GOTEST) -v -covermode=atomic -coverprofile="coverage.out" ./exercises/...
 
 test: env dependencies coverage.out
-
-coverage: coverage.out
 	$(GOCOVER) -func=coverage.out
+
+coverage: test
 
 coverage/html: coverage.out
 	$(GOCOVER) -html=coverage.out -o ./coverage/coverage.html
@@ -106,15 +107,18 @@ clean:
 	mkdir -p ./coverage
 	touch ./coverage/.gitkeep
 
-build: env lint test
+build: env dependencies
+	$(GO) build -v -o bin/ ./...
 
 compose/build: env
 	docker-compose --profile lint build
 	docker-compose --profile testing build
+	docker-compose --profile production build
 
 compose/rebuild: env
 	docker-compose --profile lint build --no-cache
 	docker-compose --profile testing build --no-cache
+	docker-compose --profile production build
 
 compose/lint/markdown: compose/build
 	docker-compose --profile lint run --rm algorithm-exercises-go-lint make lint/markdown
@@ -130,7 +134,13 @@ compose/test/static: compose/build
 
 compose/lint: compose/lint/markdown compose/lint/yaml compose/test/styling compose/test/static
 
+compose/test: compose/build
+	docker-compose --profile testing run --rm algorithm-exercises-go-test make test
+
 compose/run: compose/build
-	docker-compose --profile testing run --rm algorithm-exercises-go make test
+	docker-compose --profile production run --rm algorithm-exercises-go
 
 all: test coverage
+
+run:
+	ls -alh
