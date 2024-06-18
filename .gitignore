@@ -64,3 +64,7 @@ coverage/
 ## Build
 
 bin/
+
+# Static Analysis Results Interchange Format
+*.sarif
+.dccache
