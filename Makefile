@@ -28,7 +28,7 @@ endif
 
 # Package Manager
 GO=go
-GOTEST=$(GO) test $(add_bruteforce)
+GOTEST=$(GO) test -count=1 -v $(add_bruteforce)
 GOCOVER=$(GO) tool cover
 PKG_LIST=$(go list ./... | grep -v /vendor/ | tr '\n' ' '| xargs echo -n)
 
