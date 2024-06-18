@@ -16,14 +16,249 @@
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=sir-gon_algorithm-exercises-go&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=sir-gon_algorithm-exercises-go)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=sir-gon_algorithm-exercises-go&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=sir-gon_algorithm-exercises-go)
 
+## TL;DR
+
+[Install and run](#install-and-run)
+
 ## What is this?
 
-[Project Euler](https://projecteuler.net/) provide some algorithms and
-mathematical problems to solve to be used as experience tests.
+This repository is part of a series that share and solve the same [objectives](#objetives),
+with the difference that each one is based on a different software ecosystem,
+depending on the chosen programming language:
 
-Use this answers to learn some tip and tricks for algorithms tests.
+- [Modern Javascript: algorithm-exercises-js](https://github.com/sir-gon/algorithm-exercises-js)
+- [Python 3.x: algorithm-exercises-py](https://github.com/sir-gon/algorithm-exercises-py)
+- [Typescript: algorithm-exercises-ts](https://github.com/sir-gon/algorithm-exercises-ts)
+- [Go / Golang: algorithm-exercises-go](https://github.com/sir-gon/algorithm-exercises-go)
+- [Java: algorithm-exercises-java](https://github.com/sir-gon/algorithm-exercises-java)
+- [.NET / C#: algorithm-exercises-csharp](https://github.com/sir-gon/algorithm-exercises-csharp)
 
-## Why I publish solutions?
+## Objetives
+
+### Functional
+
+- For academic purposes, it is an backup of some algorithm exercises
+(with their solutions), proposed by various sources:
+[leetcode, hackerrank, projecteuler](#algorithm-excersices-sources), ...
+
+- The solutions must be written on "vanilla code", that is,
+avoiding as much as possible the use of external libraries (in runtime).
+
+- Adoption of methodology and good practices.
+Each exercise is implemented as a unit test set,
+using TDD (Test-driven Development) and Clean Code ideas.
+
+### Technical
+
+Foundation of a project that supports:
+
+- Explicit **typing** when the language supports it, even when it is not mandatory.
+- Static Code Analysis (**Lint**) of code, scripts and documentation.
+- Uniform **Code Styling**.
+- **Unit Test** framework.
+- **Coverge** collection. High coverage percentage. Equal or close to 100%.
+- **Pipeline** (Github Actions). Each command must take care of its
+return status code.
+- **Docker**-based workflow to replicate behavior in any environment.
+- Other tools to support the reinforcement of software development **good practices**.
+
+## Install and Run
+
+You can run tests in the following ways:
+
+- [Install and run directly](#install-and-run-directly) require runtime tools
+installed in your SO.
+- [Install and run with make](#install-and-run-using-make) require runtime tools
+and "make" installed in your SO.
+- [Install and run in Docker](#install-and-running-with-docker-) require Docker and
+docker-compose installed.
+- (⭐️)
+[Install and in Docker with make](#install-and-running-with-docker--using-make)
+require docker-compose and make installed.
+
+⭐️: Prefered way.
+
+### Install and Run directly
+
+Using a golang stack in your SO. You must install dependencies:
+
+```bash
+go mod download -x
+```
+
+Every problem is a function with unit test.
+
+Unit test has test cases and input data to solve the problem.
+
+Run all tests:
+
+```bash
+go test -v -count=1 ./...
+```
+
+To collect coverage and generate reports, do:
+
+```bash
+go test -v -count=1 -coverprofile=coverage/c.out ./...
+go tool -func=coverage/c.out
+go tool -html=coverage/c.out
+```
+
+#### Test run with alternative behaviors
+
+You can change test running behaviour using some environment variables as follows:
+
+| Variable | Values | Default |
+| ------ | ------ | ------ |
+| LOG_LEVEL  | `debug`, `warning`, `error`, `info` | `info` |
+| BRUTEFORCE | `true`, `false`| `false` |
+
+- `LOG_LEVEL`: change verbosity level in outputs.
+- `BRUTEFORCE`: enable or disable running large tests.
+(long time, large amount of data, high memory consumition).
+
+#### Examples running tests with alternative behaviors
+
+In go, test runs are cached. So, to re-run a test with different behavior,
+you must add "-count=1" parameter in "go test"
+
+Run tests with debug outputs:
+
+```bash
+LOG_LEVEL=debug go test -count=1 -v ./...
+```
+
+Run brute-force tests with debug outputs:
+
+```bash
+BRUTEFORCE=true LOG_LEVEL=debug go test -count=1 -v ./...
+```
+
+### Install and Run using make
+
+`make` tool is used to standardizes the commands for the same tasks
+across each sibling repository.
+
+Run tests (libraries are installed as dependency task in make):
+
+```bash
+make test
+```
+
+Run tests with debug outputs:
+
+```bash
+make test -e LOG_LEVEL=debug
+```
+
+Run brute-force tests with debug outputs:
+
+```bash
+make test -e BRUTEFORCE=true -e LOG_LEVEL=debug
+```
+
+Alternative way, use environment variables as prefix:
+
+```bash
+BRUTEFORCE=true LOG_LEVEL=debug make test
+```
+
+### Install and Running with Docker 🐳
+
+Build an image of the test stage.
+Then creates and ephemeral container an run tests.
+
+BRUTEFORCE and LOG_LEVEL environment variables are passing from current
+environment using docker-compose.
+
+```bash
+docker-compose --profile testing run --rm algorithm-exercises-go-test
+```
+
+To change behavior using environment variables, you can pass to containers
+in the following ways:
+
+From host using docker-compose (compose.yaml) mechanism:
+
+```bash
+BRUTEFORCE=true LOG_LEVEL=debug docker-compose --profile testing run --rm algorithm-exercises-go-test
+```
+
+Overriding docker CMD, as parameter of make "-e":
+
+```bash
+docker-compose --profile testing run --rm algorithm-exercises-go-test make test -e LOG_LEVEL=DEBUG -e BRUTEFORCE=true
+```
+
+### Install and Running with Docker 🐳 using make
+
+```bash
+make compose/build
+make compose/test
+```
+
+To pass environment variables you can use docker-compose
+or overriding CMD and passing to make as "-e" argument.
+
+Passing environment variables using docker-compose (compose.yaml mechanism):
+
+```bash
+BRUTEFORCE=true LOG_LEVEL=debug make compose/test
+```
+
+## Development workflow using Docker / docker-compose
+
+Running container with development target.
+Designed for development workflow on top of this image.
+All source application is mounted as a volume in **/app** directory.
+Dependencies should be installed to run so, you must
+install dependencies before run (or after a dependency add/change).
+
+```bash
+# Build development target image
+docker-compose build --compress algorithm-exercises-go-dev
+
+# Run ephemeral container and override command to run test
+docker-compose run --rm algorithm-exercises-go-dev go test -count=1 -v ./...
+```
+
+## Run complete workflow (Docker + make)
+
+Following command simulates a standarized pipeline across environments,
+using docker-compose and make.
+
+```bash
+make compose/build && make compose/lint && make compose/test && make compose/run
+```
+
+- Build all Docker stages and tag relevant images.
+- Run static analysis (lint) checks
+- Run unit tests
+- Run a "final" production ready image as a final container.
+Final "production" image just shows a minimal "production ready"
+build (with no tests).
+
+## About development
+
+Developed with runtime:
+
+```text
+go version
+go version go1.22.4 darwin/amd64
+```
+
+## Algorithm excersices sources
+
+- [Leetcode](https://leetcode.com/) online platform for
+coding interview preparation.
+- [HackerRank](https://www.hackerrank.com/) competitive programming challenges
+for both consumers and businesses.
+- [Project Euler](https://projecteuler.net/) a series of computational problems
+intended to be solved with computer programs.
+
+Use these answers to learn some tip and tricks for algorithms tests.
+
+### Disclaimer. Why I publish solutions?
 
 As Project Euler says:
 
@@ -39,123 +274,6 @@ However, the rule about sharing solutions outside of Project Euler does not appl
 If you have better answers or optimal solutions, fork and PR-me
 
 Enjoy 😁 !
-
-## Using Go native runtime
-
-## Requirements
-
-You must install dependencies:
-
-```text
-go mod download
-```
-
-Or using make
-
-```text
-make dependencies
-```
-
-### Testing silently
-
-Every problem is a function with unit test.
-Unit test has test cases and input data to solve the problem.
-
-Run all tests:
-
-```text
-go test -v -coverprofile=coverage/c.out ./...
-go tool -func=coverage/c.out
-go tool -html=coverage/c.out
-```
-
-### Testing with full logs
-
-Run all tests with debug outputs:
-
-```text
-LOG_LEVEL=debug go test -v -coverprofile=coverage/c.out ./...
-```
-
-Use one of following values: debug, warn, error, info.
-
-### Testing using make
-
-```text
-make test
-```
-
-### Enable all large BRUTEFORCE tests
-
-Direct in host using a make:
-
-```text
-make test -e BRUTEFORCE=true
-```
-
-### Enable all DEBUG outputs
-
-```text
-make test -e LOG_LEVEL=debug
-```
-
-### Enable all large BRUTEFORCE tests and all DEBUG outputs
-
-```text
-make test -e LOG_LEVEL=debug -e BRUTEFORCE=true
-```
-
-## Running with Docker 🐳
-
-## Build a complete image with and run all tests
-
-Running container with testing (final) target.
-
-Designed to store all application files and dependencies as a complete runnable image.
-Coverage results will be stored in host **/coverage** directory (mounted as volume).
-
-```text
-# Build a complete image
-docker-compose build projecteuler-go
-docker-compose run --rm projecteuler-go make test coverage
-```
-
-## Enable BRUTEFORCE tests with full DEBUG output
-
-With docker-compose:
-
-```text
-docker-compose --profile testing run --rm projecteuler-go make test -e LOG_LEVEL=DEBUG -e BRUTEFORCE=true
-```
-
-Using make:
-
-```text
-make docker/compose-run -e LOG_LEVEL=DEBUG -e BRUTEFORCE=true
-```
-
-## Build and run a development image
-
-Running container with development target.
-Designed to develop on top of this image. All source application is mounted as
- a volume in **/app** directory.
-Dependencies should be installed to run (not present in this target) so, you
- must install dependencies before run (or after a dependency add/change).
-
-```text
-# install dependencies using docker runtime and store them in host directory
-docker-compose build projecteuler-go-dev
-docker-compose run --rm projecteuler-go-dev make dependencies
-```
-
-## About development
-
-Developed with runtime:
-
-```text
-go version
-go version go1.22.3 darwin/amd64
-```
 
 ### License
 
