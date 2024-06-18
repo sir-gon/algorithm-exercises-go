@@ -119,6 +119,16 @@ You can change test running behaviour using some environment variables as follow
 - `BRUTEFORCE`: enable or disable running large tests.
 (long time, large amount of data, high memory consumition).
 
+> [!IMPORTANT]
+> BRUTEFORCE environment variable only works running test with make,
+> due golang mechanism to conditionally running test relays on
+> "conditional build" using a parameter in "go test" command.
+
+To enable brute force tests running golang directly,
+you should add "-tags ..." parameter to "go test".
+
+See next examples.
+
 #### Examples running tests with alternative behaviors
 
 In go, test runs are cached. So, to re-run a test with different behavior,
@@ -133,7 +143,7 @@ LOG_LEVEL=debug go test -count=1 -v ./...
 Run brute-force tests with debug outputs:
 
 ```bash
-BRUTEFORCE=true LOG_LEVEL=debug go test -count=1 -v ./...
+LOG_LEVEL=debug go test -count=1 -v -tags bruteforce ./...
 ```
 
 ### Install and Run using make
