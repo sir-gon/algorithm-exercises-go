@@ -8,8 +8,8 @@ import (
 	utils "gon.cl/algorithms/utils"
 )
 
-func AVeryBigSum(ar []int) int {
-	var result = 0
+func AVeryBigSum(ar []uint64) uint64 {
+	var result uint64 = 0
 
 	for i := 0; i < len(ar); i++ {
 		result += ar[i]
