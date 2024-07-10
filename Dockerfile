@@ -1,11 +1,22 @@
 ###############################################################################
-FROM golang:1.22.5-alpine3.20 AS base
+FROM golang:1.22.5-alpine3.20 AS init
 
 ENV CGO_ENABLED 0
 RUN apk add --update --no-cache make
 
 ENV WORKDIR=/app
 WORKDIR ${WORKDIR}
+
+###############################################################################
+FROM init AS base
+
+ENV WORKDIR=/app
+WORKDIR ${WORKDIR}
+
+COPY ./go.mod ${WORKDIR}/
+COPY ./go.sum ${WORKDIR}/
+COPY ./Makefile ${WORKDIR}/
+RUN make dependencies
 
 ###############################################################################
 FROM base AS lint
@@ -51,6 +62,7 @@ COPY ./.markdownlint.yaml ${WORKDIR}/
 # yamllint conf
 COPY ./.yamllint ${WORKDIR}/
 COPY ./.yamlignore ${WORKDIR}/
+COPY ./.gitignore ${WORKDIR}/
 
 CMD ["make", "lint"]
 
@@ -68,8 +80,6 @@ COPY ./go.sum ${WORKDIR}/
 COPY ./Makefile ${WORKDIR}/
 
 # CMD []
-
-RUN make dependencies
 ###############################################################################
 FROM development AS builder
 
@@ -101,7 +111,7 @@ RUN ls -alh
 ##
 ## https://docs.github.com/en/actions/creating-actions/dockerfile-support-for-github-actions
 ##
-FROM builder AS testing
+FROM development AS testing
 
 ENV LOG_LEVEL=INFO
 ENV BRUTEFORCE=FALSE
