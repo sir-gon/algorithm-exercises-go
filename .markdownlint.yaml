@@ -82,8 +82,6 @@ MD013:
   tables: true
   # Include headings
   headings: true
-  # Include headings
-  headers: true
   # Strict length checking
   strict: false
   # Stern length checking
@@ -116,8 +114,6 @@ MD023: true
 
 # MD024/no-duplicate-heading/no-duplicate-header - Multiple headings with the same content
 MD024:
-  # Only check sibling headings
-  allow_different_nesting: false
   # Only check sibling headings
   siblings_only: false
 
@@ -213,8 +209,6 @@ MD043:
   headings: [
     "*"
   ]
-  # List of headings
-  headers: []
   # Match case of headings
   match_case: false
 
