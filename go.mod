@@ -5,7 +5,7 @@ go 1.20
 require (
 	github.com/stretchr/testify v1.9.0
 	go.uber.org/zap v1.27.0
-	golang.org/x/exp v0.0.0-20240716160929-1d5bc16f04a8
+	golang.org/x/exp v0.0.0-20240716175740-e3f259677ff7
 )
 
 require (
