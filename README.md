@@ -20,7 +20,13 @@
 
 ## TL;DR
 
-[Install and run](#install-and-run)
+Algorithms Exercises solved in [Go](https://go.dev/),
+running in built-in Go test suite. Developed with TDD.
+
+[![Go](https://img.shields.io/badge/go-%2300ADD8.svg?style=for-the-badge&logo=go&logoColor=white)](https://go.dev/)
+[![Docker](https://img.shields.io/badge/docker-%230db7ed.svg?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
+
+Go to [Install and run](#install-and-run)
 
 ## What is this?
 
