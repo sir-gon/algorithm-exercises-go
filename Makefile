@@ -19,6 +19,9 @@ BRUTEFORCE ?= false
 ## (3) (4)
 BRUTEFORCE :=$(shell echo '${BRUTEFORCE}'| tr '[:lower:]' '[:upper:]'| tr -d '[:blank:]')
 
+# DOCKER
+DOCKER_COMPOSE=docker compose
+
 ifeq ($(BRUTEFORCE),1)
   add_bruteforce=-tags bruteforce
 endif
@@ -111,34 +114,34 @@ build: env dependencies
 	$(GO) build -v -o bin/ ./...
 
 compose/build: env
-	docker-compose --profile lint build
-	docker-compose --profile testing build
-	docker-compose --profile production build
+	${DOCKER_COMPOSE} --profile lint build
+	${DOCKER_COMPOSE} --profile testing build
+	${DOCKER_COMPOSE} --profile production build
 
 compose/rebuild: env
-	docker-compose --profile lint build --no-cache
-	docker-compose --profile testing build --no-cache
-	docker-compose --profile production build
+	${DOCKER_COMPOSE} --profile lint build --no-cache
+	${DOCKER_COMPOSE} --profile testing build --no-cache
+	${DOCKER_COMPOSE} --profile production build
 
 compose/lint/markdown: compose/build
-	docker-compose --profile lint run --rm algorithm-exercises-go-lint make lint/markdown
+	${DOCKER_COMPOSE} --profile lint run --rm algorithm-exercises-go-lint make lint/markdown
 
 compose/lint/yaml: compose/build
-	docker-compose --profile lint run --rm algorithm-exercises-go-lint make lint/yaml
+	${DOCKER_COMPOSE} --profile lint run --rm algorithm-exercises-go-lint make lint/yaml
 
 compose/test/styling: compose/build
-	docker-compose --profile lint run --rm algorithm-exercises-go-lint make test/styling
+	${DOCKER_COMPOSE} --profile lint run --rm algorithm-exercises-go-lint make test/styling
 
 compose/test/static: compose/build
-	docker-compose --profile lint run --rm algorithm-exercises-go-lint make test/static
+	${DOCKER_COMPOSE} --profile lint run --rm algorithm-exercises-go-lint make test/static
 
 compose/lint: compose/lint/markdown compose/lint/yaml compose/test/styling compose/test/static
 
 compose/test: compose/build
-	docker-compose --profile testing run --rm algorithm-exercises-go-test make test
+	${DOCKER_COMPOSE} --profile testing run --rm algorithm-exercises-go-test make test
 
 compose/run: compose/build
-	docker-compose --profile production run --rm algorithm-exercises-go
+	${DOCKER_COMPOSE} --profile production run --rm algorithm-exercises-go
 
 all: test coverage
 
