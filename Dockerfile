@@ -32,7 +32,7 @@ RUN npm install -g --ignore-scripts markdownlint-cli
 # golangci-lint
 RUN wget --secure-protocol=TLSv1_2 --max-redirect=0 -O- -nv \
   https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | \
-  sh -s -- -b $(go env GOPATH)/bin v1.59.1
+  sh -s -- -b $(go env GOPATH)/bin v1.60.3
 
 # [!TIP] Use a bind-mount to "/app" to override following "copys"
 # for lint and test against "current" sources in this stage
