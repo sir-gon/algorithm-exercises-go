@@ -1,0 +1,20 @@
+[
+  {
+    "input": [
+      "Colorado",
+      "Utah",
+      "Montana",
+      "Wisconsin",
+      "Oregon",
+      "Maine"
+    ],
+    "expected": [
+      "Oregon",
+      "Wisconsin",
+      "Montana",
+      "Utah",
+      "Colorado",
+      "Maine"
+    ]
+  }
+]
