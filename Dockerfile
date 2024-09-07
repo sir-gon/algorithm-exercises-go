@@ -24,15 +24,19 @@ FROM base AS lint
 ENV WORKDIR=/app
 WORKDIR ${WORKDIR}
 
-RUN apk add --update --no-cache make nodejs npm wget
-RUN apk add --update --no-cache yamllint
+RUN  apk add --update --no-cache make nodejs npm wget \
+  && apk add --update --no-cache yamllint \
+  && npm install -g --ignore-scripts markdownlint-cli
 
-RUN npm install -g --ignore-scripts markdownlint-cli
+ADD https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh ${WORKDIR}/
+RUN sh install.sh -b $(go env GOPATH)/bin v1.60.3 \
+  && rm install.sh \
+  && golangci-lint --version
 
 # golangci-lint
-RUN wget --secure-protocol=TLSv1_2 --max-redirect=0 -O- -nv \
-  https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | \
-  sh -s -- -b $(go env GOPATH)/bin v1.60.3
+# RUN wget --secure-protocol=TLSv1_2 --max-redirect=0 -O- -nv \
+#   https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | \
+#   sh -s -- -b $(go env GOPATH)/bin v1.60.3
 
 # [!TIP] Use a bind-mount to "/app" to override following "copys"
 # for lint and test against "current" sources in this stage
@@ -98,10 +102,9 @@ RUN adduser \
     --shell "/sbin/nologin" \
     --no-create-home \
     --uid "${UID}" \
-    "${USER}"
-
-RUN make build
-RUN ls -alh
+    "${USER}" \
+  && make build \
+  && ls -alh
 
 # CMD []
 
