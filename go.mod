@@ -19,7 +19,7 @@ require (
 
 // Excluded due Snyk vulnerability reports
 exclude (
-	golang.org/x/crypto v0.27.0
+	golang.org/x/crypto v0.28.0
 	golang.org/x/net v0.29.0
 	golang.org/x/text v0.19.0
 )
