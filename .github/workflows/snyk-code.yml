@@ -4,6 +4,9 @@ name: Snyk Code (Golang)
 
 on: # yamllint disable-line rule:truthy
   push:
+    branches:
+      - '**'        # matches every branch
+      - '!dependabot/**'   # excludes master
   pull_request:
   workflow_dispatch:
 
