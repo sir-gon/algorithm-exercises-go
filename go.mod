@@ -21,5 +21,5 @@ require (
 exclude (
 	golang.org/x/crypto v0.29.0
 	golang.org/x/net v0.31.0
-	golang.org/x/text v0.19.0
+	golang.org/x/text v0.20.0
 )
