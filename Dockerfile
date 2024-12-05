@@ -1,7 +1,7 @@
 ###############################################################################
 FROM golang:1.23.4-alpine3.20 AS init
 
-ENV CGO_ENABLED 0
+ENV CGO_ENABLED=0
 RUN apk add --update --no-cache make
 
 ENV WORKDIR=/app
@@ -73,7 +73,7 @@ CMD ["make", "lint"]
 ###############################################################################
 FROM base AS development
 
-ENV BINDIR /usr/local/bin
+ENV BINDIR=/usr/local/bin
 RUN apk add --update --no-cache make
 
 COPY ./exercises ${WORKDIR}/exercises
