@@ -15,8 +15,8 @@ env:
 
 jobs:
 
-  build:
-    name: "Run CI"
+  coverage:
+    name: "Go CI Tests Coverage"
     strategy:
       fail-fast: false
       matrix:

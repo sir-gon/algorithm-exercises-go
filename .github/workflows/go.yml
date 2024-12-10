@@ -15,8 +15,8 @@ env:
 
 jobs:
 
-  build:
-    name: "Run CI"
+  test:
+    name: "Go CI Tests"
     strategy:
       fail-fast: false
       matrix:
