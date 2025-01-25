@@ -93,6 +93,7 @@ coverage: test
 
 coverage/html: coverage.out
 	$(GOCOVER) -html=coverage.out -o ./coverage/coverage.html
+	open ./coverage/coverage.html
 
 outdated:
 	$(GO) list -m -u all
