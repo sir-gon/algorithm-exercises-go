@@ -1,5 +1,5 @@
 /**
- * @link Problem definition [[docs/hackerrank/warmup/interview_preparation_kit/2d_array.md]]
+ * @link Problem definition [[docs/hackerrank/interview_preparation_kit/2d_array.md]]
  */
 
 package hackerrank
@@ -47,4 +47,8 @@ func hourglassSum(arr [][]int32) int32 {
 	}
 
 	return maxHourglassSum
+}
+
+func HourglassSum(arr [][]int32) int32 {
+	return hourglassSum(arr)
 }
