@@ -54,7 +54,7 @@ jobs:
           verbose: true # optional (default = false)
 
       - name: Analyze with SonarCloud
-        uses: SonarSource/sonarcloud-github-action@master
+        uses: SonarSource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           # Needed to get PR information, if any
