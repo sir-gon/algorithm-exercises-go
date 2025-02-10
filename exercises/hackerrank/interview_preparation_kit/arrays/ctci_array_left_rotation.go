@@ -1,5 +1,8 @@
 package hackerrank
 
+// @link Problem definition
+// [[docs/hackerrank/interview_preparation_kit/arrays/ctci_array_left_rotation.md]]
+
 func rotLeftOne(a []int32) []int32 {
 	var x int32
 	var b []int32
