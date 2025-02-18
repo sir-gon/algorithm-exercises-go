@@ -21,7 +21,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ["windows-2022", "ubuntu-24.04", "macos-14"]
-        go: ["1.21.x", "1.22.x", "1.23.x"]
+        go: ['1.22.x', '1.23.x']
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -30,6 +30,9 @@ jobs:
         uses: actions/setup-go@v5
         with:
           go-version: ${{ matrix.go }}
+          check-latest: false
+
+      - run: go version
 
       - name: Build
         run: go build -v ./...
