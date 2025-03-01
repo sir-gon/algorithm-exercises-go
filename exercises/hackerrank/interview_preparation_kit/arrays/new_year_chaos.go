@@ -11,6 +11,7 @@ import (
 
 //nolint:stylecheck // error strings should not be capitalized (ST1005)
 const tooChaoticError = "Too chaotic"
+const NEW_YEAR_CHAOS_TOLERANCE = 2
 
 func minimumBribesCalculate(q []int32) (int32, error) {
 
@@ -21,12 +22,13 @@ func minimumBribesCalculate(q []int32) (int32, error) {
 	for _, value = range q {
 		position := i + 1
 
-		if value-int32(position) > 2 {
-			//nolint:stylecheck // error strings should not be capitalized (ST1005)
+		if value-int32(position) > NEW_YEAR_CHAOS_TOLERANCE {
+			// error strings should not be capitalized (ST1005)
+			//nolint:stylecheck
 			return 0, errors.New(tooChaoticError)
 		}
 
-		var fragment []int32 = q[min(max(value-2, 0), int32(i)):i]
+		var fragment []int32 = q[min(max(value-NEW_YEAR_CHAOS_TOLERANCE, 0), int32(i)):i]
 
 		for _, k := range fragment {
 			if k > value {
