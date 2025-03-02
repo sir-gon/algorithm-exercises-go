@@ -68,3 +68,6 @@ bin/
 # Static Analysis Results Interchange Format
 *.sarif
 .dccache
+
+# Settings
+.vscode/launch.json
