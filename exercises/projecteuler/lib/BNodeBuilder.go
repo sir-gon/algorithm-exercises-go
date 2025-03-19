@@ -42,7 +42,7 @@ func buildBNodeTreeWeigthRecursive(
 	j int,
 	rootValue BNode,
 	leafCollector []int,
-) (result BNode, leafs []int, err bool) {
+) (result BNode, leaves []int, err bool) {
 	if 0 <= i && i < len(dataTree) && 0 <= j && j < len(dataTree[i]) {
 
 		resultNode := BNode{dataTree[i][j] + rootValue.getValue(), nil, nil}
@@ -55,12 +55,12 @@ func buildBNodeTreeWeigthRecursive(
 			var err bool
 
 			left, leafCollector, err = buildBNodeTreeWeigthRecursive(dataTree, i+1, j, resultNode, leafCollector)
-			utils.Debug("left: %v | err: %t | leafsCarry: %v", left, err, leafCollector)
+			utils.Debug("left: %v | err: %t | leavesCarry: %v", left, err, leafCollector)
 
 			resultNode.setLeft(left)
 
 			right, leafCollector, err = buildBNodeTreeWeigthRecursive(dataTree, i+1, j+1, resultNode, leafCollector)
-			utils.Debug("right: %v | err: %t | leafsCarry: %v", left, err, leafCollector)
+			utils.Debug("right: %v | err: %t | leavesCarry: %v", left, err, leafCollector)
 
 			resultNode.setRight(right)
 
@@ -76,10 +76,10 @@ func buildBNodeTreeWeigthRecursive(
 }
 
 func BuildBNodeTreeWeigth(dataTree [][]int) (result Tree, err bool) {
-	leafs := []int{}
+	leaves := []int{}
 	root := BNode{0, nil, nil}
 
-	_root, _leafs, err := buildBNodeTreeWeigthRecursive(dataTree, 0, 0, root, leafs)
+	newRoot, newLeaves, err := buildBNodeTreeWeigthRecursive(dataTree, 0, 0, root, leaves)
 
-	return Tree{_root, _leafs}, err
+	return Tree{newRoot, newLeaves}, err
 }
