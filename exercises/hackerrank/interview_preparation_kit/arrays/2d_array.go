@@ -1,5 +1,5 @@
 /**
- * @link Problem definition [[docs/hackerrank/interview_preparation_kit/2d_array.md]]
+ * @link Problem definition [[docs/hackerrank/interview_preparation_kit/arrays/2d_array.md]]
  */
 
 package hackerrank
