@@ -1,5 +1,5 @@
 /**
- * @link Problem definition [[docs/hackerrank/interview_preparation_kit/arrays/new_year_chaos.md]]
+* @link Problem definition [[docs/hackerrank/interview_preparation_kit/arrays/new_year_chaos.md]]
  */
 
 package hackerrank
@@ -23,12 +23,12 @@ func minimumBribesCalculate(q []int32) (int32, error) {
 		position := i + 1
 
 		if value-int32(position) > NEW_YEAR_CHAOS_TOLERANCE {
-			// error strings should not be capitalized (ST1005)
-			//nolint:stylecheck
+			//lint:ignore ST1005 Given string is capitalized
+			//nolint:staticcheck
 			return 0, errors.New(tooChaoticError)
 		}
 
-		var fragment []int32 = q[min(max(value-NEW_YEAR_CHAOS_TOLERANCE, 0), int32(i)):i]
+		var fragment = q[min(max(value-NEW_YEAR_CHAOS_TOLERANCE, 0), int32(i)):i]
 
 		for _, k := range fragment {
 			if k > value {

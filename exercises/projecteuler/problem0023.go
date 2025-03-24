@@ -21,7 +21,7 @@ func Contains[T comparable](s []T, e T) bool {
 
 func Problem0023(underLimit int, superLimit int) int {
 
-	var abundantNumberList []int = []int{}
+	var abundantNumberList = []int{}
 
 	// Produce a list of abundant numbers below limit
 	for i := underLimit; i <= superLimit; i++ {

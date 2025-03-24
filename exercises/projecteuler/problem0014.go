@@ -15,7 +15,7 @@ func Problem0014(bottom int, top int) int {
 
 	for i := bottom; i < top; i += 1 {
 
-		var sequence []int = helpers.CollatzSequence(i)
+		var sequence = helpers.CollatzSequence(i)
 		utils.Debug("sequence of %d: %v", i, sequence)
 
 		if len(sequence) > len(maxSequence) {

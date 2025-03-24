@@ -17,7 +17,7 @@ const __BIT_SIZE__ = 32
 
 func Problem0008(numberInput string) int {
 
-	var max int = 0
+	var greatest = 0
 
 	var digitsSlice []int32
 	var bigNumSlice = strings.Split(numberInput, "")
@@ -41,12 +41,12 @@ func Problem0008(numberInput string) int {
 		var currentProduct = helpers.Product(digitsSet)
 		utils.Debug("Product beetwen %d and %d <%d> is: %d", i, i+interval, digitsSet, currentProduct)
 
-		if currentProduct > max {
-			max = currentProduct
+		if currentProduct > greatest {
+			greatest = currentProduct
 		}
 	}
 
-	utils.Info("Problem0008 => The the greatest product of %d consecutive digits is: %d", interval, max)
+	utils.Info("Problem0008 => The the greatest product of %d consecutive digits is: %d", interval, greatest)
 
-	return max
+	return greatest
 }

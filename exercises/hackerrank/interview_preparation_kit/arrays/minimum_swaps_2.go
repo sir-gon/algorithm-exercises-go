@@ -5,7 +5,7 @@
 package hackerrank
 
 func minimumSwaps(arr []int32) int32 {
-	var size int32 = int32(len(arr))
+	var size = int32(len(arr))
 	var indexedGroup = make(map[int32]int32, size)
 	var swaps int32 = 0
 	var index int32 = 0

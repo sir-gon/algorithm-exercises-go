@@ -1,7 +1,7 @@
 package helpers
 
 func Product(numList []int) int {
-	var result int = 1
+	var result = 1
 
 	if len(numList) == 0 {
 		return 0

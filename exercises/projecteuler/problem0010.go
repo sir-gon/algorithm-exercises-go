@@ -13,7 +13,7 @@ func Problem0010(bottom int, top int) int {
 
 	var answer int
 
-	var primes []int = []int{2}
+	var primes = []int{2}
 
 	var i = bottom
 
