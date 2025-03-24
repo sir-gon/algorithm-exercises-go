@@ -14,7 +14,7 @@ func Problem0011(matrix [][]int, interval int) (int, bool) {
 		return 0, true
 	}
 
-	var max = 0
+	var greatest = 0
 
 	var quadrantSize = interval
 	var matrixLimit = len(matrix) - (interval - 1)
@@ -33,8 +33,8 @@ func Problem0011(matrix [][]int, interval int) (int, bool) {
 				diag1Acum *= matrix[i+k][j+k]
 				diag2Acum *= matrix[i+k][j+(quadrantSize-1)-k]
 
-				max = helpers.IntMax(diag1Acum, max)
-				max = helpers.IntMax(diag2Acum, max)
+				greatest = helpers.IntMax(diag1Acum, greatest)
+				greatest = helpers.IntMax(diag2Acum, greatest)
 
 				// reset lines
 				var verticalAcum = 1
@@ -46,14 +46,14 @@ func Problem0011(matrix [][]int, interval int) (int, bool) {
 					verticalAcum *= matrix[i+k][j+l]
 					horizontalAcum *= matrix[i+l][j+k]
 
-					max = helpers.IntMax(verticalAcum, max)
-					max = helpers.IntMax(horizontalAcum, max)
+					greatest = helpers.IntMax(verticalAcum, greatest)
+					greatest = helpers.IntMax(horizontalAcum, greatest)
 				}
 			}
 		}
 	}
 
-	utils.Info("Problem0011 max => %d", max)
+	utils.Info("Problem0011 greatest => %d", greatest)
 
-	return max, false
+	return greatest, false
 }
