@@ -7,7 +7,7 @@ package hackerrank
 import "slices"
 
 func arrayManipulationBruteForce(n int32, queries [][]int32) int64 {
-	var LENGTH int32 = n + 1
+	var LENGTH = n + 1
 	const InitialValue int64 = 0
 
 	result := make([]int64, LENGTH)

@@ -14,7 +14,7 @@ func Problem0011(matrix [][]int, interval int) (int, bool) {
 		return 0, true
 	}
 
-	var max int = 0
+	var max = 0
 
 	var quadrantSize = interval
 	var matrixLimit = len(matrix) - (interval - 1)

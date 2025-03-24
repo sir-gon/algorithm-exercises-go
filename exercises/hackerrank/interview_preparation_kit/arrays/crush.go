@@ -8,7 +8,7 @@ func arrayManipulation(n int32, queries [][]int32) int64 {
 	// why adding 2?
 	//   first slot to adjust 1-based index and
 	//   last slot for storing accumSum result
-	var LENGTH int32 = n + 2
+	var LENGTH = n + 2
 	const InitialValue int64 = 0
 	var maximum int64 = 0
 

@@ -19,7 +19,11 @@ func LoadJSON(filepath string, v any) ([]byte, error) {
 
 	// t.Log("Successfully Opened" + filepath)
 	// defer the closing of our jsonFile so that we can parse it later on
-	defer jsonFile.Close()
+	defer func() {
+		if cerr := jsonFile.Close(); cerr != nil {
+			fmt.Println("Error closing file:", cerr)
+		}
+	}()
 
 	// read our opened file as a byte array.
 	byteValue, _ := io.ReadAll(jsonFile)

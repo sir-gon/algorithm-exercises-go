@@ -17,7 +17,7 @@ const __BIT_SIZE__ = 32
 
 func Problem0008(numberInput string) int {
 
-	var max int = 0
+	var max = 0
 
 	var digitsSlice []int32
 	var bigNumSlice = strings.Split(numberInput, "")
