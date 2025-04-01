@@ -1,5 +1,5 @@
 ###############################################################################
-FROM golang:1.24.1-alpine3.20 AS init
+FROM golang:1.24.2-alpine3.20 AS init
 
 ENV CGO_ENABLED=0
 RUN apk add --update --no-cache make
