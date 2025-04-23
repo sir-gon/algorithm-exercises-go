@@ -1,8 +1,6 @@
 package helpers
 
-import (
-	"gon.cl/algorithms/utils"
-)
+import "gon.cl/algorithms/utils/log"
 
 var _scoreLetter = map[rune]int{
 	'A': 1,
@@ -38,7 +36,7 @@ func WordScore(word string) int {
 	count := 0
 
 	for i, c := range word {
-		utils.Debug("%d => %c", i, c)
+		log.Debug("%d => %c", i, c)
 
 		score, exist := _scoreLetter[c]
 

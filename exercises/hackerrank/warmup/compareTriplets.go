@@ -7,7 +7,7 @@ package hackerrank
 import (
 	"errors"
 
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func CompareTriplets(a []int, b []int) ([]int, error) {
@@ -27,7 +27,7 @@ func CompareTriplets(a []int, b []int) ([]int, error) {
 		}
 	}
 
-	utils.Info("SolveMeFirst answer => %v", awards)
+	log.Info("SolveMeFirst answer => %v", awards)
 
 	return awards, nil
 }

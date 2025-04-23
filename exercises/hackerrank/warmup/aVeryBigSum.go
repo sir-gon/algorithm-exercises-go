@@ -4,9 +4,7 @@
 
 package hackerrank
 
-import (
-	utils "gon.cl/algorithms/utils"
-)
+import "gon.cl/algorithms/utils/log"
 
 func AVeryBigSum(ar []uint64) uint64 {
 	var result uint64 = 0
@@ -15,6 +13,6 @@ func AVeryBigSum(ar []uint64) uint64 {
 		result += ar[i]
 	}
 
-	utils.Info("aVeryBigSum answer => %d", result)
+	log.Info("aVeryBigSum answer => %d", result)
 	return result
 }

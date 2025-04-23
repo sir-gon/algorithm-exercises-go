@@ -8,7 +8,7 @@ package projecteuler
 import (
 	"math/big"
 
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func Problem0013(inputListOfBigNumbers []string) string {
@@ -24,20 +24,20 @@ func Problem0013(inputListOfBigNumbers []string) string {
 		var bignum, ok = new(big.Int).SetString(inputListOfBigNumbers[i], 0)
 		listOfBigNumbers = append(listOfBigNumbers, bignum)
 
-		utils.Debug("new bigNumber: %s | %t", bignum.Text(BASE), ok)
+		log.Debug("new bigNumber: %s | %t", bignum.Text(BASE), ok)
 
 		answer = answer.Add(answer, bignum)
 	}
 
-	utils.Debug("listOfBigNumbers: %v", listOfBigNumbers)
+	log.Debug("listOfBigNumbers: %v", listOfBigNumbers)
 
 	for answer.Cmp(bigTop) >= 1 {
 		answer = answer.Div(answer, big.NewInt(BASE))
 
-		utils.Debug("Answer reduction: %s", answer.String())
+		log.Debug("Answer reduction: %s", answer.String())
 	}
 
-	utils.Info("Problem0013 answer => %v", answer)
+	log.Info("Problem0013 answer => %v", answer)
 
 	return answer.Text(BASE)
 }

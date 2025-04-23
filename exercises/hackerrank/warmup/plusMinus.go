@@ -8,7 +8,7 @@ import (
 	"fmt"
 	"strings"
 
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func PlusMinus(arr []int) string {
@@ -37,7 +37,7 @@ func PlusMinus(arr []int) string {
 
 	answer := strings.Join(result, "\n")
 
-	utils.Info("PlusMinus answer => %s", answer)
+	log.Info("PlusMinus answer => %s", answer)
 
 	return answer
 }

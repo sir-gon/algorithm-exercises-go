@@ -4,15 +4,13 @@
 
 package hackerrank
 
-import (
-	utils "gon.cl/algorithms/utils"
-)
+import "gon.cl/algorithms/utils/log"
 
 func SolveMeFirst(a int, b int) int {
 
 	var answer = a + b
 
-	utils.Info("SolveMeFirst answer => %d", answer)
+	log.Info("SolveMeFirst answer => %d", answer)
 
 	return answer
 }

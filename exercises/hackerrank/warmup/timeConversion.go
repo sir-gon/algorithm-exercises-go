@@ -9,7 +9,7 @@ import (
 	"strconv"
 	"strings"
 
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func TimeConversion(s string) string {
@@ -32,7 +32,7 @@ func TimeConversion(s string) string {
 
 	conversion := strings.Join(time, ":")
 
-	utils.Info("TimeConversion answer => %s", conversion)
+	log.Info("TimeConversion answer => %s", conversion)
 
 	return conversion
 }

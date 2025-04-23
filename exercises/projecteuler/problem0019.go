@@ -6,7 +6,7 @@ package projecteuler
 
 import (
 	constants "gon.cl/algorithms/exercises/projecteuler/constants"
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 const __FEBRUARY_KEY__ = "FEBRUARY"
@@ -25,7 +25,7 @@ func Problem0019(
 		var leap int
 
 		if (y%4 == 0 && y%100 != 0) || y%400 == 0 {
-			utils.Debug("Year %d has leap-day", y)
+			log.Debug("Year %d has leap-day", y)
 			leap = 1
 		} else {
 			leap = 0
@@ -34,7 +34,7 @@ func Problem0019(
 
 		for _, month := range constants.MONTHS_OF_YEAR {
 			days := constants.DAYS_IN_MONTH[month]
-			utils.Debug("Year %d| Month: %s | days %d", y, month, days)
+			log.Debug("Year %d| Month: %s | days %d", y, month, days)
 
 			accumulatedRemainder += days % 7
 			if accumulatedRemainder%7 == dayOfWeek {
@@ -46,7 +46,7 @@ func Problem0019(
 		}
 	}
 
-	utils.Info("Problem0019 result: (%d - %d) => %d", resultCount, excess, resultCount-excess)
+	log.Info("Problem0019 result: (%d - %d) => %d", resultCount, excess, resultCount-excess)
 
 	return resultCount - excess
 }

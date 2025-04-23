@@ -6,7 +6,7 @@ package projecteuler
 
 import (
 	"gon.cl/algorithms/exercises/projecteuler/helpers"
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func Problem0014(bottom int, top int) int {
@@ -16,18 +16,18 @@ func Problem0014(bottom int, top int) int {
 	for i := bottom; i < top; i += 1 {
 
 		var sequence = helpers.CollatzSequence(i)
-		utils.Debug("sequence of %d: %v", i, sequence)
+		log.Debug("sequence of %d: %v", i, sequence)
 
 		if len(sequence) > len(maxSequence) {
 			maxSequence = sequence
 		}
 	}
 
-	utils.Info("Large sequence found: ${maxSequence} has ${maxSequence.length} elements")
+	log.Info("Large sequence found: ${maxSequence} has ${maxSequence.length} elements")
 
 	// return firt element
 	answer = maxSequence[0]
 
-	utils.Info("Problem0014 answer => %d", answer)
+	log.Info("Problem0014 answer => %d", answer)
 	return answer
 }

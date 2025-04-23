@@ -14,7 +14,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func TestProblem0020(t *testing.T) {
@@ -25,7 +25,7 @@ func TestProblem0020(t *testing.T) {
 	expectedSolution, ok := expectedSolution.SetString("93326215443944152681699238856266700490715968264381621468592963895217599993229915608941463976156518286253697920827223758251185210916864000000000000000000000000", 10)
 
 	if !ok {
-		utils.Error("Problem0020: expectedSolution.SetString() failed")
+		log.Error("Problem0020: expectedSolution.SetString() failed")
 		return
 	}
 

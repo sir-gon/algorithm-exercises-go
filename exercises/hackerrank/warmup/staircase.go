@@ -7,7 +7,7 @@ package hackerrank
 import (
 	"strings"
 
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func Staircase(n int) string {
@@ -28,7 +28,7 @@ func Staircase(n int) string {
 		result = append(result, line)
 	}
 
-	utils.Info("Staircase answer => %v", result)
+	log.Info("Staircase answer => %v", result)
 
 	return strings.Join(result, "\n")
 }

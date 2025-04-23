@@ -6,7 +6,7 @@ package projecteuler
 
 import (
 	"gon.cl/algorithms/exercises/projecteuler/helpers"
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func Problem0012(top int) int {
@@ -19,12 +19,12 @@ func Problem0012(top int) int {
 		var listOfDivisors = helpers.Divisors(triangular)
 		amountOfDivisors = len(listOfDivisors)
 
-		utils.Debug("Triangular number: %d has %d divisors", triangular, amountOfDivisors)
+		log.Debug("Triangular number: %d has %d divisors", triangular, amountOfDivisors)
 
 		i += 1
 	}
 
-	utils.Info("Problem0012 answer => %d", triangular)
+	log.Info("Problem0012 answer => %d", triangular)
 
 	return triangular
 }

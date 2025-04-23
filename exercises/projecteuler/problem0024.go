@@ -7,7 +7,7 @@ package projecteuler
 import (
 	"strings"
 
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func factorial(n int) int {
@@ -47,7 +47,7 @@ func Problem0024(inputElements string, inputPermutationToFind int) string {
 
 	var permutationFound = permute(inputElements, inputPermutationToFind)
 
-	utils.Info("Problem0024 answer => %+v", permutationFound)
+	log.Info("Problem0024 answer => %+v", permutationFound)
 
 	return permutationFound
 }

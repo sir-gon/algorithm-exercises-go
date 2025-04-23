@@ -7,7 +7,7 @@ package projecteuler
 import (
 	"math"
 
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func IsPythagoreanTriplet(a int, b int, c int) bool {
@@ -38,10 +38,10 @@ func Problem0009() int {
 
 		for a < b && b < c && !found {
 
-			utils.Debug("Pythagorean triplet? a = %d b = %d c = %d", a, b, c)
+			log.Debug("Pythagorean triplet? a = %d b = %d c = %d", a, b, c)
 
 			if IsPythagoreanTriplet(a, b, c) {
-				utils.Debug("FOUND: a = %d b = %d c = %d => %t", a, b, c, found)
+				log.Debug("FOUND: a = %d b = %d c = %d => %t", a, b, c, found)
 				foundTriplet = triplet{a: a, b: b, c: c}
 				found = true
 			}
@@ -53,14 +53,14 @@ func Problem0009() int {
 		a += 1
 	}
 
-	utils.Info("FOUND: a = %d b = %d c = %d => %.0f + %.0f = %.0f",
+	log.Info("FOUND: a = %d b = %d c = %d => %.0f + %.0f = %.0f",
 		foundTriplet.a, foundTriplet.b, foundTriplet.c,
 		math.Pow(float64(foundTriplet.a), 2),
 		math.Pow(float64(foundTriplet.b), 2),
 		math.Pow(float64(foundTriplet.c), 2))
 
 	answer = foundTriplet.a * foundTriplet.b * foundTriplet.c
-	utils.Info("Problem0009 answer => %d", answer)
+	log.Info("Problem0009 answer => %d", answer)
 
 	return answer
 }

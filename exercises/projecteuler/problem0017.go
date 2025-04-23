@@ -9,7 +9,7 @@ import (
 	"regexp"
 
 	"gon.cl/algorithms/exercises/projecteuler/helpers"
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func Problem0017(init int, last int) int {
@@ -29,10 +29,10 @@ func Problem0017(init int, last int) int {
 
 		acum += len(replaced)
 
-		utils.Debug("acum: %d <= (%d) word: %s", acum, i, word)
+		log.Debug("acum: %d <= (%d) word: %s", acum, i, word)
 	}
 
-	utils.Info("Problem0017 answer => %d", acum)
+	log.Info("Problem0017 answer => %d", acum)
 
 	return acum
 }
