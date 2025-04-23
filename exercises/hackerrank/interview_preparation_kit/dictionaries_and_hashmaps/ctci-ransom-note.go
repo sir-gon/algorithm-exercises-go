@@ -6,8 +6,8 @@ package hackerrank
 
 import "fmt"
 
-const __YES__ = "Yes"
-const __NO__ = "No"
+const __RANSOM_NOTE_YES__ = "Yes"
+const __RANSOM_NOTE_NO__ = "No"
 
 func checkMagazineCompute(magazine []string, note []string) bool {
 	dictionary := make(map[string]int)
@@ -29,10 +29,10 @@ func checkMagazineCompute(magazine []string, note []string) bool {
 
 func checkMagazineText(magazine []string, note []string) string {
 	if checkMagazineCompute(magazine, note) {
-		return __YES__
+		return __RANSOM_NOTE_YES__
 	}
 
-	return __NO__
+	return __RANSOM_NOTE_NO__
 }
 
 func checkMagazine(magazine []string, note []string) {
