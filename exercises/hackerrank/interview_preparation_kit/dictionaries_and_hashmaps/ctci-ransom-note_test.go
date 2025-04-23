@@ -20,7 +20,7 @@ var RansomNoteTestCases []RansomNoteTestCase
 // You can use testing.T, if you want to test the code without benchmarking
 func RansomNoteSetupSuite(t testing.TB) {
 	wd, _ := os.Getwd()
-	filepath := wd + "/ctci_ransom_note.testcases.json"
+	filepath := wd + "/ctci-ransom-note.testcases.json"
 	t.Log("Setup test cases from JSON: ", filepath)
 
 	var _, err = utils.LoadJSON(filepath, &RansomNoteTestCases)
