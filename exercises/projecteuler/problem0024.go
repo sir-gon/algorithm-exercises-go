@@ -23,21 +23,21 @@ func factorial(n int) int {
 func permute(symbols string, target int) string {
 	choices := strings.Split(symbols, "")
 	answer := ""
-	min := 0
+	minimum := 0
 
 	for len(choices) > 0 {
 		index := 0
 		combos := factorial(len(choices) - 1)
-		min += combos
-		for target > min {
+		minimum += combos
+		for target > minimum {
 			index += 1
-			min += combos
+			minimum += combos
 		}
 		answer += choices[index]
 		copy(choices[index:], choices[index+1:])
 		choices[len(choices)-1] = ""
 		choices = choices[:len(choices)-1]
-		min -= combos
+		minimum -= combos
 	}
 
 	return answer
