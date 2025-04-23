@@ -21,7 +21,7 @@ import (
 	"strings"
 
 	"gon.cl/algorithms/exercises/projecteuler/helpers"
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 const __NUMERIC_BASE__ = 10
@@ -35,7 +35,7 @@ func Problem0016(base int, exponent int) string {
 
 	answer := helpers.BigSumMany(chars)
 
-	utils.Info("Problem0016 answer => %s", answer)
+	log.Info("Problem0016 answer => %s", answer)
 
 	return answer
 }

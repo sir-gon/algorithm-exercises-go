@@ -4,9 +4,7 @@
 
 package hackerrank
 
-import (
-	utils "gon.cl/algorithms/utils"
-)
+import "gon.cl/algorithms/utils/log"
 
 func SimpleArraySum(arr []int) int {
 	acum := 0
@@ -15,7 +13,7 @@ func SimpleArraySum(arr []int) int {
 		acum += arr[i]
 	}
 
-	utils.Info("SimpleArraySum answer => %d", acum)
+	log.Info("SimpleArraySum answer => %d", acum)
 
 	return acum
 }

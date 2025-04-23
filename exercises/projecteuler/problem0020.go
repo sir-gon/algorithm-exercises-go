@@ -15,14 +15,14 @@ import (
 	"math/big"
 
 	"gon.cl/algorithms/exercises/projecteuler/helpers"
-	"gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func Problem0020(last int) *big.Int {
 
 	factorial := helpers.BigFactorial(last)
 
-	utils.Info("Problem0020 answer => %v", factorial)
+	log.Info("Problem0020 answer => %v", factorial)
 
 	return factorial
 }

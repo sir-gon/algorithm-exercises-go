@@ -18,7 +18,7 @@ package projecteuler
 
 import (
 	"gon.cl/algorithms/exercises/projecteuler/helpers"
-	"gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func Problem0021(start int, limit int) int {
@@ -31,12 +31,12 @@ func Problem0021(start int, limit int) int {
 		divs := helpers.Divisors(i)
 		sum := helpers.Sum(divs) - i
 
-		utils.Debug("Divisors of %d => %v => Sum = %d", i, divs, sum)
+		log.Debug("Divisors of %d => %v => Sum = %d", i, divs, sum)
 
 		cache[i] = sum
 	}
 
-	utils.Debug("Problem0021 cache => %d", cache)
+	log.Debug("Problem0021 cache => %d", cache)
 
 	for a, b := range cache {
 		if a != b && helpers.AreAmicables(a, b, cache) {
@@ -47,7 +47,7 @@ func Problem0021(start int, limit int) int {
 
 	var answer int
 
-	utils.Info("Problem0021 amicables => %v", amicables)
+	log.Info("Problem0021 amicables => %v", amicables)
 
 	amicablesList := []int{}
 	for value := range amicables {
@@ -56,7 +56,7 @@ func Problem0021(start int, limit int) int {
 
 	answer = helpers.Sum(amicablesList)
 
-	utils.Info("Problem0021 answer => %d", answer)
+	log.Info("Problem0021 answer => %d", answer)
 
 	return answer
 }

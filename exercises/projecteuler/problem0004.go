@@ -6,7 +6,7 @@ package projecteuler
 
 import (
 	"gon.cl/algorithms/exercises/projecteuler/helpers"
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func Problem0004(bottom int, top int) int {
@@ -17,7 +17,7 @@ func Problem0004(bottom int, top int) int {
 	var foundPalindrome int
 	var cycles = 0
 
-	utils.Info("Initializing Problem 0004")
+	log.Info("Initializing Problem 0004")
 
 	i = top
 	for i >= bottom {
@@ -27,7 +27,7 @@ func Problem0004(bottom int, top int) int {
 			cycles += 1
 			if helpers.IsPalindrome(j * i) {
 
-				utils.Debug("FOUND %d x %d = %d is Palindrome", i, j, i*j)
+				log.Debug("FOUND %d x %d = %d is Palindrome", i, j, i*j)
 
 				if foundPalindrome == 0 || i*j > foundPalindrome {
 					foundi = i
@@ -43,7 +43,7 @@ func Problem0004(bottom int, top int) int {
 		i -= 1
 	}
 
-	utils.Info("Problem0004 Largest Palindrome => %d 𝗑 %d = %d in %d cycles", foundi, foundj, foundPalindrome, cycles)
+	log.Info("Problem0004 Largest Palindrome => %d 𝗑 %d = %d in %d cycles", foundi, foundj, foundPalindrome, cycles)
 
 	return foundPalindrome
 }

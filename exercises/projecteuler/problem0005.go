@@ -8,7 +8,7 @@ import (
 	"math"
 
 	"gon.cl/algorithms/exercises/projecteuler/helpers"
-	"gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func primeFactorListCollection(factors []int) map[int]int {
@@ -19,10 +19,10 @@ func primeFactorListCollection(factors []int) map[int]int {
 
 		if ok {
 			collection[factor] += 1
-			utils.Debug("Factor %d with quantity %d found in %v", factor, quantity, collection)
+			log.Debug("Factor %d with quantity %d found in %v", factor, quantity, collection)
 		} else {
 			collection[factor] = 1
-			utils.Debug("Factor %d with quantity not found in %v", factor, collection)
+			log.Debug("Factor %d with quantity not found in %v", factor, collection)
 
 		}
 	}
@@ -39,11 +39,11 @@ func Problem0005(bottom int, top int) int {
 	for i := bottom; i <= top; i++ {
 		primeFactorList, subCycles := helpers.PrimeFactors(i)
 		cycles += subCycles
-		utils.Info("Prime Factors of %d list    => %v", i, primeFactorList)
+		log.Info("Prime Factors of %d list    => %v", i, primeFactorList)
 
 		primeFactorMap := primeFactorListCollection(primeFactorList)
 		cycles += len(primeFactorList)
-		utils.Info("Prime Factors of %d grouped => %v", i, primeFactorMap)
+		log.Info("Prime Factors of %d grouped => %v", i, primeFactorMap)
 
 		for factor, quantity := range primeFactorMap {
 			cycles += 1
@@ -58,7 +58,7 @@ func Problem0005(bottom int, top int) int {
 
 		}
 
-		utils.Info("Minimum Prime Factors of grouped until %d => %v", i, minimumPrimeFactors)
+		log.Info("Minimum Prime Factors of grouped until %d => %v", i, minimumPrimeFactors)
 	}
 
 	for factor, quantity := range minimumPrimeFactors {
@@ -66,8 +66,8 @@ func Problem0005(bottom int, top int) int {
 		answer *= int(math.Pow(float64(factor), float64(quantity)))
 	}
 
-	utils.Info("Problem 0005: Minimum Prime Factors from %d to %d => %v in %d cycles", bottom, top, minimumPrimeFactors, cycles)
-	utils.Info("Problem 0005: Solution: %d in %d cycles", answer, cycles)
+	log.Info("Problem 0005: Minimum Prime Factors from %d to %d => %v in %d cycles", bottom, top, minimumPrimeFactors, cycles)
+	log.Info("Problem 0005: Solution: %d in %d cycles", answer, cycles)
 
 	return answer
 }

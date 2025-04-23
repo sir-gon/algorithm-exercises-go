@@ -5,7 +5,7 @@
 package projecteuler
 
 import (
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func Problem0002(top int) int {
@@ -20,7 +20,7 @@ func Problem0002(top int) int {
 	for ok := true; ok; ok = fibo < top {
 		fibo = last2 + last1
 
-		utils.Debug("Fibonacci (%d) = %d", i, fibo)
+		log.Debug("Fibonacci (%d) = %d", i, fibo)
 
 		// acumulate sum of event terms
 		if fibo%2 == 0 {
@@ -33,7 +33,7 @@ func Problem0002(top int) int {
 		i += 1
 	}
 
-	utils.Info("Problem0002 result: %d", evenSum)
+	log.Info("Problem0002 result: %d", evenSum)
 
 	return evenSum
 }

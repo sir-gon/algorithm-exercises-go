@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"math/big"
 
-	"gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 const _CENTS_ = "hundred"
@@ -70,7 +70,7 @@ func NumberToWord(value big.Int) (string, bool) {
 		dec, unit = dec.DivMod(&value, div, unit)
 		dec = dec.Mul(dec, big.NewInt((10)))
 
-		utils.Debug("dec => %s | div => %s | unit => %s",
+		log.Debug("dec => %s | div => %s | unit => %s",
 			dec.Text(__NUMERIC_BASE__),
 			div.Text(__NUMERIC_BASE__),
 			unit.Text(__NUMERIC_BASE__),
@@ -96,7 +96,7 @@ func NumberToWord(value big.Int) (string, bool) {
 		}
 
 		last, err := NumberToWord(*rest)
-		utils.Debug("err => %t", err) // in bounds, never happens
+		log.Debug("err => %t", err) // in bounds, never happens
 
 		return fmt.Sprintf("%s %s and %s",
 			dictionary[cent.Text(__NUMERIC_BASE__)],

@@ -4,15 +4,13 @@
 
 package exercises
 
-import (
-	utils "gon.cl/algorithms/utils"
-)
+import "gon.cl/algorithms/utils/log"
 
 func Problem0000() int {
 
 	var answer int
 
-	utils.Info("Problem0000 answer => %d", answer)
+	log.Info("Problem0000 answer => %d", answer)
 
 	return answer
 }

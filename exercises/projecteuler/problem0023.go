@@ -7,7 +7,7 @@ package projecteuler
 import (
 	"golang.org/x/exp/slices"
 	"gon.cl/algorithms/exercises/projecteuler/helpers"
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func Contains[T comparable](s []T, e T) bool {
@@ -32,8 +32,8 @@ func Problem0023(underLimit int, superLimit int) int {
 		}
 	}
 
-	utils.Info("abundant nums list size => %d", len(abundantNumberList))
-	utils.Debug("abundant nums list result => %+v", abundantNumberList)
+	log.Info("abundant nums list size => %d", len(abundantNumberList))
+	log.Debug("abundant nums list result => %+v", abundantNumberList)
 
 	var sumsAbundantNums = []int{}
 
@@ -48,15 +48,15 @@ func Problem0023(underLimit int, superLimit int) int {
 		}
 	}
 
-	utils.Info("sumsAbundantNums size => %d", len(sumsAbundantNums))
-	utils.Debug("sumsAbundantNums result => %+v", sumsAbundantNums)
+	log.Info("sumsAbundantNums size => %d", len(sumsAbundantNums))
+	log.Debug("sumsAbundantNums result => %+v", sumsAbundantNums)
 
 	// filter duplicates
 	slices.Sort(sumsAbundantNums)
 	sumsAbundantNums = slices.Compact(sumsAbundantNums)
 
-	utils.Info("filtered sumsAbundantNums size => %d", len(sumsAbundantNums))
-	utils.Debug("filtered sumsAbundantNums result => %+v", sumsAbundantNums)
+	log.Info("filtered sumsAbundantNums size => %d", len(sumsAbundantNums))
+	log.Debug("filtered sumsAbundantNums result => %+v", sumsAbundantNums)
 
 	// All numbers below limit that not present in list of sums of pair of abundant numbers
 	var found = []int{}
@@ -67,15 +67,15 @@ func Problem0023(underLimit int, superLimit int) int {
 		}
 	}
 
-	utils.Info("found size %d", len(found))
-	utils.Debug("found result => %+v", found)
+	log.Info("found size %d", len(found))
+	log.Debug("found result => %+v", found)
 
 	result := 0
 	for _, value := range found {
 		result += value
 	}
 
-	utils.Info("Problem0023 answer => %d", result)
+	log.Info("Problem0023 answer => %d", result)
 
 	return result
 }

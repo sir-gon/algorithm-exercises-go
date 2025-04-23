@@ -4,7 +4,7 @@ import (
 	"math"
 	"sort"
 
-	"gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 type Factor struct {
@@ -28,7 +28,7 @@ func Divisors(target int) []int {
 		return divs
 	}
 
-	utils.Debug("Find divisors of %d", target)
+	log.Debug("Find divisors of %d", target)
 
 	// fast divisors finding loop
 	i := int(2)
@@ -50,11 +50,11 @@ func Divisors(target int) []int {
 	}
 
 	divs = append(divs, target)
-	utils.Debug("collected divisors %x", divs)
+	log.Debug("collected divisors %x", divs)
 
 	// sort divisors
 	sort.Slice(divs, func(i, j int) bool { return divs[i] < divs[j] })
-	utils.Debug("sorted divisors %x", divs)
+	log.Debug("sorted divisors %x", divs)
 
 	return divs
 }

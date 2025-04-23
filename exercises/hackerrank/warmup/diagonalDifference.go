@@ -7,7 +7,7 @@ package hackerrank
 import (
 	"math"
 
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func DiagonalDifference(arr [][]int) int {
@@ -24,8 +24,8 @@ func DiagonalDifference(arr [][]int) int {
 		}
 	}
 
-	utils.Info("diag1 => %d", diag1)
-	utils.Info("diag2 => %d", diag2)
+	log.Info("diag1 => %d", diag1)
+	log.Info("diag2 => %d", diag2)
 
 	return int(math.Abs(float64(diag1 - diag2)))
 }

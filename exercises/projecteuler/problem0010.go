@@ -6,7 +6,7 @@ package projecteuler
 
 import (
 	"gon.cl/algorithms/exercises/projecteuler/helpers"
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func Problem0010(bottom int, top int) int {
@@ -20,17 +20,17 @@ func Problem0010(bottom int, top int) int {
 	for i <= top {
 		if helpers.IsPrime(i) {
 			primes = append(primes, i)
-			utils.Debug("Prime found %d put in position: %d", i, len(primes))
+			log.Debug("Prime found %d put in position: %d", i, len(primes))
 		}
 		i += 2
 	}
 
 	answer = helpers.Sum(primes)
 
-	utils.Info("primes count: %d", len(primes))
-	utils.Info("Sum of primes below ${top} is: ${sum(primes)}")
+	log.Info("primes count: %d", len(primes))
+	log.Info("Sum of primes below ${top} is: ${sum(primes)}")
 
-	utils.Info("Problem0010 answer => Sum of primes below %d = %d", top, answer)
+	log.Info("Problem0010 answer => Sum of primes below %d = %d", top, answer)
 
 	return answer
 }

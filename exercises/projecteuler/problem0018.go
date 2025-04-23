@@ -7,7 +7,7 @@ package projecteuler
 import (
 	"gon.cl/algorithms/exercises/projecteuler/helpers"
 	"gon.cl/algorithms/exercises/projecteuler/lib"
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func Problem0018(tree lib.Tree) int {
@@ -16,8 +16,8 @@ func Problem0018(tree lib.Tree) int {
 
 	answer, err := helpers.IntMaxOfMany(tree.GetLeafs())
 
-	utils.Info("Problem0018 answer => leafs: %d", len(tree.GetLeafs()))
-	utils.Info("Problem0018 answer => Max leaf: %d | err: %v", answer, err)
+	log.Info("Problem0018 answer => leafs: %d", len(tree.GetLeafs()))
+	log.Info("Problem0018 answer => Max leaf: %d | err: %v", answer, err)
 
 	return answer
 }

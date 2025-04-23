@@ -6,7 +6,7 @@ package projecteuler
 
 import (
 	helpers "gon.cl/algorithms/exercises/projecteuler/helpers"
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func Problem0011(matrix [][]int, interval int) (int, bool) {
@@ -21,14 +21,14 @@ func Problem0011(matrix [][]int, interval int) (int, bool) {
 
 	for i := 0; i < matrixLimit; i += 1 {
 		for j := 0; j < matrixLimit; j += 1 {
-			utils.Debug("start point => i: %d, j: %d", i, j)
+			log.Debug("start point => i: %d, j: %d", i, j)
 
 			// reset diagonals
 			var diag1Acum = 1
 			var diag2Acum = 1
 			for k := 0; k < quadrantSize; k += 1 {
-				utils.Debug("diag1 coordinate: (i, j) = (%d, %d)", i+k, j+k)
-				utils.Debug("diag2 coordinate: (i, j) = (%d, %d)", i+k, j+(quadrantSize-1)-k)
+				log.Debug("diag1 coordinate: (i, j) = (%d, %d)", i+k, j+k)
+				log.Debug("diag2 coordinate: (i, j) = (%d, %d)", i+k, j+(quadrantSize-1)-k)
 
 				diag1Acum *= matrix[i+k][j+k]
 				diag2Acum *= matrix[i+k][j+(quadrantSize-1)-k]
@@ -40,8 +40,8 @@ func Problem0011(matrix [][]int, interval int) (int, bool) {
 				var verticalAcum = 1
 				var horizontalAcum = 1
 				for l := 0; l < quadrantSize; l += 1 {
-					utils.Debug("vertical coordinate: (i, j) = (%d, %d)", i+k, j+l)
-					utils.Debug("horizontal coordinate: (i, j) = (%d, %d)", i+l, j+k)
+					log.Debug("vertical coordinate: (i, j) = (%d, %d)", i+k, j+l)
+					log.Debug("horizontal coordinate: (i, j) = (%d, %d)", i+l, j+k)
 
 					verticalAcum *= matrix[i+k][j+l]
 					horizontalAcum *= matrix[i+l][j+k]
@@ -53,7 +53,7 @@ func Problem0011(matrix [][]int, interval int) (int, bool) {
 		}
 	}
 
-	utils.Info("Problem0011 greatest => %d", greatest)
+	log.Info("Problem0011 greatest => %d", greatest)
 
 	return greatest, false
 }

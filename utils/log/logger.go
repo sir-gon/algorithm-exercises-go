@@ -1,4 +1,4 @@
-package utils
+package log
 
 import (
 	"fmt"
@@ -6,6 +6,7 @@ import (
 
 	"go.uber.org/zap"
 	"go.uber.org/zap/zapcore"
+	"gon.cl/algorithms/utils"
 )
 
 const __FALLBACK_LOG_LEVEL__ = "INFO"
@@ -42,7 +43,7 @@ func getLogLevel(logLevel string) zapcore.Level {
 }
 
 func init() {
-	level := getLogLevel(GetEnv("LOG_LEVEL", __FALLBACK_LOG_LEVEL__))
+	level := getLogLevel(utils.GetEnv("LOG_LEVEL", __FALLBACK_LOG_LEVEL__))
 
 	log := initLoggerZap()
 
@@ -55,7 +56,7 @@ func initLoggerZap() *zap.Logger {
 	cfg := zap.Config{
 		Encoding:         "json",
 		DisableCaller:    true,
-		Level:            zap.NewAtomicLevelAt(getLogLevel(GetEnv("LOG_LEVEL", __FALLBACK_LOG_LEVEL__))),
+		Level:            zap.NewAtomicLevelAt(getLogLevel(utils.GetEnv("LOG_LEVEL", __FALLBACK_LOG_LEVEL__))),
 		OutputPaths:      []string{"stdout"},
 		ErrorOutputPaths: []string{"stdout"},
 		EncoderConfig: zapcore.EncoderConfig{

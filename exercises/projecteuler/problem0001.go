@@ -5,7 +5,7 @@
 package projecteuler
 
 import (
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func Problem0001(top int) int {
@@ -16,11 +16,11 @@ func Problem0001(top int) int {
 
 			total += i
 
-			utils.Debug("Problem0001: STEP: %d => TOTAL: %d", i, total)
+			log.Debug("Problem0001: STEP: %d => TOTAL: %d", i, total)
 		}
 	}
 
-	utils.Info("Problem0001 result: %d", total)
+	log.Info("Problem0001 result: %d", total)
 
 	return total
 }

@@ -9,7 +9,7 @@ import (
 	"strings"
 
 	"gon.cl/algorithms/exercises/projecteuler/helpers"
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 const __BASE__ = 10
@@ -39,14 +39,14 @@ func Problem0008(numberInput string) int {
 		}
 
 		var currentProduct = helpers.Product(digitsSet)
-		utils.Debug("Product beetwen %d and %d <%d> is: %d", i, i+interval, digitsSet, currentProduct)
+		log.Debug("Product beetwen %d and %d <%d> is: %d", i, i+interval, digitsSet, currentProduct)
 
 		if currentProduct > greatest {
 			greatest = currentProduct
 		}
 	}
 
-	utils.Info("Problem0008 => The the greatest product of %d consecutive digits is: %d", interval, greatest)
+	log.Info("Problem0008 => The the greatest product of %d consecutive digits is: %d", interval, greatest)
 
 	return greatest
 }

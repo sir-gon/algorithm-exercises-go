@@ -6,7 +6,7 @@ package projecteuler
 
 import (
 	helpers "gon.cl/algorithms/exercises/projecteuler/helpers"
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func Problem0015(gridSide int) int {
@@ -23,10 +23,10 @@ func Problem0015(gridSide int) int {
 			vertexMatrix[i][j] = upperParent + leftParent
 		}
 	}
-	utils.Debug("Paths found: ${vertexMatrix[gridSide][gridSide]}")
-	utils.Debug("vertexMatrix: %v", vertexMatrix)
+	log.Debug("Paths found: ${vertexMatrix[gridSide][gridSide]}")
+	log.Debug("vertexMatrix: %v", vertexMatrix)
 
-	utils.Info("Problem0015 answer => %d", answer)
+	log.Info("Problem0015 answer => %d", answer)
 
 	return vertexMatrix[gridSide][gridSide]
 }

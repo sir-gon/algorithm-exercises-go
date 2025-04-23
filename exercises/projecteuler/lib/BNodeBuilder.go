@@ -1,6 +1,6 @@
 package lib
 
-import "gon.cl/algorithms/utils"
+import "gon.cl/algorithms/utils/log"
 
 func buildBNodeTreeRecursive(
 	dataTree [][]int,
@@ -16,12 +16,12 @@ func buildBNodeTreeRecursive(
 			i+1 <= len(dataTree)-1 && j+1 <= len(dataTree[i+1])-1 {
 
 			left, err := buildBNodeTreeRecursive(dataTree, i+1, j)
-			utils.Debug("left: %v | err: %t", left, err)
+			log.Debug("left: %v | err: %t", left, err)
 
 			resultNode.setLeft(left)
 
 			right, err := buildBNodeTreeRecursive(dataTree, i+1, j+1)
-			utils.Debug("right: %v | err: %t", left, err)
+			log.Debug("right: %v | err: %t", left, err)
 
 			resultNode.setRight(right)
 
@@ -55,12 +55,12 @@ func buildBNodeTreeWeigthRecursive(
 			var err bool
 
 			left, leafCollector, err = buildBNodeTreeWeigthRecursive(dataTree, i+1, j, resultNode, leafCollector)
-			utils.Debug("left: %v | err: %t | leavesCarry: %v", left, err, leafCollector)
+			log.Debug("left: %v | err: %t | leavesCarry: %v", left, err, leafCollector)
 
 			resultNode.setLeft(left)
 
 			right, leafCollector, err = buildBNodeTreeWeigthRecursive(dataTree, i+1, j+1, resultNode, leafCollector)
-			utils.Debug("right: %v | err: %t | leavesCarry: %v", left, err, leafCollector)
+			log.Debug("right: %v | err: %t | leavesCarry: %v", left, err, leafCollector)
 
 			resultNode.setRight(right)
 

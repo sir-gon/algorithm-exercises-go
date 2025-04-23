@@ -6,7 +6,7 @@ package projecteuler
 
 import (
 	helpers "gon.cl/algorithms/exercises/projecteuler/helpers"
-	utils "gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func Problem0007(top int) int {
@@ -22,7 +22,7 @@ func Problem0007(top int) int {
 		if helpers.IsPrime(j) {
 			primes = append(primes, j)
 
-			utils.Debug("Prime found %d put in position: %d", j, len(primes))
+			log.Debug("Prime found %d put in position: %d", j, len(primes))
 		}
 
 		j = 2*i + 1
@@ -32,7 +32,7 @@ func Problem0007(top int) int {
 
 	cycles := i
 
-	utils.Info("Problem0007 answer => %d in %d cycles", answer, cycles)
+	log.Info("Problem0007 answer => %d in %d cycles", answer, cycles)
 
 	return answer
 }

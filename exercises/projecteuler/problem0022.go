@@ -10,7 +10,7 @@ import (
 	"sort"
 
 	"gon.cl/algorithms/exercises/projecteuler/helpers"
-	"gon.cl/algorithms/utils"
+	"gon.cl/algorithms/utils/log"
 )
 
 func Problem0022(listOfNames []string) int {
@@ -23,7 +23,7 @@ func Problem0022(listOfNames []string) int {
 		answer += (i + 1) * helpers.WordScore(listOfNames[i])
 	}
 
-	utils.Info("Problem0022 answer => %d", answer)
+	log.Info("Problem0022 answer => %d", answer)
 
 	return answer
 }
