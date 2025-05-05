@@ -1,5 +1,4 @@
 ---
-
 name: Go CI Tests
 
 on: # yamllint disable-line rule:truthy
@@ -14,14 +13,13 @@ env:
   LOG_LEVEL: WARN
 
 jobs:
-
   test:
     name: "Go CI Tests"
     strategy:
       fail-fast: false
       matrix:
         os: ["windows-2022", "ubuntu-24.04", "macos-14"]
-        go: ['1.22.x', '1.23.x', '1.24.x']
+        go: ["1.22.x", "1.23.x", "1.24.x"]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v4
@@ -47,7 +45,7 @@ jobs:
         uses: golangci/golangci-lint-action@v8
         with:
           args: --timeout=10m
-          version: v2.0.0
+          version: v2.1.0
           skip-cache: true
 
       - name: Test
