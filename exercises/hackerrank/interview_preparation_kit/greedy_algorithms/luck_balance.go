@@ -13,8 +13,8 @@ type Contest struct {
 }
 
 func luckBalance(k int32, contests [][]int32) int32 {
-	var important_contests = []Contest{}
-	var nonimportant_contests = []Contest{}
+	var importantContests = []Contest{}
+	var nonImportantContests = []Contest{}
 
 	for _, contest := range contests {
 		var contest = Contest{
@@ -24,14 +24,14 @@ func luckBalance(k int32, contests [][]int32) int32 {
 
 		if contest.important == 1 {
 
-			important_contests = append(important_contests, contest)
+			importantContests = append(importantContests, contest)
 		} else {
-			nonimportant_contests = append(nonimportant_contests, contest)
+			nonImportantContests = append(nonImportantContests, contest)
 		}
 	}
 
 	slices.SortFunc(
-		important_contests,
+		importantContests,
 		func(a, b Contest) int {
 			return cmp.Or(
 				-cmp.Compare(a.important, b.important),
@@ -40,18 +40,18 @@ func luckBalance(k int32, contests [][]int32) int32 {
 		})
 
 	var total int32 = 0
-	var size = int32(len(important_contests))
+	var size = int32(len(importantContests))
 	var cut = min(k, int32(size))
 
 	for i := 0; int32(i) < cut; i++ {
-		total += important_contests[i].luck
+		total += importantContests[i].luck
 	}
 
 	for i := cut; i < size; i++ {
-		total -= important_contests[i].luck
+		total -= importantContests[i].luck
 	}
 
-	for _, contest := range nonimportant_contests {
+	for _, contest := range nonImportantContests {
 		total += contest.luck
 	}
 
