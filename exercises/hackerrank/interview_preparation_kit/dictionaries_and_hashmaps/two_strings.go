@@ -1,5 +1,6 @@
 /**
- * @link Problem definition [[docs/hackerrank/interview_preparation_kit/dictionaries_and_hashmaps/two_strings.md]]
+ * @link Problem definition [[docs/hackerrank/interview_preparation_kit/dictionaries_and_hashmaps/two-strings.md]]
+ * @see Solution Notes [[docs/hackerrank/interview_preparation_kit/dictionaries_and_hashmaps/two-strings-solution-notes.md]]
  */
 
 package hackerrank
