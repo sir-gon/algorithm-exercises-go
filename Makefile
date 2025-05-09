@@ -82,6 +82,10 @@ test/static: dependencies
 
 test/styling: dependencies
 	gofmt -l . && echo '✔  Your code looks good.'
+	$(GO) run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -test ./...
+
+format:
+	$(GO) run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -apply ./...
 
 coverage.out: env dependencies
 	$(GOTEST) -v -covermode=atomic -coverprofile="coverage.out" ./exercises/...
