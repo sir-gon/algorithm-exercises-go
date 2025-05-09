@@ -36,7 +36,7 @@ func hourglassSum(arr [][]int32) int32 {
 		for j := int32(matrixStartIndex); j <= int32(matrixEndIndex); j++ {
 			var currentHourglassSum int32 = 0
 			currentHourglass := getHourGlass(arr, i, j)
-			for k := 0; k < len(currentHourglass); k++ {
+			for k := range currentHourglass {
 				currentHourglassSum += currentHourglass[k]
 			}
 

@@ -18,7 +18,7 @@ func CompareTriplets(a []int, b []int) ([]int, error) {
 
 	var awards = []int{0, 0}
 
-	for i := 0; i < len(a); i++ {
+	for i := range a {
 		if a[i] > b[i] {
 			awards[0] = awards[0] + 1
 		}

@@ -18,7 +18,7 @@ func MiniMaxSum(arr []int) (string, error) {
 	min := arr[0]
 	max := arr[1]
 
-	for i := 0; i < len(arr); i++ {
+	for i := range arr {
 		num := arr[i]
 		sum += num
 

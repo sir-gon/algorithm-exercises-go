@@ -15,8 +15,8 @@ func DiagonalDifference(arr [][]int) int {
 	diag2 := 0
 	last := len(arr) - 1
 
-	for i := 0; i < len(arr); i++ {
-		for j := 0; j < len(arr); j++ {
+	for i := range arr {
+		for j := range arr {
 			if i == j {
 				diag1 += arr[i][j]
 				diag2 += arr[last-i][j]

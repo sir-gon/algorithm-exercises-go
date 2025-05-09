@@ -7,7 +7,7 @@ package hackerrank
 func countTripletsBruteForce(arr []int64, r int64) int64 {
 	size := len(arr)
 	counter := int64(0)
-	for i := 0; i < size-2; i++ {
+	for i := range size - 2 {
 		for j := i + 1; j < size-1; j++ {
 			for k := j + 1; k < size; k++ {
 				if r*arr[i] == arr[j] && r*arr[j] == arr[k] {

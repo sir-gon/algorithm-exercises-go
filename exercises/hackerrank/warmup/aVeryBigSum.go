@@ -9,7 +9,7 @@ import "gon.cl/algorithms/utils/log"
 func AVeryBigSum(ar []uint64) uint64 {
 	var result uint64 = 0
 
-	for i := 0; i < len(ar); i++ {
+	for i := range ar {
 		result += ar[i]
 	}
 
