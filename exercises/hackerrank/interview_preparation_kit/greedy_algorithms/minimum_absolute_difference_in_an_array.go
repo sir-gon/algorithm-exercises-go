@@ -5,23 +5,38 @@
 
 package hackerrank
 
-import "slices"
+import (
+	"slices"
+)
 
 func minimumAbsoluteDifference(arr []int32) int32 {
 	// Sort the array
-	arrCopy := make([]int32, len(arr))
+	sortedNums := make([]int32, len(arr))
 
-	copy(arrCopy, arr)
-	slices.Sort(arrCopy)
+	copy(sortedNums, arr)
+	slices.Sort(sortedNums)
 
 	// Find the minimum absolute difference
 	result := int32(0)
-	for i := range len(arrCopy) - 1 {
-		diff := arrCopy[i+1] - arrCopy[i]
-		if diff < result || result == 0 {
+	var resultEmpty = true
+
+	for i := range len(sortedNums) - 1 {
+		var aValue = sortedNums[i]
+		var bValue = sortedNums[i+1]
+
+		diff := aValue - bValue
+		if diff < 0 {
+			diff = -1 * diff
+		}
+
+		if resultEmpty {
 			result = diff
+			resultEmpty = false
+		} else {
+			result = min(result, diff)
 		}
 	}
+
 	return result
 }
 
