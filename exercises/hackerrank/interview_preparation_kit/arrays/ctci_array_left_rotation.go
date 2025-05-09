@@ -15,7 +15,9 @@ func rotLeftOne(a []int32) []int32 {
 }
 
 func rotLeft(a []int32, d int32) []int32 {
-	x := a[:]
+	// Sort the array
+	x := make([]int32, len(a))
+	copy(x, a)
 
 	for range d {
 		x = rotLeftOne(x)
