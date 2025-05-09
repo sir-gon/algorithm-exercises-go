@@ -1,5 +1,5 @@
 /**
- * @link Problem definition [[docs/hackerrank/warmup/miniMaxSum.md]]
+ * @link Problem definition [[docs/hackerrank/warmup/minimumiMaxSum.md]]
  */
 
 package hackerrank
@@ -15,21 +15,21 @@ func MiniMaxSum(arr []int) (string, error) {
 	}
 
 	sum := 0
-	min := arr[0]
-	max := arr[1]
+	minimum := arr[0]
+	maximum := arr[1]
 
-	for i := 0; i < len(arr); i++ {
+	for i := range arr {
 		num := arr[i]
 		sum += num
 
-		if num < min {
-			min = num
+		if num < minimum {
+			minimum = num
 		}
 
-		if num > max {
-			max = num
+		if num > maximum {
+			maximum = num
 		}
 	}
 
-	return fmt.Sprintf("%d %d", sum-max, sum-min), nil
+	return fmt.Sprintf("%d %d", sum-maximum, sum-minimum), nil
 }

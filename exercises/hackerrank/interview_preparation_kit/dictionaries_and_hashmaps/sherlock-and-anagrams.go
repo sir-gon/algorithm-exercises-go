@@ -27,8 +27,8 @@ func sherlockAndAnagrams(s string) int32 {
 	candidates := make(map[string][]string)
 	size := len(s)
 
-	for i := 0; i < size; i++ {
-		for j := 0; j < size-i; j++ {
+	for i := range size {
+		for j := range size - i {
 			substr := s[i : size-j]
 
 			log.Debug("i: %d, size: %d, size - j: %d | substr: %s",

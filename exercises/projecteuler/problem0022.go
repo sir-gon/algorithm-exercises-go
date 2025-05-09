@@ -19,7 +19,7 @@ func Problem0022(listOfNames []string) int {
 
 	sort.Strings(listOfNames)
 
-	for i := 0; i < len(listOfNames); i++ {
+	for i := range listOfNames {
 		answer += (i + 1) * helpers.WordScore(listOfNames[i])
 	}
 

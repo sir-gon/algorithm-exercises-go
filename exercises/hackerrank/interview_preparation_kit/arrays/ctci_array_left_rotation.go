@@ -16,9 +16,8 @@ func rotLeftOne(a []int32) []int32 {
 
 func rotLeft(a []int32, d int32) []int32 {
 	x := a[:]
-	var i int32
 
-	for i = 0; i < d; i++ {
+	for range d {
 		x = rotLeftOne(x)
 	}
 	return x

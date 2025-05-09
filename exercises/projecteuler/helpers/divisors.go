@@ -2,7 +2,7 @@ package helpers
 
 import (
 	"math"
-	"sort"
+	"slices"
 
 	"gon.cl/algorithms/utils/log"
 )
@@ -53,7 +53,7 @@ func Divisors(target int) []int {
 	log.Debug("collected divisors %x", divs)
 
 	// sort divisors
-	sort.Slice(divs, func(i, j int) bool { return divs[i] < divs[j] })
+	slices.Sort(divs)
 	log.Debug("sorted divisors %x", divs)
 
 	return divs

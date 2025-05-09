@@ -34,7 +34,7 @@ func Problem0008(numberInput string) int {
 	for i := bottom; i <= top-interval; i += 1 {
 		var digitsSet []int
 
-		for j := 0; j < interval; j++ {
+		for j := range interval {
 			digitsSet = append(digitsSet, int(digitsSlice[i+j]))
 		}
 

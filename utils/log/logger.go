@@ -102,8 +102,8 @@ func (logger *Log) WithError(err error) *Log {
 	return logCustom
 }
 
-func WithField(key string, value interface{}) *Log { return instance.WithField(key, value) }
-func (logger *Log) WithField(key string, value interface{}) *Log {
+func WithField(key string, value any) *Log { return instance.WithField(key, value) }
+func (logger *Log) WithField(key string, value any) *Log {
 	logCustom := &Log{
 		log: initLoggerZap(),
 	}
@@ -111,34 +111,34 @@ func (logger *Log) WithField(key string, value interface{}) *Log {
 	return logCustom
 }
 
-func Info(message string, args ...interface{}) { instance.Info(message, args...) }
-func (logger *Log) Info(message string, args ...interface{}) {
+func Info(message string, args ...any) { instance.Info(message, args...) }
+func (logger *Log) Info(message string, args ...any) {
 	logger.log.Info(fmt.Sprintf(message, args...))
 }
 
-func Error(message string, args ...interface{}) { instance.Error(message, args...) }
-func (logger *Log) Error(message string, args ...interface{}) {
+func Error(message string, args ...any) { instance.Error(message, args...) }
+func (logger *Log) Error(message string, args ...any) {
 	logger.log.Error(fmt.Sprintf(message, args...))
 }
 
-func Debug(message string, args ...interface{}) { instance.Debug(message, args...) }
-func (logger *Log) Debug(message string, args ...interface{}) {
+func Debug(message string, args ...any) { instance.Debug(message, args...) }
+func (logger *Log) Debug(message string, args ...any) {
 	logger.log.Debug(fmt.Sprintf(message, args...))
 }
 
-func Warn(message string, args ...interface{}) { instance.Warn(message, args...) }
-func (logger *Log) Warn(message string, args ...interface{}) {
+func Warn(message string, args ...any) { instance.Warn(message, args...) }
+func (logger *Log) Warn(message string, args ...any) {
 	logger.log.Warn(fmt.Sprintf(message, args...))
 }
 
-func Fatal(message string, args ...interface{}) { instance.Fatal(message, args...) }
-func (logger *Log) Fatal(message string, args ...interface{}) {
+func Fatal(message string, args ...any) { instance.Fatal(message, args...) }
+func (logger *Log) Fatal(message string, args ...any) {
 	logger.log.Fatal(fmt.Sprintf(message, args...))
 }
 
-func Printf(message string, args ...interface{}) {
+func Printf(message string, args ...any) {
 	instance.Printf(message, args...)
 }
-func (logger *Log) Printf(message string, args ...interface{}) {
+func (logger *Log) Printf(message string, args ...any) {
 	logger.log.Info(fmt.Sprintf(message, args...))
 }

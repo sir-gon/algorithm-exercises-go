@@ -4,7 +4,7 @@ func Sum(listOfNums []int) int {
 
 	var sum int
 
-	for i := 0; i < len(listOfNums); i++ {
+	for i := range listOfNums {
 		sum += listOfNums[i]
 	}
 

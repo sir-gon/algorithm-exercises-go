@@ -9,7 +9,7 @@ import "gon.cl/algorithms/utils/log"
 func SimpleArraySum(arr []int) int {
 	acum := 0
 
-	for i := 0; i < len(arr); i++ {
+	for i := range arr {
 		acum += arr[i]
 	}
 
