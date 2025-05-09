@@ -5,19 +5,11 @@
 package projecteuler
 
 import (
-	"golang.org/x/exp/slices"
+	slices "slices"
+
 	"gon.cl/algorithms/exercises/projecteuler/helpers"
 	"gon.cl/algorithms/utils/log"
 )
-
-func Contains[T comparable](s []T, e T) bool {
-	for _, v := range s {
-		if v == e {
-			return true
-		}
-	}
-	return false
-}
 
 func Problem0023(underLimit int, superLimit int) int {
 
@@ -38,7 +30,7 @@ func Problem0023(underLimit int, superLimit int) int {
 	var sumsAbundantNums = []int{}
 
 	// Produce a list of sums of pair of abundant numbers below limit
-	for i := 0; i < len(abundantNumberList); i++ {
+	for i := range abundantNumberList {
 		for j := 0; abundantNumberList[i]+abundantNumberList[j] <= superLimit &&
 			j < len(abundantNumberList); j++ {
 
@@ -62,7 +54,7 @@ func Problem0023(underLimit int, superLimit int) int {
 	var found = []int{}
 
 	for i := 1; i < superLimit; i++ {
-		if !Contains(sumsAbundantNums, i) {
+		if !slices.Contains(sumsAbundantNums, i) {
 			found = append(found, i)
 		}
 	}
