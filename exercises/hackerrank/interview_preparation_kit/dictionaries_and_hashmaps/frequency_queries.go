@@ -14,25 +14,25 @@ const __NOT_FOUND__ = 0
 const __FOUND__ = 1
 
 func freqQuery(queries [][]int32) []int32 {
-	data_map := make(map[int32]int32)
+	dataMap := make(map[int32]int32)
 	freq := make(map[int32]int32)
 	var result []int32
 
 	for _, query := range queries {
 		switch query[0] {
 		case __INSERT__:
-			if data_map[query[1]] == __INITIAL__ {
-				data_map[query[1]] = 1
+			if dataMap[query[1]] == __INITIAL__ {
+				dataMap[query[1]] = 1
 			} else {
-				freq[data_map[query[1]]]--
-				data_map[query[1]]++
+				freq[dataMap[query[1]]]--
+				dataMap[query[1]]++
 			}
-			freq[data_map[query[1]]]++
+			freq[dataMap[query[1]]]++
 		case __DELETE__:
-			if data_map[query[1]] > __INITIAL__ {
-				freq[data_map[query[1]]]--
-				data_map[query[1]]--
-				freq[data_map[query[1]]]++
+			if dataMap[query[1]] > __INITIAL__ {
+				freq[dataMap[query[1]]]--
+				dataMap[query[1]]--
+				freq[dataMap[query[1]]]++
 			}
 		case __SELECT__:
 			if freq[query[1]] > 0 {
