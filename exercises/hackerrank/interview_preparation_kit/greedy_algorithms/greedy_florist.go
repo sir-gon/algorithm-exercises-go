@@ -17,10 +17,10 @@ func getMinimumCost(k int32, c []int32) int32 {
 	slices.Reverse(flowers)
 
 	total := int32(0)
-	k_customers := int(k)
+	kCustomers := int(k)
 
 	for i, flower_cost := range flowers {
-		var position = int32(i / k_customers)
+		var position = int32(i / kCustomers)
 		total += int32(position+1) * int32(flower_cost)
 	}
 
