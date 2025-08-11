@@ -24,7 +24,7 @@ jobs:
         go: ["1.23.x"]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           # Shallow clones should be disabled for a better relevancy of analysis
           fetch-depth: 0
