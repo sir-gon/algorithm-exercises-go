@@ -22,7 +22,7 @@ jobs:
         go: ["1.22.x", "1.23.x", "1.24.x"]
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Set up Go
         uses: actions/setup-go@v5
