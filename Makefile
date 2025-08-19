@@ -88,15 +88,15 @@ format:
 	$(GO) run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -fix ./...
 
 coverage.out: env dependencies
-	$(GOTEST) -v -covermode=atomic -coverprofile="coverage.out" ./exercises/...
+	$(GOTEST) -v -covermode=atomic -coverprofile="coverage/coverage.out" ./exercises/...
 
 test: env dependencies coverage.out
-	$(GOCOVER) -func=coverage.out
+	$(GOCOVER) -func=coverage/coverage.out
 
 coverage: test
 
 coverage/html: coverage.out
-	$(GOCOVER) -html=coverage.out -o ./coverage/coverage.html
+	$(GOCOVER) -html=coverage/coverage.out -o ./coverage/coverage.html
 	open ./coverage/coverage.html
 
 outdated:
