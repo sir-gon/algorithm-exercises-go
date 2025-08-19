@@ -15,7 +15,7 @@ env:
 
 jobs:
 
-  coverage:
+  build-and-test:
     name: "Go CI Tests Coverage"
     strategy:
       fail-fast: false
@@ -41,21 +41,56 @@ jobs:
         run: >
           go test -v
           -covermode=atomic
-          -coverprofile="coverage.out"
+          -coverprofile="coverage/coverage.out"
           ./exercises/...
 
       - name: Coverage
-        run: go tool cover -func="coverage.out"
+        run: go tool cover -func="coverage/coverage.out"
+
+      - name: Upload coverage artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage
+
+  codecov:
+    name: Upload to Codecov
+    runs-on: ubuntu-24.04
+    needs: build-and-test
+
+    steps:
+      - name: Download coverage artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: coverage-report
+          path: coverage
 
       - name: Upload coverage reports to Codecov with GitHub Action
         uses: codecov/codecov-action@v5
         with:
+          files: coverage/coverage.out
           token: ${{ secrets.CODECOV_TOKEN }} # required
           verbose: true # optional (default = false)
 
-      - name: Analyze with SonarCloud
+  sonarqube:
+    name: Analyze with SonarQube
+    runs-on: ubuntu-24.04
+    needs: build-and-test
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
+
+      - name: Download coverage artifact
+        uses: actions/download-artifact@v5
+        with:
+          name: coverage-report
+          path: coverage
+
+      - name: SonarQube Scan
         uses: SonarSource/sonarqube-scan-action@master
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          # Needed to get PR information, if any
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
