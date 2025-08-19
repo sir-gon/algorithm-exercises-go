@@ -81,6 +81,8 @@ COPY ./go.mod ${WORKDIR}/
 COPY ./go.sum ${WORKDIR}/
 COPY ./Makefile ${WORKDIR}/
 
+RUN mkdir ${WORKDIR}/coverage
+
 # CMD []
 ###############################################################################
 FROM development AS builder
