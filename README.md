@@ -263,7 +263,7 @@ Developed with runtime:
 
 ```text
 go version
-go version go1.22.4 darwin/amd64
+go version go1.25.4 darwin/amd64
 ```
 
 ## Algorithm excersices sources
