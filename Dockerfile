@@ -29,7 +29,7 @@ WORKDIR ${WORKDIR}
 
 RUN  apk add --update --no-cache make nodejs npm wget \
   && apk add --update --no-cache yamllint \
-  && npm install -g --ignore-scripts markdownlint-cli
+  && npm install -g --ignore-scripts markdownlint-cli@0.47.0
 
 ADD https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh ${WORKDIR}/
 RUN sh install.sh -b $(go env GOPATH)/bin v2.0.0 \
