@@ -1,6 +1,6 @@
 package helpers
 
-func Matrix(m int, n int, init int) [][]int {
+func Matrix(m, n, init int) [][]int {
 	var matrix [][]int
 
 	for range m {

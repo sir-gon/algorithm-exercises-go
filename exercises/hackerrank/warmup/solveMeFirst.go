@@ -6,7 +6,7 @@ package hackerrank
 
 import "gon.cl/algorithms/utils/log"
 
-func SolveMeFirst(a int, b int) int {
+func SolveMeFirst(a, b int) int {
 
 	var answer = a + b
 

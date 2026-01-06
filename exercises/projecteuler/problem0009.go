@@ -10,7 +10,7 @@ import (
 	"gon.cl/algorithms/utils/log"
 )
 
-func IsPythagoreanTriplet(a int, b int, c int) bool {
+func IsPythagoreanTriplet(a, b, c int) bool {
 	return a < b && b < c && math.Pow(float64(a), 2)+math.Pow(float64(b), 2) == math.Pow(float64(c), 2)
 }
 

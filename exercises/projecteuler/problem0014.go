@@ -9,7 +9,7 @@ import (
 	"gon.cl/algorithms/utils/log"
 )
 
-func Problem0014(bottom int, top int) int {
+func Problem0014(bottom, top int) int {
 	var answer int
 	var maxSequence []int
 
