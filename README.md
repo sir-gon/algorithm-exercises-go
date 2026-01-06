@@ -1,6 +1,7 @@
 # Algorithm Exercises (Golang)
 
-[![Go CI](https://github.com/sir-gon/algorithm-exercises-go/actions/workflows/go.yml/badge.svg)](https://github.com/sir-gon/algorithm-exercises-go/actions/workflows/go.yml)
+[![Go CI/CD Test](https://github.com/sir-gon/algorithm-exercises-go/actions/workflows/go-test.yml/badge.svg)](https://github.com/sir-gon/algorithm-exercises-go/actions/workflows/go-test.yml)
+[![Go CI/CD Lint](https://github.com/sir-gon/algorithm-exercises-go/actions/workflows/go-lint.yml/badge.svg)](https://github.com/sir-gon/algorithm-exercises-go/actions/workflows/go-lint.yml)
 [![Markdown Lint](https://github.com/sir-gon/algorithm-exercises-go/actions/workflows/markdown-lint.yml/badge.svg)](https://github.com/sir-gon/algorithm-exercises-go/actions/workflows/markdown-lint.yml)
 [![YAML lint](https://github.com/sir-gon/algorithm-exercises-go/actions/workflows/yamllint.yml/badge.svg)](https://github.com/sir-gon/algorithm-exercises-go/actions/workflows/yamllint.yml)
 
