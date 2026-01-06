@@ -1,5 +1,4 @@
 //go:build bruteforce
-// +build bruteforce
 
 package projecteuler
 
