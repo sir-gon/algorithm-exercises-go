@@ -21,7 +21,7 @@ import (
 	"gon.cl/algorithms/utils/log"
 )
 
-func Problem0021(start int, limit int) int {
+func Problem0021(start, limit int) int {
 
 	cache := map[int]int{}
 	amicables := map[int]int{}

@@ -11,7 +11,7 @@ import (
 	"gon.cl/algorithms/utils/log"
 )
 
-func Problem0023(underLimit int, superLimit int) int {
+func Problem0023(underLimit, superLimit int) int {
 
 	var abundantNumberList = []int{}
 
