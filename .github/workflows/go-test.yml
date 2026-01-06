@@ -19,7 +19,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ["windows-2022", "ubuntu-24.04", "macos-14"]
-        go: ["1.24.x", "1.25.x"]
+        go: ["1.23.x", "1.24.x", "1.25.x"]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6

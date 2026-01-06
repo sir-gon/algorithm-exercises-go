@@ -39,6 +39,22 @@ PKG_LIST=$(go list ./... | grep -v /vendor/ | tr '\n' ' '| xargs echo -n)
 BUILDKIT_PROGRESS=plain
 CGO_ENABLED=0
 
+# Modernize tool versioning
+# Go 1.25 requires gopls v0.21.0+
+# Go 1.24 and below should use gopls v0.20.0
+GO_VERSION := $(shell go version | cut -d' ' -f3 | sed 's/go//')
+MODERNIZE_VER := v0.20.0
+
+# Check if Go version is 1.25 or higher
+IS_GO_125 := $(shell echo "$(GO_VERSION)" | awk -F. '{if ($$1 > 1 || ($$1 == 1 && $$2 >= 25)) print 1; else print 0}')
+
+ifeq ($(IS_GO_125),1)
+	MODERNIZE_VER := latest
+endif
+
+# Use GOTOOLCHAIN=auto to ensure the required toolchain is available if needed
+MODERNIZE_CMD := GOTOOLCHAIN=auto $(GO) run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@$(MODERNIZE_VER)
+
 .MAIN: test/coverage
 .PHONY: all clean coverage dependencies help list test
 .EXPORT_ALL_VARIABLES: # (2)
@@ -82,10 +98,10 @@ test/static: dependencies
 
 test/styling: dependencies
 	gofmt -l . && echo '✔  Your code looks good.'
-	$(GO) run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -test ./...
+	$(MODERNIZE_CMD) -test ./...
 
 format:
-	$(GO) run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -fix ./...
+	$(MODERNIZE_CMD) -fix ./...
 
 coverage.out: env dependencies
 	$(GOTEST) -v -covermode=atomic -coverprofile="coverage.out" ./exercises/...
