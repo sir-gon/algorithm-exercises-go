@@ -10,7 +10,7 @@ import (
 	"gon.cl/algorithms/utils/log"
 )
 
-func CompareTriplets(a []int, b []int) ([]int, error) {
+func CompareTriplets(a, b []int) ([]int, error) {
 
 	if len(a) != len(b) {
 		return nil, errors.New("empty input")

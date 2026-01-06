@@ -27,7 +27,7 @@ import (
 const __NUMERIC_BASE__ = 10
 const __SPLIT_SEPARATOR__ = ""
 
-func Problem0016(base int, exponent int) string {
+func Problem0016(base, exponent int) string {
 
 	power := new(big.Int).Exp(big.NewInt(int64(base)), big.NewInt(int64(exponent)), nil)
 
