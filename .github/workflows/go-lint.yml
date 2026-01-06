@@ -1,5 +1,5 @@
 ---
-name: Go CI Tests
+name: Go CI Lint
 
 on: # yamllint disable-line rule:truthy
   push:
