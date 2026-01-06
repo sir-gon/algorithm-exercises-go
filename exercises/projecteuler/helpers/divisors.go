@@ -121,7 +121,7 @@ func PrimeFactors(target int) (factors []int, cycles int) {
 	return
 }
 
-func AreAmicables(a int, b int, cache map[int]int) bool {
+func AreAmicables(a, b int, cache map[int]int) bool {
 
 	if a == b || a <= 1 || b <= 1 {
 		return false

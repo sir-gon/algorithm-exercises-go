@@ -9,7 +9,7 @@ import (
 	"gon.cl/algorithms/utils/log"
 )
 
-func Problem0010(bottom int, top int) int {
+func Problem0010(bottom, top int) int {
 
 	var answer int
 

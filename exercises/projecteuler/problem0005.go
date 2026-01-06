@@ -30,7 +30,7 @@ func primeFactorListCollection(factors []int) map[int]int {
 	return collection
 }
 
-func Problem0005(bottom int, top int) int {
+func Problem0005(bottom, top int) int {
 
 	var minimumPrimeFactors = map[int]int{}
 	var cycles = 0

@@ -12,7 +12,7 @@ import (
 	"gon.cl/algorithms/utils/log"
 )
 
-func Problem0017(init int, last int) int {
+func Problem0017(init, last int) int {
 
 	var acum int
 

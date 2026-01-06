@@ -12,8 +12,8 @@ import (
 const __FEBRUARY_KEY__ = "FEBRUARY"
 
 func Problem0019(
-	dayOfWeek int,
-	sinceYear int,
+	dayOfWeek,
+	sinceYear,
 	untilYear int) int {
 
 	const initYear = 1900

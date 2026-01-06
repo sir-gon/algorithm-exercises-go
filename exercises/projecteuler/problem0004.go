@@ -9,7 +9,7 @@ import (
 	"gon.cl/algorithms/utils/log"
 )
 
-func Problem0004(bottom int, top int) int {
+func Problem0004(bottom, top int) int {
 	var i int
 	var j int
 	var foundi int

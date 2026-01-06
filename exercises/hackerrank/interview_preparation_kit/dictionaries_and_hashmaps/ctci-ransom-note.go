@@ -9,7 +9,7 @@ import "fmt"
 const __RANSOM_NOTE_YES__ = "Yes"
 const __RANSOM_NOTE_NO__ = "No"
 
-func checkMagazineCompute(magazine []string, note []string) bool {
+func checkMagazineCompute(magazine, note []string) bool {
 	dictionary := make(map[string]int)
 
 	for _, word := range magazine {
@@ -27,7 +27,7 @@ func checkMagazineCompute(magazine []string, note []string) bool {
 	return true
 }
 
-func checkMagazineText(magazine []string, note []string) string {
+func checkMagazineText(magazine, note []string) string {
 	if checkMagazineCompute(magazine, note) {
 		return __RANSOM_NOTE_YES__
 	}
@@ -35,14 +35,14 @@ func checkMagazineText(magazine []string, note []string) string {
 	return __RANSOM_NOTE_NO__
 }
 
-func checkMagazine(magazine []string, note []string) {
+func checkMagazine(magazine, note []string) {
 	fmt.Println(checkMagazineText(magazine, note))
 }
 
-func CheckMagazineText(magazine []string, note []string) string {
+func CheckMagazineText(magazine, note []string) string {
 	return checkMagazineText(magazine, note)
 }
 
-func CheckMagazine(magazine []string, note []string) {
+func CheckMagazine(magazine, note []string) {
 	checkMagazine(magazine, note)
 }

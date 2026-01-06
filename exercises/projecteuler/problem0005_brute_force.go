@@ -4,7 +4,7 @@ import (
 	"gon.cl/algorithms/utils/log"
 )
 
-func Problem0005BruteForce(bottom int, top int, startFrom int) int {
+func Problem0005BruteForce(bottom, top, startFrom int) int {
 
 	var answer int
 	found := false
