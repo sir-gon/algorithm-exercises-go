@@ -22,7 +22,7 @@ func factorial(n int) int {
 
 func permute(symbols string, target int) string {
 	choices := strings.Split(symbols, "")
-	answer := ""
+	var answer strings.Builder
 	minimum := 0
 
 	for len(choices) > 0 {
@@ -33,14 +33,14 @@ func permute(symbols string, target int) string {
 			index += 1
 			minimum += combos
 		}
-		answer += choices[index]
+		answer.WriteString(choices[index])
 		copy(choices[index:], choices[index+1:])
 		choices[len(choices)-1] = ""
 		choices = choices[:len(choices)-1]
 		minimum -= combos
 	}
 
-	return answer
+	return answer.String()
 }
 
 func Problem0024(inputElements string, inputPermutationToFind int) string {

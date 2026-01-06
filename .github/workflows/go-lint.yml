@@ -19,7 +19,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ["windows-2022", "ubuntu-24.04", "macos-14"]
-        go: ["1.24.x", "1.25.x"]
+        go: ["1.23.x", "1.24.x", "1.25.x"]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v6
@@ -32,14 +32,8 @@ jobs:
 
       - run: go version
 
-      - name: Test Styling (gofmt)
-        run: gofmt -l . && echo '✔  Your code looks good.'
-
-      # yamllint disable rule:line-length
-      - name: Test Styling (analysis/modernize) Analyzer modernize
-        if: ${{ ! startsWith(matrix.go, '1.22') }}
-        run: go run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@latest -test ./...
-      # yamllint enable rule:line-length
+      - name: Test Styling (gofmt & modernize)
+        run: make test/styling
 
       - name: Lint (go vet)
         run: go vet -v ./...
