@@ -12,8 +12,7 @@ func buildBNodeTreeRecursive(
 
 		resultNode := BNode{dataTree[i][j], nil, nil}
 
-		if i+1 <= len(dataTree)-1 && j <= len(dataTree[i+1])-1 &&
-			i+1 <= len(dataTree)-1 && j+1 <= len(dataTree[i+1])-1 {
+		if i+1 <= len(dataTree)-1 && j <= len(dataTree[i+1])-1 && j+1 <= len(dataTree[i+1])-1 {
 
 			left, err := buildBNodeTreeRecursive(dataTree, i+1, j)
 			log.Debug("left: %v | err: %t", left, err)
@@ -48,7 +47,7 @@ func buildBNodeTreeWeigthRecursive(
 		resultNode := BNode{dataTree[i][j] + rootValue.getValue(), nil, nil}
 
 		if i+1 <= len(dataTree)-1 && j <= len(dataTree[i+1])-1 &&
-			i+1 <= len(dataTree)-1 && j+1 <= len(dataTree[i+1])-1 {
+			j+1 <= len(dataTree[i+1])-1 {
 
 			var left BNode
 			var right BNode
