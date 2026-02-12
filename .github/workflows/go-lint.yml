@@ -19,7 +19,7 @@ jobs:
       fail-fast: false
       matrix:
         os: ["windows-2022", "ubuntu-24.04", "macos-14"]
-        go: ["1.23.x", "1.24.x", "1.25.x"]
+        go: ["1.24.x", "1.25.x", "1.26.x"]
     runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
@@ -40,9 +40,9 @@ jobs:
 
       # yamllint disable rule:line-length
       - name: Lint golangci-lint
-        uses: golangci/golangci-lint-action@1e7e51e771db61008b38414a730f564565cf7c20 # v9.2.0
+        uses: golangci/golangci-lint-action@1e7e51e771db61008b38414a730f564565cf7c20 # v2.9.0
         with:
           args: --timeout=10m
-          version: v2.1.0
+          version: v2.9.0
           skip-cache: true
           # yamllint enable rule:line-length
