@@ -1,4 +1,4 @@
-ARG BUILDTIME_IMAGE=golang:1.25.7-alpine3.23
+ARG BUILDTIME_IMAGE=golang:1.26.0-alpine3.23
 ARG RUNTIME_IMAGE=scratch
 
 ###############################################################################
@@ -32,7 +32,7 @@ RUN  apk add --update --no-cache make nodejs npm wget \
   && npm install -g --ignore-scripts markdownlint-cli@0.47.0
 
 ADD https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh ${WORKDIR}/
-RUN sh install.sh -b $(go env GOPATH)/bin v2.0.0 \
+RUN sh install.sh -b $(go env GOPATH)/bin v2.9.0 \
   && rm install.sh \
   && golangci-lint --version
 
