@@ -1,4 +1,4 @@
-ARG BUILDTIME_IMAGE=golang:1.26.1-alpine3.23
+ARG BUILDTIME_IMAGE=golang:1.26.2-alpine3.23
 ARG RUNTIME_IMAGE=scratch
 
 ###############################################################################
