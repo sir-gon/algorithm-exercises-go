@@ -7,7 +7,7 @@ func Product(numList []int) int {
 		return 0
 	}
 
-	for i := 0; i < len(numList); i += 1 {
+	for i := range numList {
 		result *= numList[i]
 	}
 

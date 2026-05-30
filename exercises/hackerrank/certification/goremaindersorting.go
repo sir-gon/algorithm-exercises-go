@@ -8,7 +8,7 @@ func RemainderSorting(strArr []string) []string {
 	sortingmap := make(map[int][]string)
 	keys := []int{}
 
-	for i := 0; i < len(strArr); i += 1 {
+	for i := range strArr {
 		word := strArr[i]
 		score := len(strArr[i]) % 3
 
@@ -30,7 +30,7 @@ func RemainderSorting(strArr []string) []string {
 	for j := 0; j < len(keys); j += 1 {
 		element := sortingmap[j]
 
-		for j := 0; j < len(element); j += 1 {
+		for j := range element {
 			result = append(result, element[j])
 		}
 	}

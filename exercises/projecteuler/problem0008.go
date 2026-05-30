@@ -22,7 +22,7 @@ func Problem0008(numberInput string) int {
 	var digitsSlice []int32
 	var bigNumSlice = strings.Split(numberInput, "")
 
-	for i := 0; i < len(bigNumSlice); i += 1 {
+	for i := range bigNumSlice {
 		v, _ := strconv.ParseInt(string(bigNumSlice[i]), __BASE__, __BIT_SIZE__)
 		digitsSlice = append(digitsSlice, int32(v))
 	}

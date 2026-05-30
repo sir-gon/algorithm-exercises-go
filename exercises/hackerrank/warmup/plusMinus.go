@@ -17,7 +17,7 @@ func PlusMinus(arr []int) string {
 	negatives := 0
 	zeros := 0
 
-	for i := 0; i < len(arr); i += 1 {
+	for i := range arr {
 		var num = arr[i]
 
 		if num > 0 {
