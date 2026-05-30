@@ -1,0 +1,61 @@
+# yamllint disable rule:line-length
+# This workflow runs make coverage/html and verifies that the coverage HTML report is generated.
+# yamllint enable rule:line-length
+
+---
+name: Make Coverage HTML
+
+env:
+  REPORT_DIR: "./coverage/"
+  REPORT_FILE: "coverage.html"
+
+on: # yamllint disable-line rule:truthy
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  make-coverage-html:
+    name: "Run make coverage/html and verify coverage HTML"
+    runs-on: ubuntu-24.04
+
+    steps:
+      - uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6
+        with:
+          fetch-depth: 0
+
+      - name: Set up Go
+        uses: actions/setup-go@v6
+        with:
+          go-version: "1.26.x"
+
+      - name: Build
+        run: go build -v ./...
+
+      - name: Tool test
+        run: |
+          go version
+          make --version
+
+      - name: Run coverage HTML target
+        run: make coverage/html
+
+      - name: Verify coverage HTML artifact
+        shell: bash
+        run: |
+          if [ ! -f $REPORT_DIR/$REPORT_FILE ]; then
+            echo "Coverage HTML file not found: $REPORT_DIR/$REPORT_FILE"
+            exit 1
+          fi
+          if [ ! -s $REPORT_DIR/$REPORT_FILE ]; then
+            echo "Coverage HTML file is empty: $REPORT_DIR/$REPORT_FILE"
+            exit 1
+          fi
+
+      - name: Upload coverage HTML artifact
+        uses: actions/upload-artifact@v7
+        with:
+          name: coverage-report-html
+          path: ${{ env.REPORT_DIR }}
