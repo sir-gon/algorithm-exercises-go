@@ -20,7 +20,7 @@ func Problem0013(inputListOfBigNumbers []string) string {
 
 	var listOfBigNumbers []*big.Int
 
-	for i := 0; i < len(inputListOfBigNumbers); i += 1 {
+	for i := range inputListOfBigNumbers {
 		var bignum, ok = new(big.Int).SetString(inputListOfBigNumbers[i], 0)
 		listOfBigNumbers = append(listOfBigNumbers, bignum)
 
