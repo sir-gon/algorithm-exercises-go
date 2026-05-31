@@ -52,8 +52,8 @@ ifeq ($(IS_GO_125),1)
 	MODERNIZE_VER := latest
 endif
 
-# Use GOTOOLCHAIN=auto to ensure the required toolchain is available if needed
 MODERNIZE_CMD := GOTOOLCHAIN=auto $(GO) run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@$(MODERNIZE_VER)
+LINTER_CMD := golangci-lint
 
 .MAIN: test/coverage
 .PHONY: all clean coverage dependencies help list test
@@ -94,7 +94,7 @@ lint: lint/markdown lint/yaml test/styling test/static
 
 test/static: dependencies
 	$(GO) vet -v ./...
-	golangci-lint --verbose run ./...
+	$(LINTER_CMD) --verbose run ./...
 
 test/styling: dependencies
 	gofmt -l . && echo '✔  Your code looks good.'
@@ -102,6 +102,7 @@ test/styling: dependencies
 
 format:
 	$(MODERNIZE_CMD) -fix ./...
+	$(LINTER_CMD) --verbose run --fix ./...
 
 coverage.out: env dependencies
 	$(GOTEST) -v -covermode=atomic -coverprofile="coverage.out" ./exercises/...
