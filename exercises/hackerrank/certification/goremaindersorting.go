@@ -30,9 +30,7 @@ func RemainderSorting(strArr []string) []string {
 	for j := 0; j < len(keys); j += 1 {
 		element := sortingmap[j]
 
-		for j := range element {
-			result = append(result, element[j])
-		}
+		result = append(result, element...)
 	}
 
 	return result
