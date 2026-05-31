@@ -114,7 +114,15 @@ coverage: test
 
 coverage/html: coverage.out
 	$(GOCOVER) -html=coverage.out -o ./coverage/coverage.html
-	open ./coverage/coverage.html
+
+
+	@if [ "$$(uname)" = "Darwin" ]; then \
+		open ./coverage/coverage.html; \
+	elif [ "$$(uname | tr '[:upper:]' '[:lower:]')" = "mingw32" ] || [ "$$(uname | tr '[:upper:]' '[:lower:]')" = "mingw64" ] || [ "$$(uname | tr '[:upper:]' '[:lower:]')" = "cygwin" ]; then \
+		cmd /c start ./coverage/coverage.html; \
+	else \
+		echo "Coverage HTML generated: ./coverage/coverage.html"; \
+	fi
 
 outdated:
 	$(GO) list -m -u all
