@@ -1,8 +1,4 @@
-ARG BUILDTIME_IMAGE=golang:1.26.5-alpine3.23
-ARG RUNTIME_IMAGE=scratch
-
-###############################################################################
-FROM ${BUILDTIME_IMAGE} AS init
+FROM golang:1.26.5-alpine3.24 AS init
 
 ENV CGO_ENABLED=0
 RUN apk add --update --no-cache make
@@ -132,7 +128,7 @@ CMD ["make", "test"]
 ##   https://shakib37.medium.com/distroless-as-the-final-container-base-image-b8af961fc826
 ##   https://chemidy.medium.com/create-the-smallest-and-secured-golang-docker-image-based-on-scratch-4752223b7324
 
-FROM ${RUNTIME_IMAGE} AS production
+FROM scratch AS production
 
 ENV WORKDIR=/app
 WORKDIR ${WORKDIR}
