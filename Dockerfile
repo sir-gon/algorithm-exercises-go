@@ -29,7 +29,7 @@ WORKDIR ${WORKDIR}
 
 RUN  apk add --update --no-cache make nodejs npm wget \
   && apk add --update --no-cache yamllint \
-  && npm install -g --ignore-scripts markdownlint-cli@0.47.0
+  && npm install -g --ignore-scripts markdownlint-cli@0.49.1
 
 ADD https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh ${WORKDIR}/
 RUN sh install.sh -b $(go env GOPATH)/bin v2.9.0 \
@@ -59,7 +59,7 @@ COPY ./go.sum ${WORKDIR}/
 COPY ./Makefile ${WORKDIR}/
 
 # markdownlint conf
-COPY ./.markdownlint.yaml ${WORKDIR}/
+COPY ./.markdownlint.json ${WORKDIR}/
 
 # yamllint conf
 COPY ./.yamllint ${WORKDIR}/
