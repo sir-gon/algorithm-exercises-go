@@ -1,4 +1,4 @@
-FROM golang:1.27.0-alpine3.24 AS init
+FROM golang:1.27.1-alpine3.24 AS init
 
 ENV CGO_ENABLED=0
 RUN apk add --update --no-cache make
