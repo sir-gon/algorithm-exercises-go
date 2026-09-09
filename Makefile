@@ -90,7 +90,9 @@ lint/markdown:
 lint/yaml:
 	yamllint --stric . && echo '✔  Your code looks good.'
 
-lint: lint/markdown lint/yaml test/styling test/static
+lint: test/styling test/static
+
+lint/all: lint/markdown lint/yaml test/styling test/static
 
 test/static: dependencies
 	$(GO) vet -v ./...
@@ -153,11 +155,19 @@ compose/rebuild: env
 	${DOCKER_COMPOSE} --profile testing build --no-cache
 	${DOCKER_COMPOSE} --profile production build
 
-compose/lint/markdown: compose/build
-	${DOCKER_COMPOSE} --profile lint run --rm algorithm-exercises-go-lint make lint/markdown
+compose/lint/markdown:
+	${DOCKER_COMPOSE} --profile lint run --rm \
+    --workdir /workspace \
+    -v "$$(pwd):/workspace" \
+    markdownlint --config /workspace/.markdownlint.json '/workspace/**/*.md' \
+		&& echo '✔  Your code looks good.'
 
-compose/lint/yaml: compose/build
-	${DOCKER_COMPOSE} --profile lint run --rm algorithm-exercises-go-lint make lint/yaml
+compose/lint/yaml:
+	${DOCKER_COMPOSE} --profile lint run --rm \
+	--workdir /workspace \
+	-v "$$(pwd):/workspace" \
+ 	yamllint --strict . \
+  && echo '✔  Your code looks good.'
 
 compose/test/styling: compose/build
 	${DOCKER_COMPOSE} --profile lint run --rm algorithm-exercises-go-lint make test/styling
@@ -172,6 +182,8 @@ compose/test: compose/build
 
 compose/run: compose/build
 	${DOCKER_COMPOSE} --profile production run --rm algorithm-exercises-go
+
+compose/all: compose/rebuild compose/test compose/lint
 
 all: test coverage
 

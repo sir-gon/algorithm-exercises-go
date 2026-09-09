@@ -23,10 +23,6 @@ FROM base AS lint
 ENV WORKDIR=/app
 WORKDIR ${WORKDIR}
 
-RUN  apk add --update --no-cache make nodejs npm wget \
-  && apk add --update --no-cache yamllint \
-  && npm install -g --ignore-scripts markdownlint-cli@0.49.1
-
 ADD https://golangci-lint.run/install.sh ${WORKDIR}/
 RUN sh install.sh -b $(go env GOPATH)/bin v2.13.1 \
   && rm install.sh \
@@ -34,16 +30,6 @@ RUN sh install.sh -b $(go env GOPATH)/bin v2.13.1 \
 
 # [!TIP] Use a bind-mount to "/app" to override following "copys"
 # for lint and test against "current" sources in this stage
-
-# YAML sources
-COPY ./.github ${WORKDIR}/
-COPY ./compose.yaml ${WORKDIR}/
-
-# Markdown sources
-COPY ./docs ${WORKDIR}/
-COPY ./README.md ${WORKDIR}/
-COPY ./LICENSE.md ${WORKDIR}/
-COPY ./CODE_OF_CONDUCT.md ${WORKDIR}/
 
 # Code source
 COPY ./exercises ${WORKDIR}/exercises
@@ -53,14 +39,6 @@ COPY ./main.go ${WORKDIR}/
 COPY ./go.mod ${WORKDIR}/
 COPY ./go.sum ${WORKDIR}/
 COPY ./Makefile ${WORKDIR}/
-
-# markdownlint conf
-COPY ./.markdownlint.json ${WORKDIR}/
-
-# yamllint conf
-COPY ./.yamllint ${WORKDIR}/
-COPY ./.yamlignore ${WORKDIR}/
-COPY ./.gitignore ${WORKDIR}/
 
 CMD ["make", "lint"]
 

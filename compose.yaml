@@ -18,11 +18,22 @@ services:
     build:
       context: .
       target: lint
-    # environment:
-    #   LOG_LEVEL: ${LOG_LEVEL:-info} ## (1) ## info | debug
-    #   BRUTEFORCE: ${BRUTEFORCE:-false} ## (1) ## true | false
     volumes:
       - ./:/app
+    profiles: ["lint"]
+
+  markdownlint:
+    image: goncl/markdownlint-cli:latest
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+    profiles: ["lint"]
+
+  yamllint:
+    image: goncl/yamllint:latest
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
     profiles: ["lint"]
 
   algorithm-exercises-go-dev:
