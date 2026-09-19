@@ -1,20 +1,6 @@
 [
   {
-    "input": [
-      "Colorado",
-      "Utah",
-      "Montana",
-      "Wisconsin",
-      "Oregon",
-      "Maine"
-    ],
-    "expected": [
-      "Oregon",
-      "Wisconsin",
-      "Montana",
-      "Utah",
-      "Colorado",
-      "Maine"
-    ]
+    "input": ["Colorado", "Utah", "Montana", "Wisconsin", "Oregon", "Maine"],
+    "expected": ["Oregon", "Wisconsin", "Montana", "Utah", "Colorado", "Maine"]
   }
 ]

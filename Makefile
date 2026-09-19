@@ -90,9 +90,12 @@ lint/markdown:
 lint/yaml:
 	yamllint --stric . && echo '✔  Your code looks good.'
 
+lint/json:
+	prettier --check ./**/*.json
+
 lint: test/styling test/static
 
-lint/all: lint/markdown lint/yaml test/styling test/static
+lint/all: lint/markdown lint/yaml lint/json test/styling test/static
 
 test/static: dependencies
 	$(GO) vet -v ./...
@@ -102,9 +105,14 @@ test/styling: dependencies
 	gofmt -l . && echo '✔  Your code looks good.'
 	$(MODERNIZE_CMD) -test ./...
 
-format:
+format/sources: dependencies
 	$(MODERNIZE_CMD) -fix ./...
 	$(LINTER_CMD) --verbose run --fix ./...
+
+format/json:
+	prettier --write ./**/*.json
+
+format: format/sources format/json
 
 coverage.out: env dependencies
 	$(GOTEST) -v -covermode=atomic -coverprofile="coverage.out" ./exercises/...
@@ -169,13 +177,22 @@ compose/lint/yaml:
  	yamllint --strict . \
   && echo '✔  Your code looks good.'
 
+compose/lint/json:
+	${DOCKER_COMPOSE} --profile lint run --rm \
+    --workdir /workspace \
+    -v "$$(pwd):/workspace" \
+    prettier --check /workspace/**/*.json \
+		&& echo '✔  Your code looks good.'
+
 compose/test/styling: compose/build
 	${DOCKER_COMPOSE} --profile lint run --rm algorithm-exercises-go-lint make test/styling
 
 compose/test/static: compose/build
 	${DOCKER_COMPOSE} --profile lint run --rm algorithm-exercises-go-lint make test/static
 
-compose/lint: compose/lint/markdown compose/lint/yaml compose/test/styling compose/test/static
+compose/lint: compose/test/styling compose/test/static
+
+compose/lint/all: compose/lint/markdown compose/lint/yaml compose/lint/json compose/test/styling compose/test/static
 
 compose/test: compose/build
 	${DOCKER_COMPOSE} --profile testing run --rm algorithm-exercises-go-test make test
