@@ -23,13 +23,13 @@ func IntMinOfMany(list []int) (int, error) {
 		return 0, errors.New(__ERR_EMPTY_LIST__)
 	}
 
-	min := list[0]
+	minimum := list[0]
 
 	for i := 1; i < len(list); i += 1 {
-		min = IntMin(list[i], min)
+		minimum = IntMin(list[i], minimum)
 	}
 
-	return min, nil
+	return minimum, nil
 }
 
 func IntMaxOfMany(list []int) (int, error) {
@@ -37,11 +37,11 @@ func IntMaxOfMany(list []int) (int, error) {
 		return 0, errors.New(__ERR_EMPTY_LIST__)
 	}
 
-	min := list[0]
+	maximum := list[0]
 
 	for i := 1; i < len(list); i += 1 {
-		min = IntMax(list[i], min)
+		maximum = IntMax(list[i], maximum)
 	}
 
-	return min, nil
+	return maximum, nil
 }
