@@ -1,7 +1,7 @@
 FROM golang:1.27.1-alpine3.24 AS init
 
 ENV CGO_ENABLED=0
-RUN apk add --update --no-cache make
+RUN apk add --update --no-cache "make=4.4.1-r4"
 
 ENV WORKDIR=/app
 WORKDIR ${WORKDIR}
@@ -24,7 +24,7 @@ ENV WORKDIR=/app
 WORKDIR ${WORKDIR}
 
 ADD https://golangci-lint.run/install.sh ${WORKDIR}/
-RUN sh install.sh -b $(go env GOPATH)/bin v2.13.1 \
+RUN sh install.sh -b "$(go env GOPATH)/bin" v2.13.1 \
   && rm install.sh \
   && golangci-lint --version
 
@@ -46,7 +46,7 @@ CMD ["make", "lint"]
 FROM base AS development
 
 ENV BINDIR=/usr/local/bin
-RUN apk add --update --no-cache make
+RUN apk add --update --no-cache "make=4.4.1-r4"
 
 COPY ./exercises ${WORKDIR}/exercises
 COPY ./utils ${WORKDIR}/utils
@@ -60,7 +60,11 @@ COPY ./Makefile ${WORKDIR}/
 FROM development AS builder
 
 # Ca-certificates is required to call HTTPS endpoints.
-RUN apk update && apk add --no-cache ca-certificates tzdata && update-ca-certificates
+RUN apk update \
+  && apk add --no-cache \
+    "ca-certificates=20260909-r0" \
+    "tzdata=2026d-r0" \
+  && update-ca-certificates
 
 # Create appuser
 ENV USER=appuser
@@ -121,7 +125,7 @@ COPY --from=builder /etc/group /etc/group
 COPY --from=builder /app/bin/algorithms ${WORKDIR}/
 
 # Use an unprivileged user.
-USER appuser:appuser
+USER 10001:10001
 
 # RUN ls -alh
 
