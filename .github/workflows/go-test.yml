@@ -12,6 +12,9 @@ on: # yamllint disable-line rule:truthy
 env:
   LOG_LEVEL: WARN
 
+permissions:
+  contents: read
+
 jobs:
   test:
     name: "Go CI Tests"

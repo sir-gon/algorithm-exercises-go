@@ -13,8 +13,10 @@ on: # yamllint disable-line rule:truthy
 env:
   LOG_LEVEL: WARN
 
-jobs:
+permissions:
+  contents: read
 
+jobs:
   build-and-test:
     name: "Go CI Tests Coverage"
     runs-on: "ubuntu-26.04"
@@ -64,7 +66,8 @@ jobs:
           name: coverage-report
 
       - name: Upload coverage reports to Codecov with GitHub Action
-        uses: codecov/codecov-action@v7
+        # yamllint disable-line rule:line-length
+        uses: codecov/codecov-action@303a32d7a59b442fa8d48b6a1cc6825c09c847a5 # v7
         with:
           files: coverage.out
           token: ${{ secrets.CODECOV_TOKEN }} # required
@@ -87,7 +90,8 @@ jobs:
           name: coverage-report
 
       - name: SonarQube Scan
-        uses: SonarSource/sonarqube-scan-action@master
+        # yamllint disable-line rule:line-length
+        uses: SonarSource/sonarqube-scan-action@ba9859eae8dd6bd29e412f25ddbbef3d032000f4
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
