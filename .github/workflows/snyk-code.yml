@@ -10,6 +10,9 @@ on: # yamllint disable-line rule:truthy
   pull_request:
   workflow_dispatch:
 
+permissions:
+  contents: read
+
 jobs:
   security:
     runs-on: ubuntu-26.04

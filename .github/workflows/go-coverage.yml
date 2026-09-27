@@ -13,8 +13,10 @@ on: # yamllint disable-line rule:truthy
 env:
   LOG_LEVEL: WARN
 
-jobs:
+permissions:
+  contents: read
 
+jobs:
   build-and-test:
     name: "Go CI Tests Coverage"
     runs-on: "ubuntu-26.04"
