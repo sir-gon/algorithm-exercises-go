@@ -24,7 +24,7 @@ ENV WORKDIR=/app
 WORKDIR ${WORKDIR}
 
 ADD https://golangci-lint.run/install.sh ${WORKDIR}/
-RUN sh install.sh -b "$(go env GOPATH)/bin" v2.13.1 \
+RUN sh install.sh -b "$(go env GOPATH)/bin" v2.14.0 \
   && rm install.sh \
   && golangci-lint --version
 
