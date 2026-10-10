@@ -1,6 +1,8 @@
 ---
 name: Go CI Lint
 
+# yamllint disable rule:line-length
+
 on: # yamllint disable-line rule:truthy
   push:
     branches: ["main"]
@@ -16,17 +18,26 @@ permissions:
   contents: read
 
 jobs:
-  lint:
-    name: "Go CI LINT"
+  prepare-matrix:
+    name: Prepare Go matrix
+    runs-on: ubuntu-26.04
+    outputs:
+      go-matrix: ${{ steps.matrix.outputs.go-matrix }}
+    steps:
+      - name: Build shared matrix
+        id: matrix
+        shell: bash
+        run: |
+          echo 'go-matrix={"os":["windows-2025","ubuntu-26.04","macos-26"],"go":["1.25.x","1.26.x","1.27.x"]}' >> "$GITHUB_OUTPUT"
+
+  styling:
+    needs: prepare-matrix
+    name: "Go CI LINT - styling (${{ matrix.os }}, Go ${{ matrix.go }})"
     strategy:
       fail-fast: false
-      matrix:
-        os: ["windows-2025", "ubuntu-26.04", "macos-26"]
-        go: ["1.25.x", "1.26.x", "1.27.x"]
+      matrix: ${{ fromJSON(needs.prepare-matrix.outputs.go-matrix) }}
     runs-on: ${{ matrix.os }}
     steps:
-      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-
       - name: Set up Go
         uses: actions/setup-go@v7
         with:
@@ -35,17 +46,53 @@ jobs:
 
       - run: go version
 
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
       - name: Test Styling (gofmt & modernize)
         run: make test/styling
+
+  vet:
+    needs: prepare-matrix
+    name: "Go CI LINT - vet (${{ matrix.os }}, Go ${{ matrix.go }})"
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.prepare-matrix.outputs.go-matrix) }}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v7
+        with:
+          go-version: ${{ matrix.go }}
+          check-latest: false
+
+      - run: go version
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Lint (go vet)
         run: go vet -v ./...
 
-      # yamllint disable rule:line-length
+  golangci-lint:
+    needs: prepare-matrix
+    name: "Go CI LINT - golangci-lint (${{ matrix.os }}, Go ${{ matrix.go }})"
+    strategy:
+      fail-fast: false
+      matrix: ${{ fromJSON(needs.prepare-matrix.outputs.go-matrix) }}
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Set up Go
+        uses: actions/setup-go@v7
+        with:
+          go-version: ${{ matrix.go }}
+          check-latest: false
+
+      - run: go version
+
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
       - name: Lint golangci-lint
         uses: golangci/golangci-lint-action@ba0d7d2ec06a0ea1cb5fa41b2e4a3ab91d21278a # v9.3.0
         with:
           args: --timeout=10m
           version: v2.14.0
           skip-cache: true
-          # yamllint enable rule:line-length
