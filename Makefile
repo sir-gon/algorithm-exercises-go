@@ -40,19 +40,31 @@ BUILDKIT_PROGRESS=plain
 CGO_ENABLED=0
 
 # Modernize tool versioning
-# Go 1.25 requires gopls v0.21.0+
-# Go 1.24 and below should use gopls v0.20.0
-GO_VERSION := $(shell go version | cut -d' ' -f3 | sed 's/go//')
+# Go 1.26+ has the modernize checks built into `go fix`, while Go <1.26
+# still needs the standalone x/tools modernize command.
+GO_VERSION := $(shell $(GO) version | awk '{print $$3}' | sed 's/^go//')
 MODERNIZE_VER := v0.20.0
 
-# Check if Go version is 1.25 or higher
-IS_GO_125 := $(shell echo "$(GO_VERSION)" | awk -F. '{if ($$1 > 1 || ($$1 == 1 && $$2 >= 25)) print 1; else print 0}')
+# Treat all Go 1.26+ releases identically, including 1.27, 1.28, etc.
+IS_GO_125_PLUS := $(shell echo "$(GO_VERSION)" | awk -F. '{if ($$1 > 1 || ($$1 == 1 && $$2 >= 25)) print 1; else print 0}')
+IS_GO_126_PLUS := $(shell echo "$(GO_VERSION)" | awk -F. '{if ($$1 > 1 || ($$1 == 1 && $$2 >= 26)) print 1; else print 0}')
 
-ifeq ($(IS_GO_125),1)
+ifeq ($(IS_GO_125_PLUS),1)
+	# For Go >=1.25 use a newer modernize binary when the standalone tool is needed.
 	MODERNIZE_VER := latest
 endif
 
-MODERNIZE_CMD := GOTOOLCHAIN=auto $(GO) run golang.org/x/tools/gopls/internal/analysis/modernize/cmd/modernize@$(MODERNIZE_VER)
+ifeq ($(IS_GO_126_PLUS),1)
+	# Prefer the built-in fix tool for Go >= 1.26.
+	MODERNIZE_CMD := $(GO) fix
+	MODERNIZE_CHECK_ARGS := -diff ./...
+	MODERNIZE_FIX_ARGS := -fix ./...
+else
+	# Standalone modernize command for older toolchains.
+	MODERNIZE_CMD := GOTOOLCHAIN=auto $(GO) run golang.org/x/tools/go/analysis/passes/modernize/cmd/modernize@$(MODERNIZE_VER)
+	MODERNIZE_CHECK_ARGS := -test ./...
+	MODERNIZE_FIX_ARGS := -fix ./...
+endif
 LINTER_CMD := golangci-lint
 
 .MAIN: test/coverage
@@ -103,10 +115,11 @@ test/static: dependencies
 
 test/styling: dependencies
 	gofmt -l . && echo '✔  Your code looks good.'
-	$(MODERNIZE_CMD) -test ./...
+
+	$(MODERNIZE_CMD) $(MODERNIZE_CHECK_ARGS) && echo '✔  Your code looks good.'
 
 format/sources: dependencies
-	$(MODERNIZE_CMD) -fix ./...
+	$(MODERNIZE_CMD) $(MODERNIZE_FIX_ARGS)
 	$(LINTER_CMD) --verbose run --fix ./...
 
 format/json:
