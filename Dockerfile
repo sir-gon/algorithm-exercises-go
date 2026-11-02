@@ -62,7 +62,7 @@ FROM development AS builder
 # Ca-certificates is required to call HTTPS endpoints.
 RUN apk update \
   && apk add --no-cache \
-    "ca-certificates=20260909-r0" \
+    "ca-certificates=20261020-r0" \
     "tzdata=2026e-r0" \
   && update-ca-certificates
 
