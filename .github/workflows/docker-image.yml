@@ -7,6 +7,17 @@ on: # yamllint disable-line rule:truthy
   pull_request:
     # The branches below must be a subset of the branches above
     branches: ["main"]
+  schedule:
+    #        ┌───────────── minute (0 - 59)
+    #        │  ┌───────────── hour (0 - 23)
+    #        │  │ ┌───────────── day of the month (1 - 31)
+    #        │  │ │ ┌───────────── month (1 - 12 or JAN-DEC)
+    #        │  │ │ │ ┌───────────── day of the week (0 - 6 or SUN-SAT)
+    #        │  │ │ │ │
+    #        │  │ │ │ │
+    #        │  │ │ │ │
+    #        *  * * * *
+    - cron: '0 3 * * 1'
   workflow_dispatch:
 
 env:
@@ -90,6 +101,7 @@ jobs:
 
   run-lint-markdown:
     name: "Run in docker: Markdown LINT"
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -100,6 +112,7 @@ jobs:
 
   run-lint-yaml:
     name: "Run in docker: YAML LINT"
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -110,6 +123,7 @@ jobs:
 
   run-lint-json:
     name: "Run in docker: JSON LINT"
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-26.04
     steps:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7
@@ -120,6 +134,7 @@ jobs:
 
   run-lint:
     name: "Run in docker: LINT"
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-26.04
     needs: build-lint
     steps:
@@ -145,6 +160,7 @@ jobs:
 
   run-test:
     name: "Run in docker: TEST"
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-26.04
     needs: build-test
     steps:
@@ -220,6 +236,7 @@ jobs:
 
   scan:
     name: "Trivy"
+    if: github.event_name != 'schedule'
     runs-on: ubuntu-26.04
     needs: build-prod
     permissions:
