@@ -63,7 +63,7 @@ FROM development AS builder
 RUN apk update \
   && apk add --no-cache \
     "ca-certificates=20261020-r0" \
-    "tzdata=2026e-r0" \
+    "tzdata=2026f-r0" \
   && update-ca-certificates
 
 # Create appuser
